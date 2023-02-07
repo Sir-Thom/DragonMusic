@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import NavbarApp  from './components/NavbarApp' 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'font-awesome/css/font-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCube } from '@fortawesome/fontawesome-free-solid';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
   <NavbarApp></NavbarApp>
   <h3>Hello Alexis</h3>
+  <FontAwesomeIcon icon=" fa fa-shield"></FontAwesomeIcon>
+  <div><i className="fa fa-shield "></i></div>
+
   </Fragment>
 );
 
