@@ -6,11 +6,21 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function NavbarApp(){
     return(
-        <Navbar variant="dark" bg='dark'>
-            <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-            </Container>
-        </Navbar>
+        <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src={require('../logo.webp')}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            React Bootstrap
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+         
     )
 }
 export default NavbarApp;
