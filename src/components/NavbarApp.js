@@ -8,7 +8,18 @@ function NavbarApp(){
     return(
         <Navbar variant="dark" bg='dark'>
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand>
+                    <img
+                    src={require('./logo.png')}
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                    alt="G"
+                    />
+                </Navbar.Brand>
+                <Navbar.Brand href="#home">
+                    Hello
+                </Navbar.Brand>
             </Container>
         </Navbar>
     )
