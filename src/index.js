@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from './App';
-//import reportWebVitals from './reportWebVitals';
+import NavbarApp  from './components/NavbarApp' 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+<Fragment>
+  <NavbarApp></NavbarApp>
   <h3>Hello Alexis</h3>
+  </Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function
