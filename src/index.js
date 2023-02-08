@@ -9,7 +9,6 @@ import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
 import CustomScrollbar from './components/scrollbar';
 import { Stack } from 'react-bootstrap';
-import { NavbarApp } from './components/NavbarApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
@@ -18,7 +17,6 @@ root.render(
   
 
   <Stack gap={2}>
-    <NavbarApp></NavbarApp>
   <Sidebar></Sidebar>
   <Body>
   </Body>
