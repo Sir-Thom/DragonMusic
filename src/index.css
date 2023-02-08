@@ -1,14 +1,12 @@
-* {
-  margin: 0;
-}
+
 
 body::-webkit-scrollbar {
-  display: none;
+  display:none;
 }
 
 body {
- 
-    background: #111113;
+    
+    background: #ffffff;
     color: #fff;
     min-width: 460px !important;
   

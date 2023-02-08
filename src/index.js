@@ -7,17 +7,23 @@ import 'font-awesome/css/font-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
-
+import CustomScrollbar from './components/scrollbar';
+import { Stack } from 'react-bootstrap';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<div variant="dark">
 
-  <Sidebar></Sidebar>
-  <Body></Body>
+
   
- 
+  
 
-  </div>
+  <Stack gap={2}>
+  <Sidebar></Sidebar>
+  <Body>
+  </Body>
+  </Stack>
+
+
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function
