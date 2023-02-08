@@ -7,12 +7,14 @@ import 'font-awesome/css/font-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
+import { NavbarApp } from './components/NavbarApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div variant="dark">
-
-  <Sidebar></Sidebar>
+  
+  <div><NavbarApp/><Sidebar></Sidebar></div>
+  
   <Body></Body>
   
  {/* il y a plusieur méthode pour utiliser fontawesome 1: avec fontAwesomeIcon icon= */}
