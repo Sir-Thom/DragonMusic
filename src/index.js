@@ -9,6 +9,7 @@ import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
 import { NavbarApp } from './components/NavbarApp';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div variant="dark">
@@ -16,7 +17,7 @@ root.render(
   <div><NavbarApp/><Sidebar></Sidebar></div>
   
   <Body></Body>
-  
+
  {/* il y a plusieur méthode pour utiliser fontawesome 1: avec fontAwesomeIcon icon= */}
  <FontAwesomeIcon icon=" fa fa-cubes"></FontAwesomeIcon> methode 1<br></br>
   {/*1.2 ont peu aussi import une icon en particulier  */}
