@@ -1,0 +1,25 @@
+.scrollable-container {
+    position: relative;
+    overflow-y: scroll;
+  }
+  
+  .scrollable-content {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    background-color: lightgray;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .scrollbar:hover {
+    background-color: gray;
+  }
+  
