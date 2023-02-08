@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Sidebar  from './components/Sidebar' 
+import Sidebar from './components/Sidebar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
