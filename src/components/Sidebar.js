@@ -20,8 +20,8 @@ function Sidebar(){
       <div className='p-3'/>
       <Nav as="ul"  className="flex-column mb-auto">
         <NavItem>
-          <NavLink href="#" active>
-          <FaHome size={22} className="mr-2" />
+          <NavLink href="#" className='text-white' active>
+          <FaHome size={22} className="mr-2 " />
             Home
           </NavLink>
         </NavItem>
