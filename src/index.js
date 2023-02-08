@@ -10,8 +10,9 @@ import Body from './components/body';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div variant="dark">
-
-  <Sidebar></Sidebar>
+  
+  <div><NavbarApp/><Sidebar></Sidebar></div>
+  
   <Body></Body>
 
  {/* il y a plusieur méthode pour utiliser fontawesome 1: avec fontAwesomeIcon icon= */}
