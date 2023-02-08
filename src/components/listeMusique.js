@@ -4,7 +4,8 @@ class ListeDeMusique extends React.Component{
     constructor(props){
         super(props);
         this.state = {musique:[
-            {nomMusique:"testation",duree:"35",auteur:"Jean-Marc"}
+            {nomMusique:"testation",duree:"35",auteur:"Jean-Marc"},
+            {nomMusique:"test2",duree:"69",auteur:"BABAJE"}
         ]}
     }
 
