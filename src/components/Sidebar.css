@@ -1,0 +1,20 @@
+.sidebar{
+    color: #fff;
+    background-color: #101010;
+
+    
+    min-width: 14rem;
+    width: 14rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+
+}
+
+img{
+    width: 4rem;
+    height: 4rem;
+}

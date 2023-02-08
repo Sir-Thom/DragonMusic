@@ -1,10 +1,26 @@
-body {
+* {
   margin: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+ 
+    background: #111113;
+    color: #fff;
+    min-width: 460px !important;
+  
+  /*margin: 0;
+
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;*/
+  
 }
 
 code {

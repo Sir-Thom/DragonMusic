@@ -14,7 +14,7 @@ function NavbarApp(){
                     width="30"
                     height="30"
                     className="d-inline-block align-top"
-                    alt="logo"
+                    alt="G"
                     />
                 </Navbar.Brand>
                 <Navbar.Brand href="#home">
