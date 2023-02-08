@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
+
 import { Stack } from 'react-bootstrap';
 import { NavbarApp } from './components/NavbarApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
