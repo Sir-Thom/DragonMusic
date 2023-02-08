@@ -8,7 +8,7 @@ function Body(){
   <Container fluid >
    <Row className=" position-fixed justify-content">
     
-      <Card  className='col-md-4 g-2 text-dark gx-2' >
+      <Card gap={3} className='col-md-4 g-2 text-dark ' >
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>
