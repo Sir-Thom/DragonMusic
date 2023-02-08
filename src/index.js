@@ -9,6 +9,9 @@ import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
 import { NavbarApp } from './components/NavbarApp';
 
+import { NavbarApp } from './components/NavbarApp';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <div variant="dark">
