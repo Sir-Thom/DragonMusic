@@ -3,6 +3,7 @@ import './Sidebar.css'
 import { Nav, Navbar, NavItem,NavLink,} from 'react-bootstrap';
 import { FaHome, FaSearch, FaCompactDisc, FaHeart } from 'react-icons/fa';
 import logo from '../asset/logo.png';
+import { NavbarApp } from './NavbarApp';
 
 function Sidebar(){
   return (
