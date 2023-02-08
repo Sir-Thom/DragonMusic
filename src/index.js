@@ -9,6 +9,11 @@ import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+//comment marche fichier 
+//- asset= image
+//- components les component 
+
 root.render(
 <div variant="dark">
 
