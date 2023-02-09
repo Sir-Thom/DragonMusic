@@ -8,13 +8,16 @@ import 'font-awesome/css/font-awesome.min.css';
 //import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import Body from './components/body'; 
 
+import NavComp from './components/nav';
 import { Stack } from 'react-bootstrap';
 import { NavbarApp } from './components/NavbarApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
+  
   <Stack gap={2}>
-  <NavbarApp/><Sidebar></Sidebar>
+  <NavComp></NavComp>
+  {/*<NavbarApp/><Sidebar></Sidebar>*/}
   <Body>
   </Body>
   </Stack>

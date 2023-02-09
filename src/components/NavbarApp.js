@@ -10,6 +10,7 @@ function NavbarApp(){
     return(
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='d-flex text-dark flex-column flex-shrink-0 flex-fill p-3 a'>
       <Container>
+        
         <Navbar.Brand href="#home">Connexion</Navbar.Brand>
         <Navbar.Brand href="#home">Inscription</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

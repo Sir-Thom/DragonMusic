@@ -1,23 +1,22 @@
 import React, { useState } from 'react';import './Sidebar.css'
 import { Nav,Button, Navbar, NavItem,NavLink,Dropdown,DropdownToggle} from 'react-bootstrap';
-import { FaHome, FaSearch, FaCompactDisc, FaHeart } from 'react-icons/fa';
+import { FaHome, FaBars,FaTimes,  FaCompactDisc, FaHeart } from 'react-icons/fa';
 import logo from '../asset/logo.png';
 import { NavbarApp } from './NavbarApp';
 
 
+
 function Sidebar(){
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <> <Button
+    <>
+<Nav>
         
-    onClick={() => setShowSidebar(!showSidebar)}
-  >
-    Toggle Sidebar
-  </Button>
-     
+          </Nav>
       {showSidebar && (
         <div  className="sidebar d-flex text-dark flex-column flex-shrink-0 flex-fill p-3">
+          
           <Nav variant="dark"  className="d-flex align-items-center mb-3 mb-md-0  text-white text-decoration-none">
             <Navbar.Brand href="#home">
               <img 
@@ -32,20 +31,17 @@ function Sidebar(){
           <Nav as="ul"  className="flex-column mb-auto">
             <NavItem>
               <NavLink href="#" className='text-white' active>
-              <FaHome size={22} className="mr-2 " />
-                Home
+              <FaHome size={22} className="mr-2 " /> Home
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#" className="text-white">
-              <FaCompactDisc size={22} className="mr-2" />
-                Library
+              <FaCompactDisc size={22} className="mr-2" /> Library
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#" className="text-white">
-              <FaHeart size={22} className="mr-2" />
-                Your Library
+              <FaHeart size={22} className="mr-2" /> Your Library
               </NavLink>
             </NavItem>
           </Nav>
@@ -54,6 +50,8 @@ function Sidebar(){
     </>
   );
 }
+
+
 
 /*
 function Sidebar(){
