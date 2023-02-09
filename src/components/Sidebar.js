@@ -11,12 +11,20 @@ function Sidebar(){
 
   return (
     <>
-<Nav>
-        
-          </Nav>
+      <Button 
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          zIndex: showSidebar ? 1028 : 0,
+          fontSize: '14px'
+        }}
+        onClick={() => setShowSidebar(!showSidebar)}
+      >
+        {showSidebar ? <FaTimes size={20} /> : <FaBars size={20} />}
+      </Button>
       {showSidebar && (
-        <div  className="sidebar d-flex text-dark flex-column flex-shrink-0 flex-fill p-3">
-          
+        <div style={{ zIndex: showSidebar ? 1027 : 0}} className="sidebar z d-flex text-dark flex-column flex-shrink-0 flex-fill p-3">
           <Nav variant="dark"  className="d-flex align-items-center mb-3 mb-md-0  text-white text-decoration-none">
             <Navbar.Brand href="#home">
               <img 
@@ -31,17 +39,20 @@ function Sidebar(){
           <Nav as="ul"  className="flex-column mb-auto">
             <NavItem>
               <NavLink href="#" className='text-white' active>
-              <FaHome size={22} className="mr-2 " /> Home
+              <FaHome size={22} className="mr-2 " />
+                Home
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#" className="text-white">
-              <FaCompactDisc size={22} className="mr-2" /> Library
+              <FaCompactDisc size={22} className="mr-2" />
+                Library
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#" className="text-white">
-              <FaHeart size={22} className="mr-2" /> Your Library
+              <FaHeart size={22} className="mr-2" />
+                Your Library
               </NavLink>
             </NavItem>
           </Nav>

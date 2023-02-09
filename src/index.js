@@ -14,10 +14,12 @@ import { NavbarApp } from './components/NavbarApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
-  
+
   <Stack gap={2}>
+  
+  
+  <NavbarApp/><Sidebar></Sidebar>
   <NavComp></NavComp>
-  {/*<NavbarApp/><Sidebar></Sidebar>*/}
   <Body>
   </Body>
   </Stack>
