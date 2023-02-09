@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from '../asset/logo.png';
+import logo from '../asset/logo.svg';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import './NavBarApp.css';
@@ -17,8 +17,8 @@ function NavbarApp(){
               <img 
                 src={logo}
                 className="d-inline-block align-center"
-                width={"50px" }
-                height={"50px" }
+                width={"70px" }
+                height={"70px" }
 
                 alt="Logo"
               />
