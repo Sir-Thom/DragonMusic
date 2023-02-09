@@ -1,12 +1,15 @@
+
 .body {
-    margin-left:250px ;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    height: calc(100vh - 0px);
     min-width: 250px;
     padding: 30px;
     width: 100vw;
-    height: 100vh;
-    overflow-y: overlay;
-    right: 250px;
-    flex: 0.8;
+    padding-left: 18vw;
+    margin-top: -1vw;/*enlève la ligne blanche sous navbar*/
+    padding-top: 2vw;
+   
     color: white;
     background: linear-gradient( #1e1e1e, #121212);
 }
