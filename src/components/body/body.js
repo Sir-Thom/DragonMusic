@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row,Card,Stack } from 'react-bootstrap';
+import { Card,Stack } from 'react-bootstrap';
 import './body.css'
 import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';
