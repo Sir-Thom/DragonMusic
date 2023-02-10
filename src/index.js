@@ -2,19 +2,16 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import Navigation from './components/NavbarComp';
-import Body from './components/body'; 
-//import {Connexion} from './components/connexion.js';
-//import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-//import ButtonAppBar from './components/NavbarComp';Co
+import Navigation from "./components/header/NavbarComp";
+import Body from "./components/body/body"
 
+
+
+//import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
-  
  <Navigation></Navigation>
-  <Body></Body>
 </Fragment>
 );
 
