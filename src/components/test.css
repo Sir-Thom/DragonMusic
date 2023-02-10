@@ -1,11 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-button {
-    transition: all 0.3s ease-in-out;
+
+@layer components {
+ .collapse {
+    @apply h-0 hidden overflow-hidden transition-all  delay-1000 ease-out ;
+   
+  }
+  .collapse.show {
+    @apply h-auto  transition-all ease-in;
   }
   
-  button.isOpen {
-    transform: rotate(45deg);
-  }
+}
   

@@ -8,13 +8,14 @@ import Navigation from './components/NavbarComp';
 //import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import NavBarApp from "./components/NavbarApp"
 import Body from './components/body'; 
+import SearchBar from './components/SearchBar';
 //import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
 
  <Navigation></Navigation>
-  <Body></Body>
+    <SearchBar></SearchBar>
   
   
   
