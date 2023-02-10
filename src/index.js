@@ -2,25 +2,16 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import Navigation from './components/NavbarComp';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faCubes } from '@fortawesome/fontawesome-free-solid';
-import NavBarApp from "./components/NavbarApp"
-import Body from './components/body'; 
+import Navigation from "./components/header/NavbarComp";
+import Body from "./components/body/body"
+
+
 
 //import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
-
  <Navigation></Navigation>
-  
-  
-  
-  
-  
- 
 </Fragment>
 );
 

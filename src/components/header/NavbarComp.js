@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./test.css";
-import logo from "../asset/logo.svg";
+import "./NavbarComp.css";
+import logo from "../../asset/logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import SearchBar from "./SearchBar";
+import SearchBar from "../elements/SearchBar";
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
