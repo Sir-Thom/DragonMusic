@@ -1,28 +1,26 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Sidebar  from './components/Sidebar' 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCubes } from '@fortawesome/fontawesome-free-solid';
+import Navigation from './components/NavbarComp';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faCubes } from '@fortawesome/fontawesome-free-solid';
+import NavBarApp from "./components/NavbarApp"
 import Body from './components/body'; 
-import { Stack } from 'react-bootstrap';
+//import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+<Fragment>
 
-
+ <Navigation></Navigation>
+  <Body></Body>
   
   
-
-  <Stack gap={2}>
-  <Sidebar></Sidebar>
-  <Body>
-  </Body>
-  </Stack>
-
-
+  
+  
  
+</Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function

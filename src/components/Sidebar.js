@@ -1,10 +1,70 @@
-import React from 'react';
-import './Sidebar.css'
-import { Nav, Navbar, NavItem,NavLink,} from 'react-bootstrap';
-import { FaHome, FaSearch, FaCompactDisc, FaHeart } from 'react-icons/fa';
+import React, { useState } from 'react';import './Sidebar.css'
+import { Nav,Button, Navbar, NavItem,NavLink} from 'react-bootstrap';
+import { FaHome, FaBars,FaTimes,  FaCompactDisc, FaHeart } from 'react-icons/fa';
 import logo from '../asset/logo.png';
 import { NavbarApp } from './NavbarApp';
 
+
+
+function Sidebar(){
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  return (
+    <>
+      <Button 
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          zIndex: showSidebar ? 1028 : 0,
+          fontSize: '14px'
+        }}
+        onClick={() => setShowSidebar(!showSidebar)}
+      >
+        {showSidebar ? <FaTimes size={20} /> : <FaBars size={20} />}
+      </Button>
+      {showSidebar && (
+        <div style={{ zIndex: showSidebar ? 1027 : 0}} className="sidebar z d-flex text-dark flex-column flex-shrink-0 flex-fill p-3">
+          <Nav variant="dark"  className="d-flex align-items-center mb-3 mb-md-0  text-white text-decoration-none">
+            <Navbar.Brand href="#home">
+              <img 
+                src={logo}
+                className="d-inline-block align-center"
+                alt="Logo"
+              />
+              Dragon Music
+            </Navbar.Brand>
+          </Nav>
+          <div className='p-3'/>
+          <Nav as="ul"  className="flex-column mb-auto">
+            <NavItem>
+              <NavLink href="#" className='text-white' active>
+              <FaHome size={22} className="mr-2 " />
+                Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#" className="text-white">
+              <FaCompactDisc size={22} className="mr-2" />
+                Library
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#" className="text-white">
+              <FaHeart size={22} className="mr-2" />
+                Your Library
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </div>
+      )}
+    </>
+  );
+}
+
+
+
+/*
 function Sidebar(){
   return (
     <div style={{ width: 250 }} className="sidebar d-flex text-dark flex-column flex-shrink-0 flex-fill p-3">
@@ -38,10 +98,10 @@ function Sidebar(){
             Your Library
           </NavLink>
         </NavItem>
-      </Nav>
+      </Nav>       
     </div>
   );
-};
+};*/
 export default Sidebar;
 //veille version
 /*function NavbarApp(){
