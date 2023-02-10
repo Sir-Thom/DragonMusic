@@ -26,7 +26,8 @@ import React, {useState} from "react";
             id = "username"
             name="username"
             value ={formData.username}
-            onChange={handleInputChange}
+            onChange={handleInputChange} 
+            required
             />
              </div>
              <div>
@@ -37,6 +38,7 @@ import React, {useState} from "react";
             name =  "email" 
             value ={formData.email}
             onChange={handleInputChange}
+            required
             />
             </div>
              <div>
@@ -47,6 +49,7 @@ import React, {useState} from "react";
             name = "password"
             value ={formData.password}
             onChange={handleInputChange}
+            required
             />
         </div>
         <button type="submit">Créer un compte</button>

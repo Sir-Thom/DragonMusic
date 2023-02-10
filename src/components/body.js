@@ -3,7 +3,6 @@ import { Container, Row,Card,Stack } from 'react-bootstrap';
 import './body.css'
 import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';
-
 function Body(){
   return(
   <div  className='body '>
