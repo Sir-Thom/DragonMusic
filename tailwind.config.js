@@ -135,6 +135,7 @@ module.exports = {
         '800': '#0b5e6b',
         '900': '#0d4f5a',
       },
+      black:'#000000',
       azure: {
         '50':  '#ecfeff',
         '100': '#cffafe',
