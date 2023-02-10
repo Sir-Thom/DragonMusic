@@ -7,7 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
+import Navigation from './components/tailwindnavbar';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faCubes } from '@fortawesome/fontawesome-free-solid';
 import NavBarApp from "./components/NavbarApp"
@@ -17,13 +17,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
 
- 
+ <Navigation></Navigation>
   
   
-  <NavBarApp></NavBarApp>
   
-  <Body>
-  </Body>
+  
+  
  
 </Fragment>
 );
