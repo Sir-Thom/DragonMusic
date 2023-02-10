@@ -1,29 +1,29 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import Navigation from './components/NavbarComp';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faCubes } from '@fortawesome/fontawesome-free-solid';
-import NavBarApp from "./components/NavbarApp"
-import Body from './components/body'; 
+import Navigation from "./components/header/NavbarComp";
+import Body from "./components/body/body"
+//route aka page we will be using
+/*import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignIn from "./pages/SignIn";*/
+
 //import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// pour savoir comment faire les routes https://www.w3schools.com/react/react_router.asp
 root.render(
+    <React.StrictMode>
 <Fragment>
-
  <Navigation></Navigation>
-  <Body></Body>
-  
-  
-  
-  
- 
 </Fragment>
+</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals();
+
+reportWebVitals(console.log)
