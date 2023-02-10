@@ -1,5 +1,5 @@
 import React, { useState } from 'react';import './Sidebar.css'
-import { Nav,Button, Navbar, NavItem,NavLink,Dropdown,DropdownToggle} from 'react-bootstrap';
+import { Nav,Button, Navbar, NavItem,NavLink} from 'react-bootstrap';
 import { FaHome, FaBars,FaTimes,  FaCompactDisc, FaHeart } from 'react-icons/fa';
 import logo from '../asset/logo.png';
 import { NavbarApp } from './NavbarApp';

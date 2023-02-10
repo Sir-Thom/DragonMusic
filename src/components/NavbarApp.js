@@ -2,15 +2,28 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import logo from '../asset/logo.svg';
 //import NavDropdown from 'react-bootstrap/NavDropdown';
-import {Form, Button } from 'react-bootstrap';
+
 import './NavBarApp.css';
 
 function NavbarApp(){
     return(
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='d-flex text-dark flex-column flex-shrink-0 flex-fill p-3 a'>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{zIndex:'1024'
+        }}>
+
       <Container>
-        
+        <Navbar.Brand href="#home">
+              <img 
+                src={logo}
+                className="d-inline-block align-center"
+                width={"70px" }
+                height={"70px" }
+
+                alt="Logo"
+              />
+              Dragon Music
+            </Navbar.Brand>
         <Navbar.Brand href="#home">Connexion</Navbar.Brand>
         <Navbar.Brand href="#home">Inscription</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -19,19 +32,9 @@ function NavbarApp(){
             <Nav.Link href="#deconnexion">Déconnexion</Nav.Link>
         </Nav>
         </Navbar.Collapse>
-        <Nav>
-            <Form className="d-flex mr-auto" expand="lg">
-            <Form.Control
-              type="search"
-              placeholder="Recherche"
-              className="me-2"
-              aria-label="Recherche"
-            />
-            <Button variant="outline-success">Rechercher</Button>
-          </Form>
-          </Nav>
+        
       </Container>
     </Navbar>
     )
 }
-export {NavbarApp};
+export default NavbarApp ;

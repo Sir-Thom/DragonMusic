@@ -1,28 +1,26 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Sidebar  from './components/Sidebar' 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCubes } from '@fortawesome/fontawesome-free-solid';
+import Navigation from './components/NavbarComp';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faCubes } from '@fortawesome/fontawesome-free-solid';
+import NavBarApp from "./components/NavbarApp"
 import Body from './components/body'; 
-
-import NavComp from './components/nav';
-import { Stack } from 'react-bootstrap';
-import { NavbarApp } from './components/NavbarApp';
+import SearchBar from './components/SearchBar';
+//import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
 
-  <Stack gap={2}>
+ <Navigation></Navigation>
+    <SearchBar></SearchBar>
   
   
-  <NavbarApp/><Sidebar></Sidebar>
-  <NavComp></NavComp>
-  <Body>
-  </Body>
-  </Stack>
+  
+  
+ 
 </Fragment>
 );
 
