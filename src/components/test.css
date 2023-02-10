@@ -12,4 +12,13 @@
   }
   
 }
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  flex-grow: 1;
+  padding: 10px;
+}
   
