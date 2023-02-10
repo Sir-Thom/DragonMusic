@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './listeMusique.css';
-
+import BouttonJouerMusique from './boutonJouerMusique';
 class ListeDeMusique extends React.Component{
     constructor(props){
         super(props);
@@ -12,7 +12,7 @@ class ListeDeMusique extends React.Component{
 
     render(){return(
         <Fragment>{this.state.musique.map((musique, index) =>(
-            <span key={index}>{musique.nomMusique} de {musique.auteur}  durée: {musique.duree}<br></br></span>
+            <span key={index}>{musique.nomMusique} de {musique.auteur}  durée: {musique.duree} <BouttonJouerMusique/><br></br></span>
     ))}</Fragment>
 )}
 }
