@@ -1,17 +1,19 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
 
 const database = [
     {
       username: "joe",
+      email: "joe",
       password: "1234"
     },
     {
-      username: "human",
+      username: "humain",
+      email: "humain",
       password: "1234"
     },
     {
       username: "human1",
+      email: "human1",
       password: "12345"
     }
   ];
@@ -22,6 +24,7 @@ class Connexion extends React.Component
         super(props)
         this.state = {
             username: "",
+            email: "",
             password: ""
         }
     }
@@ -30,7 +33,9 @@ class Connexion extends React.Component
         return(
             <div>
             <label>Username</label><input type="text" onChange={(input) => this.setState({username: input.target.value})}></input>
+            <label>Email</label><input type="email" onChange={(input) => this.setState({email: input.target.value})}></input>
             <label>Password</label><input type="text" onChange={(input) => this.setState({password: input.target.value})}></input>
+            
             <button onClick={() => this.verifierConnexion()}>click</button>
             <h1>{this.state.username}</h1>
             <h1>{this.state.password}</h1>
@@ -41,17 +46,16 @@ class Connexion extends React.Component
     verifierConnexion(){
         console.log(database);
         database.forEach(value => {
-            if (this.state.password === value.password && this.state.username == value.username)
+            if (this.state.password === value.password && (this.state.username === value.username || this.state.email === value.email))
             {
                 alert('Alexis ca marchre');
+            }
+            else
+            {
+                alert('mauvais username et/ou mot de passe');
             }
         });
     }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<Fragment>
- <Connexion/>
-</Fragment>
-);
+export{Connexion}

@@ -5,11 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Navigation from './components/NavbarComp';
 import Body from './components/body'; 
-//import ButtonAppBar from './components/NavbarComp';
+//import {Connexion} from './components/connexion.js';
+//import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+//import ButtonAppBar from './components/NavbarComp';Co
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Fragment>
+  
  <Navigation></Navigation>
   <Body></Body>
 </Fragment>
