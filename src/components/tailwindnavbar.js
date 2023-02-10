@@ -23,7 +23,7 @@ function Navigation(){
                         about
                     </a>
                     <a className='block px-4 py-2 text-white hover:bg-gray-700'>
-                        Penis
+                        dsfffffff
                     </a>
                 </div>)}
   <button className=' text-white  flex items-end focus:outline-none ' onClick={() => setIsOpen(!isOpen)}>
