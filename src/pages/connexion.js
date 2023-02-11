@@ -30,17 +30,36 @@ class Connexion extends React.Component
     }
 
     render(){
-        return(
-            <div>
-            <label>Username</label><input type="text" onChange={(input) => this.setState({username: input.target.value})}></input>
-            <label>Email</label><input type="email" onChange={(input) => this.setState({email: input.target.value})}></input>
-            <label>Password</label><input type="text" onChange={(input) => this.setState({password: input.target.value})}></input>
-            
-            <button onClick={() => this.verifierConnexion()}>click</button>
+        return (
+          <div className="">
+            <label className="">Username</label>
+            <input
+              type="text"
+              onChange={(input) =>
+                this.setState({ username: input.target.value })
+              }
+            ></input>
+            <label className="">Email</label>
+            <input
+              type="email"
+              onChange={(input) => this.setState({ email: input.target.value })}
+            ></input>
+            <label className="">Password</label>
+            <input
+              className="" 
+              type="text"
+              onChange={(input) =>
+                this.setState({ password: input.target.value })
+              }
+            ></input>
+
+            <button className="" onClick={() => this.verifierConnexion()}>
+              click
+            </button>
             <h1>{this.state.username}</h1>
             <h1>{this.state.password}</h1>
-            </div>
-        )
+          </div>
+        );
     }
     
     verifierConnexion(){

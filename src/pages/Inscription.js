@@ -17,42 +17,45 @@ import React, {useState} from "react";
     alert("Votre compte à été créé avec le Nom d'utilisateur:" + formData.username +  ", l'email: " + formData.email + " et le mot de passe: " + formData.password );
     event.preventDefault();
   };
-  return(
+  return (
     <form onSubmit={handleSubmit}>
-        <div>
-            <label>Nom d'utilisateur: </label>
-            <input
-            type = "text"
-            id = "username"
-            name="username"
-            value ={formData.username}
-            onChange={handleInputChange} 
-            required
-            />
-             </div>
-             <div>
-             <label>email: </label>
-            <input
-            type = "text"
-            id = "email"
-            name =  "email" 
-            value ={formData.email}
-            onChange={handleInputChange}
-            required
-            />
-            </div>
-             <div>
-             <label>mot de passe: </label>
-            <input
-            type = "text"
-            id = "password"
-            name = "password"
-            value ={formData.password}
-            onChange={handleInputChange}
-            required
-            />
-        </div>
-        <button type="submit">Créer un compte</button>
+      <div>
+        <label>Nom d'utilisateur: </label>
+        <input
+          className=""
+          type="text"
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div>
+        <label>email: </label>
+        <input
+          className=""
+          type="text"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div>
+        <label>mot de passe: </label>
+        <input
+          className=""
+          type="text"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button type="submit">Créer un compte</button>
     </form>
   );
  }

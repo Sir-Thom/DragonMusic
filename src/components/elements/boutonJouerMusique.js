@@ -11,7 +11,7 @@ const BouttonJouerMusique = () => {
   
 
     return (
-      <div>
+      <div className="">
         {selectedIcon === 1 ? (
           <ImPlay2 onClick={switchIcon}/>
         ) : (
