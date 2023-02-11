@@ -1,4 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer components {
+    .gradiant{
+        @apply h-screen w-screen;
+      
+        background: linear-gradient( #373737, #181818);
+    }
+}
 .body {
     overflow-y:scroll;
     overflow-x: hidden;
