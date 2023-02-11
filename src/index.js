@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from "./components/header/NavbarComp";
+import Body from './components/body/body';
 //route aka page we will be using
 /*import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -17,6 +18,7 @@ root.render(
     <React.StrictMode>
 <Fragment>
  <Navigation></Navigation>
+<Body></Body>
 </Fragment>
 </React.StrictMode>
 );
