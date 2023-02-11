@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,js}"], theme: {
+    extend:
+    {
+      fontFamily: {
+        'Ubuntu': ['Ubuntu', 'sans-serif'],
+        
+      },
     colors: {
       'cod-gray': {
         DEFAULT: '#181818',
@@ -244,8 +250,21 @@ module.exports = {
         '800': '#991b1b',
         '900': '#7f1d1d',
       },
+      violet:{
+        '50':  '#f5f3ff ',
+        '100': '#ede9fe ',
+        '200': '#ddd6fe ',
+        '300': '#c4b5fd ',
+        '400': '#a78bfa ',
+        '500': '#8b5cf6 ',
+        '600': '#7c3aed ',
+        '700': '#5b21b6 ',
+        '800': '#5b21b6 ',
+        '900': '#4c1d95 ',
+      },
       
     },
   },
   plugins: [],
+}
 }

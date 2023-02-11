@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Ubuntu";
+
+  src: url("../../../public/font/Ubuntu/Ubuntu-Regular.ttf");
+}
+
 @layer components {
  .collapse {
-    @apply h-0 hidden overflow-hidden transition-all  delay-1000 ease-out ;
+    @apply h-0 hidden invisible overflow-hidden transition-all  delay-700 ease-in-out  ;
    
   }
   .collapse.show {
-    @apply h-auto  transition-all ease-in;
+    @apply h-auto visible  transition-all ease-in;
   }
+  
   
 }
 .flex {
