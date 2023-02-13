@@ -34,11 +34,10 @@ class Connexion extends React.Component
         return (
           <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
             <div className="my-auto  mb-16 h-6 w-auto text-slate-900">
-              <img className="h-96 w-50 mx-auto" src={logo}></img>
+              <img className="h-96 w-50 mx-auto" src={logo} alt="logo"></img>
             </div>
 
             <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
-              <h1 className=" sr-only"></h1>
 
               <form>
                 <div className="mb-6 ">
@@ -118,11 +117,11 @@ class Inscription extends React.Component
       return (
         <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
             <div className="my-auto  mb-16 h-6 w-auto text-slate-900">
-              <img className="h-96 w-50 mx-auto" src={logo}></img>
+              <img className="h-96 w-50 mx-auto" src={logo} alt="logo"></img>
             </div>
 
             <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
-              <h1 className=" sr-only"></h1>
+
             <form onSubmit={(e) => this.creerCompte(e) }>
               <div className="mb-6">
                 <label className="text-white">Username</label>
