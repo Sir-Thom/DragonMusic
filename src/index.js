@@ -6,8 +6,8 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from "./components/header/NavbarComp";
 import Body from './components/body/body';
-import { Connexion } from './pages/connexion';
-import BottomNavbar from './components/elements/musicBar';
+import { Connexion } from './pages/connexionInscription';
+import MusicBar from './components/elements/musicBar'
 //route aka page we will be using
 /*import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -19,11 +19,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
 <Fragment>
-
  <Navigation></Navigation>
- 
 <Body></Body>
-<BottomNavbar></BottomNavbar>
+<MusicBar></MusicBar>
 </Fragment>
 </React.StrictMode>
 );
