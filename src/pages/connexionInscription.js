@@ -44,9 +44,8 @@ class Connexion extends React.Component
                 <div className="mb-6 ">
                   <label className="text-white">Username</label>
                   <input
-                    required=""
                     placeholder="Xxx_Joe_Blow69_xxX"
-                    type="email"
+                    type="name"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                     onChange={(input) =>
                       this.setState({ username: input.target.value })
@@ -56,7 +55,6 @@ class Connexion extends React.Component
                 <div className="mb-6">
                   <label className="text-white">Email</label>
                   <input
-                    required=""
                     placeholder="Joe@exemple.com"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                     type="email"
@@ -69,7 +67,7 @@ class Connexion extends React.Component
                 <div className="mb-6">
                   <label className="text-white">Password</label>
                   <input
-                    required=""
+                    required
                     className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                     type="password"
                     placeholder="mot de passe"
@@ -82,24 +80,22 @@ class Connexion extends React.Component
                 <button
                   type="submit"
                   className="inline-block px-7 py-3 bg-violet-600 text-white font-medium text-sm leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-                  onClick={() => this.verifierConnexion()}
+                  onClick={(e) => this.verifierConnexion(e)}
                 >
                   Se Connecter
                 </button>
-
-                <h1>{this.state.username}</h1>
-                <h1>{this.state.password}</h1>
               </form>
             </div>
           </section>
         );
     }
     
-    verifierConnexion(){
+    verifierConnexion(event){
+        event.preventDefault();
         for (const i of database) {
           if (this.state.password === i.password && (this.state.username === i.username || this.state.email === i.email))
             {
-                alert('Votre compte a été créer');
+                alert('Bienvenu sur le site');
                 return;
             }
         }
@@ -120,34 +116,58 @@ class Inscription extends React.Component
 
     render(){
       return (
-        <form onSubmit={(e) => this.creerCompte(e) }>
-        <div className="">
-          <label className="">Username</label>
-          <input
-            type="text" required
-            onChange={(input) =>
-              this.setState({ username: input.target.value })
-            }
-          ></input>
-          <label className="">Email</label>
-          <input
-            type="email" required
-            onChange={(input) => this.setState({ email: input.target.value })}
-          ></input>
-          <label className="">Password</label>
-          <input
-            className="" required
-            type="text"
-            onChange={(input) =>
-              this.setState({ password: input.target.value })
-            }
-          ></input>
+        <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+            <div className="my-auto  mb-16 h-6 w-auto text-slate-900">
+              <img className="h-96 w-50 mx-auto" src={logo}></img>
+            </div>
 
-          <button type="submit" >
-            click
-          </button>
-        </div>
-        </form>
+            <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
+              <h1 className=" sr-only"></h1>
+            <form onSubmit={(e) => this.creerCompte(e) }>
+              <div className="mb-6">
+                <label className="text-white">Username</label>
+                <input
+                  required
+                  placeholder="VickyVickyVicky"
+                  type="name"
+                  className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+                  onChange={(input) =>
+                    this.setState({ username: input.target.value })
+                  }
+                ></input>
+                </div>
+
+                <div className="mb-6">
+                <label className="text-white">Email</label>
+                <input
+                  required
+                  placeholder="Bob@exemple.com"
+                  className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+                  type="email"
+                  onChange={(input) => this.setState({ email: input.target.value })}
+                ></input>
+                </div>
+
+                <div className="mb-6">
+                <label className="text-white">Password</label>
+                <input
+                  required
+                  className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+                  type="password"
+                  placeholder="mot de passe"
+                  onChange={(input) =>
+                    this.setState({ password: input.target.value })
+                  }
+                ></input>
+                </div>
+
+                <button type="submit"
+                className="inline-block px-7 py-3 bg-violet-600 text-white font-medium text-sm leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full">
+                  S'inscire
+                </button>
+            </form>
+          </div>
+        </section>
       );
     }
 
@@ -164,6 +184,7 @@ class Inscription extends React.Component
       }
 
       database.push({username: this.state.username, email: this.state.email, password: this.state.password});
+      alert("Compter créer avec succès");
       console.log(database);
     }
 }

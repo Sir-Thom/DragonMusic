@@ -12,7 +12,7 @@ const timeString = date.toISOString().substr(11, 8);
 console.log(timeString)
   return (
     <nav className="fixed bottom-0 w-full rounded bg-gray-800 p-2">
-    <div class="relative block h-1 w-full ">
+    <div className="relative block h-1 w-full ">
       <input
         type="range"
         min={0}
