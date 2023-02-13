@@ -1,10 +1,17 @@
 import React from "react";
+
+import { withRouter} from "react-router-dom";
 import logo from "../asset/logo.svg"
 import "../components/body/body.css"
+import FloatingRectangles from "../components/elements/floatingRect";
+import Header from "../components/header/headerLogin"
+
+
+
 let database = [
     {
       username: "joe",
-      email: "joe",
+      email: "joe@joe.com",
       password: "1234"
     },
     {
@@ -21,25 +28,43 @@ let database = [
 
 class Connexion extends React.Component
 {
+  
     constructor(props){
+
         super(props)
         this.state = {
             username: "",
             email: "",
-            password: ""
+            password: "",
+            connected:null,
+
         }
     }
-
+   
+ 
     render(){
+      let { user } = this.state;
+      console.log(this.state.user)
+      
         return (
+          
           <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
-            <div className="my-auto  mb-16 h-6 w-auto text-slate-900">
-              <img className="h-96 w-50 mx-auto" src={logo} alt="logo"></img>
-            </div>
+           
+           <Header
+          heading="Connectez-vous à votre compte"
+          paragraph="Vous N'avez pas encore de compte? "
+          linkName="S'inscrire"
+          linkUrl="/inscription"
+          />
 
-            <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
+          <div className="  flex  flex-col items-center justify-center ">
+          <div>
+          </div>
+         
 
-              <form>
+            
+        
+          <form onSubmit={(event) => this.verifierConnexion(event)}>
                 <div className="mb-6 ">
                   <label className="text-white">Username</label>
                   <input
@@ -83,22 +108,28 @@ class Connexion extends React.Component
                 >
                   Se Connecter
                 </button>
-              </form>
-            </div>
-          </section>
+              </form>          <div>
+          </div>
+        </div>
+      </section>
+
         );
     }
     
-    verifierConnexion(event){
+    async verifierConnexion(event,i){
         event.preventDefault();
         for (const i of database) {
           if (this.state.password === i.password && (this.state.username === i.username || this.state.email === i.email))
             {
-                alert('Bienvenu sur le site');
-                return;
+             
+              console.log("connection réussi")
+              
+             // this.setState({ });
+              
+          return;
             }
         }
-        alert("Nom d'utilisateur et/ou mot de pass incorrect");
+        alert("Nom d'utilisateur et/ou mot de passe incorrect");
     } 
 }
 
@@ -115,11 +146,14 @@ class Inscription extends React.Component
 
     render(){
       return (
-        <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
-            <div className="my-auto  mb-16 h-6 w-auto text-slate-900">
-              <img className="h-96 w-50 mx-auto" src={logo} alt="logo"></img>
-            </div>
-
+        <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+          
+          <Header
+          heading="Créez-vous un compte"
+          paragraph="Vous avez déja un compte? "
+          linkName="Se connecter"
+          linkUrl="/connexion"
+          />
             <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
 
             <form onSubmit={(e) => this.creerCompte(e) }>
@@ -127,7 +161,7 @@ class Inscription extends React.Component
                 <label className="text-white">Username</label>
                 <input
                   required
-                  placeholder="VickyVickyVicky"
+                  placeholder="Vicky"
                   type="name"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                   onChange={(input) =>
@@ -190,3 +224,7 @@ class Inscription extends React.Component
 
 export{Inscription}
 export{Connexion}
+
+
+
+

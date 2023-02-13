@@ -3,7 +3,10 @@ import "./NavbarComp.css";
 import logo from "../../asset/logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "../elements/SearchBar";
+
+import {Link} from "react-router-dom";
 function Navigation() {
+  
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -52,24 +55,25 @@ function Navigation() {
           }  transform-gpu duration-500 ease-in-out transition-transform bg-cod-gray-600 py-4`}
           >
             <div className="block rounded-lg font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <button className=" px-4 py-2 text-white hover:hover:bg-cod-gray-100">
+
+              <Link className=" px-4 py-2 text-white " to="/"> 
                 Accueil
-              </button>
+              </Link>
             </div>
             <div className="block transition  ease-in-out   duration-500 rounded-lg font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <button className=" px-4 py-2 text-white ">
-                bibi
-              </button>
+              <Link to="/" className=" px-4 py-2 text-white ">
+                Bibliothèque
+              </Link>
             </div>
             <div className="block rounded-lg transition  ease-in-out duration-500 font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <button className=" px-4 py-2 text-white">
+              <Link to="/connexion" className=" px-4 py-2 text-white ">
                 Connexion
-              </button>
+              </Link>
             </div>
             <div className="block rounded-lg transition  ease-in-out  duration-500 font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <button className=" px-4 py-2 text-white">
+            <Link to="/inscription" className=" px-4 py-2 text-white ">
                 Inscription
-              </button>
+              </Link>
             </div>
           </div>
         )}
