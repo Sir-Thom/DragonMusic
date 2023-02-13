@@ -1,10 +1,16 @@
 import React, {useState} from "react";
-    const Inscription = ()=>{
+import GoofyDragon from "../asset/goofy_dragon.png"
+import "../components/body/body.css"
+
+
+const Inscription = ()=>{
     const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: ''
   });
+
+
   const handleInputChange = event => {
     setFormData({
       ...formData,
@@ -18,6 +24,17 @@ import React, {useState} from "react";
     event.preventDefault();
   };
   return (
+    <section class="h-screen">
+    <div class="container px-6 py-12 h-full">
+    <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+   
+    <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+    <img
+      src={GoofyDragon}
+      className="w-full"
+      alt="GoofyDragon"
+    />
+  </div>
     <form onSubmit={handleSubmit}>
       <div>
         <label>Nom d'utilisateur: </label>
@@ -57,6 +74,9 @@ import React, {useState} from "react";
       </div>
       <button type="submit">Créer un compte</button>
     </form>
+    </div>
+    </div>
+    </section>
   );
  }
 

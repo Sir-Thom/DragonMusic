@@ -3,6 +3,7 @@ import React from 'react';
 import './body.css'
 import Card from '../elements/card';
 import MusicCard from '../elements/musicCard';
+
 /*import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';*/
 function Body(){
