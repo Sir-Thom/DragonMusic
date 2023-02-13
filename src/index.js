@@ -19,9 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
 <Fragment>
- <Navigation></Navigation>
-<Body></Body>
-<MusicBar></MusicBar>
+<Connexion></Connexion>
 </Fragment>
 </React.StrictMode>
 );

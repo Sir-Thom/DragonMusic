@@ -46,7 +46,7 @@ class Connexion extends React.Component
                   <input
                     required=""
                     placeholder="Xxx_Joe_Blow69_xxX"
-                    type="email"
+                    type="text"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                     onChange={(input) =>
                       this.setState({ username: input.target.value })
