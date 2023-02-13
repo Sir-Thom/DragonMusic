@@ -17,6 +17,7 @@ const router = createBrowserRouter([
     {
         path: "connexion",
         element: <Connexion />,//http://localhost:3000/connexion
+
     },
     {
         path: "inscription",
