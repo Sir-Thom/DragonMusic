@@ -40,6 +40,7 @@ useEffect(() => {
         >
           {isPlaying ? 'Pause' : 'Play'}
         </button>
+        
         {isPlaying && (
           <p className="text-gray-700 text-base mt-2">
             Remaining Time: {remainingTime}s

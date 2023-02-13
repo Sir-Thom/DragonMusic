@@ -3,10 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+    .gradiantPage{
+        
+      
+        background: repeating-linear-gradient(#373737, #181818) 
+    }
     .gradiant{
         @apply h-screen w-screen;
       
-        background: linear-gradient( #373737, #181818);
+        background: repeating-linear-gradient(#373737, #181818) 
     }
 }
 .body {
