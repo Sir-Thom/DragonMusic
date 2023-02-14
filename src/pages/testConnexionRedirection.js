@@ -45,7 +45,7 @@ return (
            
     <Header
    heading="Connectez-vous à votre compte"
-   paragraph="Vous N'avez pas encore de compte? "
+   paragraph="Vous n'avez pas encore de compte? "
    linkName="S'inscrire"
    linkUrl="/inscription"
    />
@@ -59,7 +59,7 @@ return (
  
    <form onSubmit={(event) => verifierConnexion(event)}>
          <div className="mb-6 ">
-           <label className="text-white">Username</label>
+           <label className="text-white">nom d'utilisateur</label>
            <input
              placeholder="Xxx_Joe_Blow69_xxX"
              type="name"
@@ -69,7 +69,7 @@ return (
            ></input>
          </div>
          <div className="mb-6">
-           <label className="text-white">Email</label>
+           <label className="text-white">Courriel</label>
            <input
              placeholder="Joe@exemple.com"
              className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
@@ -80,7 +80,7 @@ return (
          </div>
 
          <div className="mb-6">
-           <label className="text-white">Password</label>
+           <label className="text-white">Mot de passe</label>
            <input
              required
              className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
@@ -92,7 +92,7 @@ return (
 
          <button
            type="submit"
-           className="inline-block px-7 py-3 bg-violet-600 text-white font-medium text-sm leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+           className="inline-block px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
            onClick={(e) => this.verifierConnexion(e)}
          >
            Se Connecter

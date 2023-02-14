@@ -10,9 +10,9 @@ function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="flex font-Ubuntu items-end shadow-md shadow-cod-gray item-center  bg-cod-gray-600  rounded-br-lg py-3 rounded-bl">
-      <div className=" max-w-full container  mx-0 text-white">
-        <div className="flex items-center ms-auto pr-4 justify-between">
+    <nav className="flex font-Ubuntu  justify-center my-auto justify-items-center shadow-md shadow-cod-gray item-center  bg-cod-gray-600  rounded-br-lg py-4 rounded-bl">
+      <div className=" max-w-full container  ms-auto  text-white">
+        <div className="flex items-center my-auto pr-4 justify-between">
           <div className="flex text-lg  items-center ">
             <img className="h-[6vh] w-[6vw]" src={logo} alt="Logo" />
             <a href="/#"
