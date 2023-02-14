@@ -1,9 +1,5 @@
 import React from "react";
-
-import { withRouter} from "react-router-dom";
-import logo from "../asset/logo.svg"
 import "../components/body/body.css"
-import FloatingRectangles from "../components/elements/floatingRect";
 import Header from "../components/header/headerLogin"
 
 
@@ -43,8 +39,8 @@ class Connexion extends React.Component
    
  
     render(){
-      let { user } = this.state;
-      console.log(this.state.user)
+      
+  
       
         return (
           
@@ -116,7 +112,7 @@ class Connexion extends React.Component
         );
     }
     
-    async verifierConnexion(event,i){
+    async verifierConnexion(event){
         event.preventDefault();
         for (const i of database) {
           if (this.state.password === i.password && (this.state.username === i.username || this.state.email === i.email))

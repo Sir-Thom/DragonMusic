@@ -10,7 +10,7 @@ function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="flex font-Ubuntu items-end shadow-md shadow-cod-gray  bg-cod-gray-600  rounded-br-lg p-4 rounded-bl">
+    <nav className="flex font-Ubuntu items-end shadow-md shadow-cod-gray item-center  bg-cod-gray-600  rounded-br-lg py-3 rounded-bl">
       <div className=" max-w-full container  mx-0 text-white">
         <div className="flex items-center ms-auto pr-4 justify-between">
           <div className="flex text-lg  items-center ">
@@ -71,7 +71,7 @@ function Navigation() {
               </Link>
             </div>
             <div className="block rounded-lg transition  ease-in-out  duration-500 font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-            <Link to="/inscription" className=" px-4 py-2 text-white ">
+            <Link to="/inscription" className="relative px-4 py-2 text-white ">
                 Inscription
               </Link>
             </div>

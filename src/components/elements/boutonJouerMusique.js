@@ -1,40 +1,28 @@
 import React, { useState } from "react";
-import {AiOutlinePauseCircle} from "react-icons/ai";
-import { ImPlay2 } from "react-icons/im";
 
-const BouttonJouerMusique = () => {
+import { ImPlay2,ImPause } from "react-icons/im";
+
+function BouttonJouerMusique(){
     const [selectedIcon, setSelectedIcon] = useState(1);
   
-    const switchIcon = () => {
+    function switchIcon() {
         setSelectedIcon(selectedIcon === 1 ? 2 : 1);
     };
   
 
     return (
-      <div className="">
+      <button onClick={switchIcon}
+                
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+     
         {selectedIcon === 1 ? (
-          <ImPlay2 onClick={switchIcon}/>
+          <ImPlay2  />
         ) : (
-          <AiOutlinePauseCircle onClick={switchIcon}/>
+          <ImPause />
         )}
-        
-      </div>
+         </button>
+      
     );
   };
   
   export default BouttonJouerMusique;
-  
-/*const BOuttonJouerMusique = () => {
-   const [title, setTitle] = useState("Click here");
-
-   return <h1 onClick={() => setTitle("New title")}>{title}</h1>;
-}
-function click(){
-
-}
-
-return(
- 
-    <ImPlay2/>  
-)
-*/ 
