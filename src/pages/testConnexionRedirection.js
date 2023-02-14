@@ -24,14 +24,13 @@ export default function Connexion(){
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const navigate = useNavigate();
+
     function verifierConnexion(event){
       event.preventDefault();
       for (const i of database) {
         if (password === i.password && (username === i.username || email === i.email)) {
-          console.log("connection réussi");
-          
+          console.log("connection réussi");      
           navigate("/");
           return;
         }
