@@ -1,7 +1,10 @@
 [
-    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/logo.png"},
-    {"nomMusique":"Babje","duree":69,"auteur":"Fornitate","image":"asset/goofy_dragon.png"},
+
     {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/goofy_dragon.png"},
-    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/goofy_dragon.png"},
-    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/logo.png"}
+    {"nomMusique":"test2","duree":69,"auteur":"BABAJE","image":"asset/spag.png"},
+    {"nomMusique":"Sad song","duree":35,"auteur":"Gabriel","image":"asset/Moai.png"},
+    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/MoaiVoiture.png"},
+    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/fortiniteSong.png"},
+    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/GoussePied.png"}
+
 ]
