@@ -14,9 +14,9 @@ export default function ListeDeMusique(){
 ];
 
     return (
-      <div className="grid grid-cols-4  grid-flow-row-dense grid-flow-col-dense gap-2 ">
+      <div className="flex gap-2 flex-shrink-0 ">
         {music.map((musique, index) => (
-          <div className=" grid-rows-4 w-75  bg-cod-gray-600   flex rounded overflow-hidden ">
+          <div className=" flex-row w-25  bg-cod-gray-600   flex rounded overflow-hidden ">
             <img
               src="../../asset/goofy_dragon.png"
               width={20}

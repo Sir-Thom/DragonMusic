@@ -8,8 +8,8 @@ import ListeDeMusique from './listeMusique';
 import {Inscription} from'./Inscription';*/
 function Body(){
   return(
-  <div  className='body gradiant grid'>
-  <div className=" grid-rows-2">
+  <div  className='body gradiant '>
+  <div className=" ">
    <ListeDeMusique></ListeDeMusique>
    </div>
 

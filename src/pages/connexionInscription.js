@@ -150,11 +150,11 @@ class Inscription extends React.Component
           linkName="Se connecter"
           linkUrl="/connexion"
           />
-            <div className="  flex flex-1 flex-col items-center justify-center pt-12 pb-16">
+            <div className="  flex  flex-col items-center justify-center ">
 
             <form onSubmit={(e) => this.creerCompte(e) }>
               <div className="mb-6">
-                <label className="text-white">Username</label>
+                <label className="text-white">nom d'utilisateur</label>
                 <input
                   required
                   placeholder="Vicky"
@@ -167,7 +167,7 @@ class Inscription extends React.Component
                 </div>
 
                 <div className="mb-6">
-                <label className="text-white">Email</label>
+                <label className="text-white">Courriel</label>
                 <input
                   required
                   placeholder="Bob@exemple.com"
@@ -178,7 +178,7 @@ class Inscription extends React.Component
                 </div>
 
                 <div className="mb-6">
-                <label className="text-white">Password</label>
+                <label className="text-white">Mot de passe</label>
                 <input
                   required
                   className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
@@ -191,8 +191,8 @@ class Inscription extends React.Component
                 </div>
 
                 <button type="submit"
-                className="inline-block px-7 py-3 bg-violet-600 text-white font-medium text-sm leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full">
-                  S'inscire
+                className="inline-block my-8 px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full">
+                  S'inscrire
                 </button>
             </form>
           </div>
