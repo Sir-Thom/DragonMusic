@@ -4,6 +4,8 @@ import BouttonJouerMusique from '../elements/boutonJouerMusique';
 import {AiOutlinePauseCircle} from "react-icons/ai";
 import { ImPlay2 } from "react-icons/im";
 import goofy_dragon from "../../asset/goofy_dragon.png";
+import logo from "../../asset/logo.png";
+
 const musiques = require('../data/musique.json');
 
 export default function ListeDeMusique(){
@@ -12,7 +14,7 @@ export default function ListeDeMusique(){
         {musiques.map((musique, index) => (
           <div key={index} className=" flex-row w-25  bg-cod-gray-600   flex rounded overflow-hidden ">
             <img
-              src={goofy_dragon}//"../../asset/goofy_dragon.png"
+              src={musique.image}
               width={150}
               alt={musique.nomMusique}
               className="w-partial"
