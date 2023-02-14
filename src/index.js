@@ -5,10 +5,9 @@ import {createBrowserRouter,
     RouterProvider, } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Connexion, Inscription } from './pages/connexionInscription';
+import {Inscription, Connexion} from './pages/connexionInscription';
 import ErrorPage from './pages/pageError';
 import Accueil from './pages/pageAccueil';
-import Login from "./pages/testConnexionRedirection"
 
 
 /*
@@ -20,7 +19,7 @@ les class empêche d'utiliser les routes comme il faut
 const router = createBrowserRouter([
     {
         path: "connexion",
-        element: <Login />,//http://localhost:3000/connexion
+        element: <Connexion />,//http://localhost:3000/connexion
 
     },
     {
