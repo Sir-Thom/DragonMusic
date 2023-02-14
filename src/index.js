@@ -8,15 +8,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Connexion, Inscription } from './pages/connexionInscription';
 import ErrorPage from './pages/pageError';
 import Accueil from './pages/pageAccueil';
-//route aka page we will be using
-/*import Home from "./pages/Home";
-import Login from "./pages/Login";
-import SignIn from "./pages/SignIn";*/
+import Login from "./pages/testConnexionRedirection"
 
+
+/*
+note pour futur moi 
+
+les class empêche d'utiliser les routes comme il faut
+
+*/ 
 const router = createBrowserRouter([
     {
         path: "connexion",
-        element: <Connexion />,//http://localhost:3000/connexion
+        element: <Login />,//http://localhost:3000/connexion
 
     },
     {
@@ -30,7 +34,6 @@ const router = createBrowserRouter([
     }
   ]);
 
-//import ButtonAppBar from './components/NavbarComp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // pour savoir comment faire les routes https://www.w3schools.com/react/react_router.asp
 root.render(
