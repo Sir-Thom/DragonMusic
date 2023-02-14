@@ -26,7 +26,7 @@ export default function Connexion(){
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-    const verifierConnexion = (event) => {
+    function verifierConnexion(event){
       event.preventDefault();
       for (const i of database) {
         if (password === i.password && (username === i.username || email === i.email)) {
