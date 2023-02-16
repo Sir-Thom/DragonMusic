@@ -1,9 +1,7 @@
 import React, { Fragment ,useState} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
-import {AiOutlinePauseCircle} from "react-icons/ai";
-import { ImPlay2 } from "react-icons/im";
-import goofy_dragon from "../../asset/goofy_dragon.png";
+
 const musiques = require('../data/musique.json');
 
 export default function ListeDeMusique(){
