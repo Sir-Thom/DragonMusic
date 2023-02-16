@@ -10,7 +10,7 @@ export default function ListeDeMusique(){
         {musiques.map((musique, index) => (
           <div key={index} className=" flex-row w-25  bg-cod-gray-600   flex rounded overflow-hidden ">
             <img
-              src={musique.image}//"../../asset/goofy_dragon.png"
+              src={musique.image}
               width={150}
               alt={musique.nomMusique}
               className="w-partial"
