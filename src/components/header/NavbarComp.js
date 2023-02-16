@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./NavbarComp.css";
-import logo from "../../asset/logo.svg";
+import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "../elements/SearchBar";
 
