@@ -62,6 +62,7 @@ export function Connexion() {
               className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               onChange={(input) => setUsername(input.target.value)}
             ></input>
+             <span class="inline-flex text-sm text-red-700">Username not available!</span>
           </div>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
@@ -69,8 +70,8 @@ export function Connexion() {
               required
               
               placeholder="Xxx_Joe_Blow69_xxX"
-              type="name"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              type="email"
+              className=" invalid:border-red-600  form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               onChange={(input) => setEmail(input.target.value)}
             ></input>
           </div>
@@ -78,20 +79,13 @@ export function Connexion() {
             <label className="text-white">Mot de passe</label>
             <input
               required
-              className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              className="invalid:border-red-600 form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               type="password"
               placeholder="mot de passe"
+              
               onChange={(input) => setPassword(input.target.value)}
             ></input>
-          </div>
-
-          <button
-            type="submit"
-            className="inline-block px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-            onClick={(e) => this.verifierConnexion(e)}
-          >
-            Se Connecter
-          </button>
+          </div>asd
         </form>{" "}
         <div></div>
       </div>
