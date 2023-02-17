@@ -1,5 +1,4 @@
 [
-
     {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/goofy_dragon.png"},
     {"nomMusique":"test2","duree":69,"auteur":"BABAJE","image":"asset/spag.png"},
     {"nomMusique":"Sad song","duree":35,"auteur":"Gabriel","image":"asset/Moai.png"},
@@ -7,5 +6,4 @@
     {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/fortiniteSong.png"},
     {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/GoussePied.png"},
     {"nomMusique":"I am dancing","duree":35,"auteur":"Green Dancing Guy","image":"asset/dance.webp"}
-
 ]
