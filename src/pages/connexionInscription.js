@@ -46,6 +46,7 @@ export function Connexion() {
               className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               onChange={(input) => setUsername(input.target.value)}
             ></input>
+             <span class="inline-flex text-sm text-red-700">Username not available!</span>
           </div>
           <div className="mb-6 ">
             <label className="text-white">e-mail</label>
@@ -60,9 +61,10 @@ export function Connexion() {
             <label className="text-white">Mot de passe</label>
             <input
               required
-              className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              className="invalid:border-red-600 form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               type="password"
               placeholder="mot de passe"
+              
               onChange={(input) => setPassword(input.target.value)}
             ></input>
           </div>

@@ -9,10 +9,12 @@ export default class Accueil extends React.Component{
     render()
     {
         return (
-          <Fragment>
+          <Fragment>   
             <Navigation></Navigation>
-            <Body></Body>
-            <MusicBar></MusicBar>
+            <Body className="mb-8">
+              
+            </Body>
+         <MusicBar></MusicBar>
           </Fragment>
         );
     }

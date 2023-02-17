@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./NavbarComp.css";
-//import logo from "../../../public/asset/logo.svg";
+import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "../elements/SearchBar";
 import logo from "./logo.svg"
@@ -14,10 +14,10 @@ function Navigation() {
     <nav className="flex font-Ubuntu  justify-center my-auto justify-items-center shadow-md shadow-cod-gray item-center  bg-cod-gray-600  rounded-br-lg py-4 rounded-bl">
       <div className=" max-w-full container  ms-auto  text-white">
         <div className="flex items-center my-auto pr-4 justify-between">
-          <div className="flex text-lg  items-center ">
-            <img className="h-[6vh] w-[6vw]" src={logo} />
+          <div className="inline-flex text-xs text-clip  items-center ">
+            <img className="h-[6vh] w-[6vw] " src={logo} alt="Logo" />
             <a href="/#"
-              className="font-bold  text-xl items-center no-underline hover:text-gray-50 "
+              className="font-bold text-xs lg:text-xl items-center no-underline hover:text-gray-50 "
             >
               Dragon Music
             </a>
