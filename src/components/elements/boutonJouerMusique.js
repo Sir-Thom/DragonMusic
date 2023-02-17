@@ -7,6 +7,11 @@ function BouttonJouerMusique() {
 
   function Play() {
     setSelectedIcon(selectedIcon === 1 ? 2 : 1);
+    if(selectedIcon===1){
+     alert("joue musique");
+    }else if(selectedIcon===2){
+      alert("stop musique"); 
+    }
   }
 
   return (
@@ -15,6 +20,7 @@ function BouttonJouerMusique() {
       className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full"
     >
       {selectedIcon === 1 ? <ImPlay2 /> : <ImPause />}
+
     </button>
   );
 }
