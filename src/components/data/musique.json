@@ -5,6 +5,7 @@
     {"nomMusique":"Sad song","duree":35,"auteur":"Gabriel","image":"asset/Moai.png"},
     {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/MoaiVoiture.png"},
     {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/fortiniteSong.png"},
-    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/GoussePied.png"}
+    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/GoussePied.png"},
+    {"nomMusique":"No Bitches","duree":35,"auteur":"MegaMind","image":"asset/NoBitches.jpeg"}
 
 ]
