@@ -3,23 +3,7 @@ import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-let database = [
-  {
-    username: "joe",
-    email: "joe@joe.com",
-    password: "1234",
-  },
-  {
-    username: "humain",
-    email: "humain",
-    password: "1234",
-  },
-  {
-    username: "human1",
-    email: "human1",
-    password: "12345",
-  },
-];
+let database = require('../components/data/users.json')
 
 export function Connexion() {
   const [username, setUsername] = useState("");
@@ -65,13 +49,11 @@ export function Connexion() {
              <span class="inline-flex text-sm text-red-700">Username not available!</span>
           </div>
           <div className="mb-6 ">
-            <label className="text-white">nom d'utilisateur</label>
+            <label className="text-white">e-mail</label>
             <input
-              required
-              
               placeholder="Xxx_Joe_Blow69_xxX"
               type="email"
-              className=" invalid:border-red-600  form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               onChange={(input) => setEmail(input.target.value)}
             ></input>
           </div>
@@ -85,7 +67,14 @@ export function Connexion() {
               
               onChange={(input) => setPassword(input.target.value)}
             ></input>
-          </div>asd
+          </div>
+
+          <button
+            type="submit"
+            className="inline-block px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+          >
+            Se Connecter
+          </button>
         </form>{" "}
         <div></div>
       </div>

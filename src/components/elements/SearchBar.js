@@ -3,6 +3,13 @@ import  "./Searchbar.css";
 import {ImSearch} from 'react-icons/im'
 
 export default  function SearchBar(){
+  const [search, setSearch] = useState("");
+
+  function test(i){
+    setSearch(i.target.value);
+    alert(search);
+  }
+
     return(
         <div className=' flex '>
         <input type={"search"} className="form-control rounded-full sm:w-46 md:w-96 lg:w-96 justify-items-end  flex-row flex-auto min-w-0 block  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  border-l-violet-600 focus:bg-white focus:border-violet-600 focus:outline-violet-600" 
