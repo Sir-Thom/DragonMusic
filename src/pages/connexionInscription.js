@@ -3,12 +3,14 @@ import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Hidden } from "@mui/material";
 let database = require('../components/data/users.json')
 
 export function Connexion() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkUsername, setCheckUsername] = useState("")
   const navigate = useNavigate();
 
   function verifierConnexion(event) {
@@ -18,12 +20,25 @@ export function Connexion() {
         password === i.password &&
         (username === i.username || email === i.email)
       ) {
-        console.log("connection réussi");
+        console.log("Username not available!");
         navigate("/");
         return;
       }
     }
     alert("Nom d'utilisateur et/ou mot de passe incorrect");
+  }
+
+  async function checkIfUsernameTaken(input)
+  {
+    setUsername(input.target.value);
+
+    for (const i of database) {
+      if(input.target.value === i.username){
+        setCheckUsername("");
+        return;
+      }
+      setCheckUsername("Ce nom n'existe pas.");
+    }
   }
   // Hooks must be used inside a functional component
 
@@ -44,9 +59,9 @@ export function Connexion() {
               placeholder="Xxx_Joe_Blow69_xxX"
               type="name"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
-              onChange={(input) => setUsername(input.target.value)}
+              onChange={(input) => checkIfUsernameTaken(input)}
             ></input>
-             <span class="inline-flex text-sm text-red-700">Username not available!</span>
+             <span className={`inline-flex text-sm ${checkUsername !== "" ? "text-red-600" : "hidden"}`}>{checkUsername}</span>
           </div>
           <div className="mb-6 ">
             <label className="text-white">e-mail</label>
@@ -86,6 +101,8 @@ export function Inscription() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkUsername, setCheckUsername] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
   const navigation = useNavigate();
 
   function creerCompte(event) {
@@ -101,6 +118,28 @@ export function Inscription() {
       console.log(database);
       navigation("/");
       return;
+    }
+  }
+
+  function checkValidityUsername(e)
+  {
+    for (const i of database) {
+      if(i.username === e.target.value){
+        setCheckUsername("Ce nom est déjà pris");
+        return;
+      }
+      setCheckUsername("");
+    }
+  }
+
+  function checkValidityEmail(e)
+  {
+    for (const i of database) {
+      if(i.email === e.target.value){
+        setCheckEmail("Cette e-mail est déjà pris");
+        return;
+      }
+      setCheckEmail("");
     }
   }
 
@@ -122,7 +161,9 @@ export function Inscription() {
               type="name"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               onChange={(input) => setUsername(input.target.value)}
+              onInput={(e) => checkValidityUsername(e)}
             ></input>
+            <span className={`inline-flex text-sm ${checkUsername !== "" ? "text-red-600" : "hidden"}`}>{checkUsername}</span>
           </div>
 
           <div className="mb-6">
@@ -133,7 +174,9 @@ export function Inscription() {
               className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
               type="email"
               onChange={(input) => setEmail(input.target.value)}
+              onInput={(e) => checkValidityEmail(e)}
             ></input>
+            <span className={`inline-flex text-sm ${checkEmail !== "" ? "text-red-600" : "hidden"}`}>{checkEmail}</span>
           </div>
 
           <div className="mb-6">
