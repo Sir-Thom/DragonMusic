@@ -8,7 +8,7 @@ export default function ListeDeMusique(){
     return (
       <div className="grid grid-cols-1 pt-10 mb-12 pb-96 bg-cod-gray-500  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {musiques.map((musique, index) => (
-          <div key={index} className="rounded overflow-hidden shadow-lg">
+          <div key={index} id={index} className="rounded overflow-hidden shadow-lg">
             <img
               src={musique.image}//"../../asset/goofy_dragon.png"
               width={150}
