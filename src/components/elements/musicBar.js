@@ -11,8 +11,8 @@ date.setSeconds(currentTime);
 const timeString = date.toISOString().substr(11, 8);
 console.log(timeString)
   return (
-    <nav className="fixed   right-0 bottom-0 w-full rounded bg-gray-800">
-    <div className="relative block h-1 w-full ">
+    <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded bg-gray-800">
+    <div className=" block h-1 w-full ">
       <input
         type="range"
         min={0}

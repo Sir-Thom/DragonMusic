@@ -9,8 +9,8 @@ export default class Accueil extends React.Component{
     render()
     {
         return (
-          <Fragment>   
-            <Navigation></Navigation>
+          <Fragment >   
+            <Navigation className="gradiant" ></Navigation>
             <Body className="mb-8">
               
             </Body>

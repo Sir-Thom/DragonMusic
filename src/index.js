@@ -37,7 +37,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // pour savoir comment faire les routes https://www.w3schools.com/react/react_router.asp
 root.render(
     
-<Fragment>
+<Fragment >
     <React.StrictMode>
         <RouterProvider router={router} />
     </React.StrictMode>
