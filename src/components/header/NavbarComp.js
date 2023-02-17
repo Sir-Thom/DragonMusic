@@ -3,7 +3,7 @@ import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "../elements/SearchBar";
-import logo from "./logo.svg"
+
 
 import {Link} from "react-router-dom";
 function Navigation() {
