@@ -1,8 +1,7 @@
-import React, { Fragment ,useState,useCallback} from 'react';
+import React, { useCallback} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
-import Body from './body';
-const musiques = require("../data/musique.json");
+//const musiques = require("../data/musique.json");
 
 export default function ListeDeMusique(props){
   const tabRow = useCallback(() => {
@@ -13,7 +12,7 @@ export default function ListeDeMusique(props){
           return (
           <div key={index} className="rounded  overflow-hidden shadow-lg">
             <img
-              src={stock.image}//"../../asset/goofy_dragon.png"
+              src={stock.image}
               width={150}
               alt={stock.nomMusique}
               className="object-contain w-full"
@@ -32,8 +31,9 @@ export default function ListeDeMusique(props){
             
           </div>)
         
-		})}</div>)
-    
+		})}
+    </div>
+    )
   }
 	}, [props.data]);
 
