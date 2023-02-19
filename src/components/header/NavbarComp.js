@@ -12,8 +12,8 @@ function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="flex font-Ubuntu  justify-center my-auto justify-items-center shadow-md shadow-cod-gray item-center  bg-cod-gray-600  rounded-br-lg py-4 rounded-bl">
-      <div className=" max-w-full container  ms-auto  text-white">
+    <nav className="flex font-Ubuntu  justify-center  justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
+      <div className=" max-w-full container  ms-auto   bg-cod-gray-800 text-white">
         <div className="flex items-center my-auto pr-4 justify-between">
           <div className="inline-flex text-xs text-clip  items-center ">
             <img className="h-[6vh] w-[6vw] " src={logo} alt="Logo" />
@@ -54,29 +54,21 @@ function Navigation() {
           <div
           className={`${
             isOpen ? 'block  ' : 'hidden'
-          }  transform-gpu duration-500 ease-in-out transition-transform bg-cod-gray-600 py-4`}
+          }  transform-gpu duration-500 ease-in-out rounded max-h-full transition-transform mt-2 bg-cod-gray-600 py-4`}
           >
-            <div className="block rounded-lg font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
 
-              <Link className=" px-4 py-2 text-white " to="/"> 
+              <Link className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100" to="/"> 
                 Accueil
               </Link>
-            </div>
-            <div className="block transition  ease-in-out   duration-500 rounded-lg font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <Link to="/" className=" px-4 py-2 text-white ">
+              <Link to="/" className=" block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100">
                 Bibliothèque
               </Link>
-            </div>
-            <div className="block rounded-lg transition  ease-in-out duration-500 font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-              <Link to="/connexion" className=" px-4 py-2 text-white ">
+              <Link to="/connexion" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100   ">
                 Connexion
               </Link>
-            </div>
-            <div className="block rounded-lg transition  ease-in-out  duration-500 font-semibold p-2 text-lg text-white hover:hover:bg-cod-gray-100">
-            <Link to="/inscription" className="relative px-4 py-2 text-white ">
+            <Link to="/inscription" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100 ">
                 Inscription
               </Link>
-            </div>
           </div>
         )}
       </div>

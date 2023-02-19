@@ -1,6 +1,7 @@
 import React, { useCallback} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
+
 //const musiques = require("../data/musique.json");
 
 export default function ListeDeMusique(props){
@@ -19,6 +20,7 @@ export default function ListeDeMusique(props){
             />
            
             <div className="font-Ubuntu  bg-cod-gray-400  px-6 py-4">
+
               <p className="font-Ubuntu  text-white font-bold text-xl mb-2">{stock.nomMusique}</p>
               <div className="flex justify-between py-1 ">
               <p className=" justify-end font-Ubuntu text-white text-sm">{stock.auteur} </p>
@@ -28,7 +30,6 @@ export default function ListeDeMusique(props){
               <BouttonJouerMusique className=" mt-2 left-auto  items-end"></BouttonJouerMusique>
             </div>
             </div>
-            
           </div>)
         
 		})}
