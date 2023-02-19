@@ -1,31 +1,44 @@
-import React, { Fragment ,useState} from 'react';
+import React, { Fragment ,useState,useCallback} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
-import {AiOutlinePauseCircle} from "react-icons/ai";
-import { ImPlay2 } from "react-icons/im";
+import Body from './body';
 const musiques = require("../data/musique.json");
-export default function ListeDeMusique(){
-    return (
-      <div className="flex gap-2 flex-shrink-0 ">
-        {musiques.map((musique, index) => (
-          <div key={index} className=" flex-row w-25  bg-cod-gray-600   flex rounded overflow-hidden ">
+
+export default function ListeDeMusique(props){
+  const tabRow = useCallback(() => {
+		if (props.data instanceof Array) {
+			return (
+      <div className="grid grid-cols-1 pt-10 mb-12 shadow-lg  font-Ubuntu  pb-96 bg-cod-gray-500  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {props.data.map((stock, index) => {
+          return (
+          <div key={index} className="rounded  overflow-hidden shadow-lg">
             <img
-              src={musique.image}//"../../asset/goofy_dragon.png"
+              src={stock.image}//"../../asset/goofy_dragon.png"
               width={150}
-              alt={musique.nomMusique}
-              className="w-partial"
+              alt={stock.nomMusique}
+              className="object-contain w-full"
             />
            
-            <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">{musique.nomMusique}</div>
-              <p className="text-white text-base">{musique.auteur}</p>
-              <p className="text-white text-base">{musique.duree}</p>
+            <div className="font-Ubuntu  bg-cod-gray-400  px-6 py-4">
+              <p className="font-Ubuntu  text-white font-bold text-xl mb-2">{stock.nomMusique}</p>
+              <div className="flex justify-between py-1 ">
+              <p className=" justify-end font-Ubuntu text-white text-sm">{stock.auteur} </p>
+              <p className="font-Ubuntu text-white text-right text-md">{stock.duree}</p>
+              </div>
+              <div className="flex justify-end mt-4 ">
+              <BouttonJouerMusique className=" mt-2 left-auto  items-end"></BouttonJouerMusique>
             </div>
-            <div className="px-6 py-4">
-              <BouttonJouerMusique></BouttonJouerMusique>
             </div>
-          </div>
-        ))}
-      </div>
-    );}
+            
+          </div>)
+        
+		})}</div>)
+    
+  }
+	}, [props.data]);
+
+    return (
+      <>{tabRow()}</>
+    );
+  }
 
