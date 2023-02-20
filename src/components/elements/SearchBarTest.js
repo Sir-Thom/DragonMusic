@@ -1,6 +1,8 @@
 import React, { state, setState } from 'react';
 import  "./Searchbar.css";
 import {ImSearch} from 'react-icons/im'
+import { Fragment } from 'react';
+import { Body } from '../body/body';
 
 export default  function withSearch(WrappedComponent, searchFunction){
   return class extends React.Component {		// On retourne un nouveau composant
@@ -34,8 +36,10 @@ export default  function withSearch(WrappedComponent, searchFunction){
 			let filteredData = this.filterData(this.state.updatedSearchTerm);
 
     return(
+		<Fragment>
 		<form>
-			<div>
+			<div className='px-2 ms-auto inline-flex '>
+			<div className=' flex '>
 			<input type={"search"} onChange={this.handleSearch} value={this.state.searchTerm} className="form-control rounded-full sm:w-46 md:w-96 lg:w-96 justify-items-end  flex-row flex-auto min-w-0 block  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  border-l-violet-600 focus:bg-white focus:border-violet-600 focus:outline-violet-600" 
 						placeholder="Recherche" aria-label="Search" aria-describedby="button-addon3"></input>
 						
@@ -43,9 +47,11 @@ export default  function withSearch(WrappedComponent, searchFunction){
 										type="submit" id="button-addon3">
 			<ImSearch size={15} />
 			</button>
-			<WrappedComponent {...this.props} data={filteredData}/>
+			</div>
 		</div>
 	  </form>
+	  <WrappedComponent {...this.props} data={filteredData}/>
+	  </Fragment>
     )
     }
   }

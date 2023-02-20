@@ -5,10 +5,10 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import SearchBar from "../elements/SearchBar";
 import StockMusique from "../body/listeMusique";
 import {Link} from "react-router-dom";
+import withSearch from '../elements/SearchBarTest';
 const stocks = require("../data/musique.json");
 
 function Navigation() {
-  
   const [isOpen, setIsOpen] = useState(false);
 
   return (
