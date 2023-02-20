@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
-const musiques = require('../data/musique.json');
 
 function BouttonJouerMusique() {
   const [CasePlayStop, setSelectedIcon] = useState(1);
