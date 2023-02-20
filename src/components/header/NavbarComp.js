@@ -13,7 +13,7 @@ const Navigation =({E})=> {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <nav className="flex font-Ubuntu fixed  justify-center  justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
+    <nav className="flex font-Ubuntu fixed  w-full justify-center  z-[2000] justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
       <div className=" max-w-full container  ms-auto   bg-cod-gray-800 text-white">
         <div className="flex items-center my-auto pr-4 justify-between">
           <div className="inline-flex text-xs text-clip  items-center ">
