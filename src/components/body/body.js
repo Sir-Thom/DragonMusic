@@ -3,13 +3,13 @@ import React from 'react';
 import './body.css'
 import MusicBar from '../elements/musicBar';
 import StockMusique from "../body/listeMusique";
-import withSearch from '../elements/SearchBarTest';
+import SearchBar from '../elements/SearchBar';
 const stocks = require("../data/musique.json");
 /*import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';*/
 
 
-const StockListWithSearch = withSearch(StockMusique, (item, searchTerm) => {
+const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
   return item.nomMusique.toUpperCase().indexOf(searchTerm) >= 0;
 });
 

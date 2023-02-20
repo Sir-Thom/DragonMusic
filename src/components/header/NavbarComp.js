@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import SearchBar from "../elements/SearchBar";
-import StockMusique from "../body/listeMusique";
 import {Link} from "react-router-dom";
-const stocks = require("../data/musique.json");
 
-function Navigation() {
+const Navigation =({E})=> {
   
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +22,7 @@ function Navigation() {
           </div>
 
           <div className="px-2 ms-auto inline-flex ">
-            <SearchBar></SearchBar>
+            {E}
             <button
               data-bs-toggle="collapse"
               data-bs-target="#collapseExample"

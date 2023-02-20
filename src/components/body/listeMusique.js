@@ -30,9 +30,9 @@ export default function ListeDeMusique(props){
               <BouttonJouerMusique className=" mt-2 left-auto  items-end"></BouttonJouerMusique>
             </div>
             </div>
-          </div>)
-        
-		})}
+          </div>
+          )
+		  })}
     </div>
     )
   }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import {BsPlayCircleFill,BsPauseCircleFill,BsSkipStartCircleFill ,BsSkipEndCircleFill} from "react-icons/bs"
-const musiques = require('../data/musique.json');
+import {BsPlayCircleFill,BsSkipStartCircleFill ,BsSkipEndCircleFill} from "react-icons/bs"
 
 function MusicBar(){
   const [currentTime, setCurrentTime] = useState(0);
