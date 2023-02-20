@@ -3,11 +3,15 @@ import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {Link} from "react-router-dom";
-
+import { HiUserCircle } from "react-icons/hi";
 const Navigation =({E})=> {
   
   const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <nav className="flex font-Ubuntu  justify-center  justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
       <div className=" max-w-full container  ms-auto   bg-cod-gray-800 text-white">
