@@ -14,7 +14,7 @@ const Navigation =({E})=> {
         <div className="flex items-center my-auto pr-4 justify-between">
           <div className="inline-flex text-xs text-clip  items-center ">
             <img className="h-[6vh] w-[6vw] " src={logo} alt="Logo" />
-            <a href="/#"
+            <a href="#"
               className="font-bold text-xs lg:text-xl items-center no-underline hover:text-gray-50 "
             >
               Dragon Music
@@ -23,6 +23,37 @@ const Navigation =({E})=> {
 
           <div className="px-2 ms-auto inline-flex ">
             {E}
+            <div className="relative">
+      <button
+        className="flex items-center focus:outline-none"
+        onClick={handleMenuClick}
+      >
+        <HiUserCircle className="w-8 h-8 text-gray-600" />
+        
+      </button>
+      {isMenuOpen && (
+        <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800   rounded-md shadow-xl">
+          <a
+            href="#"
+            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+          >
+            Profile
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+          >
+            Settings
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+          >
+            Logout
+          </a>
+        </div>
+      )}
+    </div>
             <button
               data-bs-toggle="collapse"
               data-bs-target="#collapseExample"
