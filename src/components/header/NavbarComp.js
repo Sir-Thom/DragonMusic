@@ -13,7 +13,7 @@ const Navigation =({E})=> {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <nav className="flex font-Ubuntu fixed  w-full justify-center  z-[2000] justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
+    <nav className="flex font-Ubuntu space-y-4 absolute mb-7 pb-4  w-full justify-center  z-[2000] justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
       <div className=" max-w-full container  ms-auto   bg-cod-gray-800 text-white">
         <div className="flex items-center my-auto pr-4 justify-between">
           <div className="inline-flex text-xs text-clip  items-center ">
@@ -49,12 +49,12 @@ const Navigation =({E})=> {
           >
             Settings
           </a>
-          <a
-            href="#"
+          <Link
+            to="/" 
             className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
           >
             Logout
-          </a>
+          </Link>
         </div>
       )}
     </div>

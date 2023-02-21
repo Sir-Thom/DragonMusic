@@ -3,6 +3,9 @@ import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import GoHome from "../components/elements/GoHome";
+import {Link} from "react-router-dom";
+
 let database = require('../components/data/users.json')
 
 export function Connexion() {
@@ -91,15 +94,20 @@ export function Connexion() {
   // Hooks must be used inside a functional component
 
   return (
-    <section className="  h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+      <GoHome className="flex   justify-start"></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
         paragraph="Vous n'avez pas encore de compte? "
         linkName="S'inscrire"
         linkUrl="/inscription"
       />
+     
       <div className="  flex  flex-col items-center justify-center ">
+     
         <div></div>
+
+       
         <form onSubmit={(event) => verifierConnexion(event)}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>

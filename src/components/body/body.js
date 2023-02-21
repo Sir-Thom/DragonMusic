@@ -15,10 +15,11 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
 
 function Body(){
   return(
-<div className="overflow-y-scroll gradiant">
+<div className="  overflow-y-scroll gradiant">
       <div className=" mb-8">
         <StockListWithSearch data={stocks}/>
       </div>
+
       <div  className=" mb-8"> <MusicBar /></div>
     </div>
   );
