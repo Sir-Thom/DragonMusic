@@ -4,7 +4,9 @@ import './body.css'
 import MusicBar from '../elements/musicBar';
 import StockMusique from "../body/listeMusique";
 import SearchBar from '../elements/SearchBar';
+import play from '../elements/boutonJouerMusique';
 const stocks = require("../data/musique.json");
+
 /*import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';*/
 
@@ -20,7 +22,7 @@ function Body(){
         <StockListWithSearch data={stocks}/>
       </div>
 
-      <div  className=" mb-8"> <MusicBar /></div>
+      <div  className=" mb-8"> <MusicBar data={stocks} idMusique={play()} /></div>
     </div>
   );
 }

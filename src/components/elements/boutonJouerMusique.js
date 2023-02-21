@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
-import Music from "./musicBar";
+import MusicBar from "./musicBar";
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
 
@@ -9,9 +9,8 @@ function BouttonJouerMusique(props) {
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     if(CasePlayStop===1){
       alert(idMusique);
-    
-      Music(idMusique);
-      //if(){}
+      console.log(idMusique)
+      return;
     }else if(CasePlayStop===2){
       alert("stop musique"); 
     }

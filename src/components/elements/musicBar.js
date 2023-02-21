@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import {BsPlayCircleFill,BsSkipStartCircleFill ,BsSkipEndCircleFill} from "react-icons/bs"
 
 function MusicBar(props){
-
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
+  
+    console.log(props.idMusique);
   
   const date = new Date(0);
 date.setSeconds(currentTime);
 const timeString = date.toISOString().substr(11, 8);
 console.log(timeString)
   return (
+
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded bg-gray-800">
     <div className=" block h-1 w-full ">
       <input
