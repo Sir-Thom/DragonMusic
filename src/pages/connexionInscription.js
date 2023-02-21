@@ -45,7 +45,7 @@ export function Connexion() {
 
   return (
     <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
-      <GoHome className="flex   justify-start"></GoHome>
+      <GoHome ></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
         paragraph="Vous n'avez pas encore de compte? "
@@ -151,6 +151,7 @@ export function Inscription() {
 
   return (
     <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+      <GoHome ></GoHome>
       <Header
         heading="Créez-vous un compte"
         paragraph="Vous avez déja un compte? "

@@ -37,7 +37,7 @@ export default function ListeDeMusique(props){
     )
   }
 	}, [props.data]);
-
+console.log(props.data)
     return (
       <>{tabRow()}</>
     );
