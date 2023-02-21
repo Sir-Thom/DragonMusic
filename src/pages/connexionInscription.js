@@ -12,6 +12,10 @@ export function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkUsername, setCheckUsername] = useState("")
+  const [checkEmail, setCheckEmail] = useState("")
+
+  const [checkPassword, setCheckPassword] = useState("")
+
   const navigate = useNavigate();
 
   function verifierConnexion(event) {
@@ -26,7 +30,7 @@ export function Connexion() {
         return;
       }
     }
-    alert("Nom d'utilisateur et/ou mot de passe incorrect");
+    //alert("Nom d'utilisateur et/ou mot de passe incorrect");
   }
 
   async function checkIfUsernameTaken(input)
@@ -38,7 +42,52 @@ export function Connexion() {
         setCheckUsername("");
         return;
       }
-      setCheckUsername("Ce nom n'existe pas.");
+      else if (input.target.value ===""){
+        setCheckUsername("");
+      }
+      else{
+        setCheckUsername("Ce nom est invalide.");
+      }
+      
+    }
+  }
+
+  async function checkIfEmailTaken(input)
+  {
+    setEmail(input.target.value);
+
+    for (const i of database) {
+      if(input.target.value === i.email){
+        setCheckEmail("");
+        return;
+      }
+      else if (input.target.value === ""){
+        setCheckEmail("");
+        return;
+      }
+      else{
+        setCheckEmail("Ce courriel est invalide.");
+      }
+      
+    }
+  }
+
+  async function checkIfPassword(input)
+  {
+    setPassword(input.target.value);
+
+    for (const i of database) {
+      if(input.target.value === i.password){
+        setCheckPassword("");
+        return;
+      }
+      else if (input.target.value ===""){
+        setCheckPassword("");
+      }
+      else{
+        setCheckPassword("Ce mot de passe est invalide.");
+      }
+      
     }
   }
   // Hooks must be used inside a functional component
@@ -64,30 +113,34 @@ export function Connexion() {
             <input
               placeholder="Xxx_Joe_Blow69_xxX"
               type="name"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              className={`${checkUsername !== "" ? "border-red-600" : "border-gray-300"} border-2 form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding  border-solid  rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
               onChange={(input) => checkIfUsernameTaken(input)}
             ></input>
-             <span className={`inline-flex text-sm ${checkUsername !== "" ? "text-red-600" : "hidden"}`}>{checkUsername}</span>
+             <span className={`inline-flex text-sm ${checkUsername !== "" ? "  text-red-600 " : "hidden"}`}>{checkUsername}</span>
           </div>
           <div className="mb-6 ">
-            <label className="text-white">e-mail</label>
+            <label className="text-white">Couriel</label>
             <input
               placeholder="Xxx_Joe_Blow69_xxX"
               type="email"
-              className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
-              onChange={(input) => setEmail(input.target.value)}
+              className={`${checkEmail !== "" ? "border-red-600" : "border-gray-300"}  border-2 form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding  border-solid  rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
+              onChange={(input) => checkIfEmailTaken(input)}
             ></input>
+            <span className={`inline-flex text-sm ${ checkEmail!== "" ? "text-red-600 " : "hidden"}`}>{checkEmail}</span>
+
           </div>
           <div className="mb-6">
             <label className="text-white">Mot de passe</label>
             <input
               required
-              className="invalid:border-red-600 form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+              className={`${checkPassword !== "" ? "border-red-600" : "border-gray-300"} form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
               type="password"
               placeholder="mot de passe"
               
-              onChange={(input) => setPassword(input.target.value)}
+              onChange={(input) => checkIfPassword(input)}
             ></input>
+            <span className={`inline-flex text-sm ${checkPassword !== "" ? "text-red-600 " : "hidden"}`}>{checkPassword}</span>
+
           </div>
 
           <button
