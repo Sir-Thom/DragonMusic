@@ -165,7 +165,7 @@ export function Inscription() {
         alert("Nom d'utilisateur déjà utiliser");
         return; // est Utiliser
       }
-      database.push({ username: username, email: email, password: password });
+      database.push({ username: username, email: email, password: password, isLogged: true});
       alert("Compte créer avec succès");
       console.log(database);
       navigation("/");

@@ -44,7 +44,7 @@ const Navigation =({E})=> {
             Profile
           </a>
           <a
-            href="#"
+            href="https://www.youtube.com/watch?v=hvL1339luv0&ab_channel=RapidLiquid"
             className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
           >
             Settings
