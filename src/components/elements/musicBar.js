@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {BsPlayCircleFill,BsSkipStartCircleFill ,BsSkipEndCircleFill} from "react-icons/bs"
 
-function MusicBar(){
+function MusicBar(props){
+
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
   
