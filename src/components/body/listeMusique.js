@@ -20,7 +20,7 @@ export default function ListeDeMusique(){
               <p className="text-white font-bold text-xl mb-2">{musique.nomMusique}</p>
               <p className="text-white text-base">{musique.auteur}</p>
               <p className="text-white text-base">{musique.duree}</p>
-              <BouttonJouerMusique className=""></BouttonJouerMusique>
+              <BouttonJouerMusique className="" idMusique={index}></BouttonJouerMusique>
             </div>
             
           </div>
