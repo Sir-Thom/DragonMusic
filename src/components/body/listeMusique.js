@@ -8,7 +8,7 @@ export default function ListeDeMusique(props){
   const tabRow = useCallback(() => {
 		if (props.data instanceof Array) {
 			return (
-      <div className="grid grid-cols-1 pt-10 mb-12 shadow-lg  font-Ubuntu  pb-96 bg-cod-gray-500  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1  pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96 bg-cod-gray-500  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {props.data.map((stock, index) => {
           return (
           <div key={index} className="rounded  overflow-hidden shadow-lg">
