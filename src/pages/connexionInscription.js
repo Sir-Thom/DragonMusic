@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoHome from "../components/elements/GoHome";
 
-let database = require('../components/data/users.json');
+const database = require('../components/data/users.json');
 
 export function Connexion() {
   const [username, setUsername] = useState("");
@@ -24,6 +24,11 @@ export function Connexion() {
         password === i.password &&
         (username === i.username || email === i.email)
       ) {
+        database.forEach(i => {
+          if(i.username === username){
+            i.isLogged = true;
+          }
+        });
         console.log("Username not available!");
         navigate("/");
         return;
@@ -93,7 +98,7 @@ export function Connexion() {
 
   function estConnecter(){
     for (const i of database) {
-      if(i.isLogged){
+      if(i.isLogged === true){
         return navigate("/");
       }
     }
@@ -172,18 +177,18 @@ export function Inscription() {
 
   function creerCompte(event) {
     event.preventDefault();
-
-    for (const e of database) {
-      if (e.username === username /*|| e.email === this.state.email*/) {
-        alert("Nom d'utilisateur déjà utiliser");
+    
+    for (const i of database) {
+      if (i.username === username || i.email === email) {
+        alert("Nom d'utilisateur ou e-mail déjà utiliser");
         return; // est Utiliser
       }
-      database.push({ username: username, email: email, password: password, isLogged: true});
-      alert("Compte créer avec succès");
-      console.log(database);
-      navigation("/");
-      return;
     }
+    database.push({ username: username, email: email, password: password, isLogged: true});
+    alert("Compte créer avec succès");
+    console.log(database);
+    navigation("/");
+    return;
   }
 
   function checkValidityUsername(e)
