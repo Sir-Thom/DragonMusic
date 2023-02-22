@@ -1,21 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoHome from "../components/elements/GoHome";
-import {Link} from "react-router-dom";
 
-let database = require('../components/data/users.json')
+let database = require('../components/data/users.json');
 
 export function Connexion() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [checkUsername, setCheckUsername] = useState("")
-  const [checkEmail, setCheckEmail] = useState("")
-
-  const [checkPassword, setCheckPassword] = useState("")
+  const [checkUsername, setCheckUsername] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -93,7 +91,17 @@ export function Connexion() {
   }
   // Hooks must be used inside a functional component
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged){
+        return navigate("/");
+      }
+    }
+  }
+
   return (
+    <Fragment>
+      {estConnecter()}
     <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome className="flex   justify-start"></GoHome>
       <Header
@@ -102,12 +110,8 @@ export function Connexion() {
         linkName="S'inscrire"
         linkUrl="/inscription"
       />
-     
       <div className="  flex  flex-col items-center justify-center ">
-     
         <div></div>
-
-       
         <form onSubmit={(event) => verifierConnexion(event)}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
@@ -154,6 +158,7 @@ export function Connexion() {
         <div></div>
       </div>
     </section>
+    </Fragment>
   );
 }
 
@@ -203,7 +208,17 @@ export function Inscription() {
     }
   }
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged){
+        return navigation("/");
+      }
+    }
+  }
+
   return (
+    <Fragment>
+      {estConnecter()}
     <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
       <Header
         heading="Créez-vous un compte"
@@ -259,5 +274,6 @@ export function Inscription() {
         </form>
       </div>
     </section>
+    </Fragment>
   );
 }
