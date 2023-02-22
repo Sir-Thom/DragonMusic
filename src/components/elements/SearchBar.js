@@ -15,6 +15,7 @@ export default  function SearchBar(WrappedComponent, searchFunction){
 		}
 
 		handleSearch = event => {
+			
 			this.setState({ searchTerm: event.target.value });
 			//this.setState({ updatedSearchTerm: event.target.value });
 		}

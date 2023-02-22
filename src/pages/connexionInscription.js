@@ -94,7 +94,7 @@ export function Connexion() {
   // Hooks must be used inside a functional component
 
   return (
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <section className="h-screen w-screen font-sans bg-gradient-to-t  from-cod-gray to-cod-gray-800 antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
@@ -204,7 +204,7 @@ export function Inscription() {
   }
 
   return (
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <section className="h-screen w-screen font-sans bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Créez-vous un compte"

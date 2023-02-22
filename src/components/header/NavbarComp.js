@@ -5,7 +5,9 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {Link} from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import {BiLogIn,BiLogOut } from "react-icons/bi"
+
 const Navigation =({E})=> {
+ 
   
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
