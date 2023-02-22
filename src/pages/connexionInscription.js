@@ -1,21 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoHome from "../components/elements/GoHome";
-import {Link} from "react-router-dom";
 
-let database = require('../components/data/users.json')
+let database = require('../components/data/users.json');
 
 export function Connexion() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [checkUsername, setCheckUsername] = useState("")
-  const [checkEmail, setCheckEmail] = useState("")
-
-  const [checkPassword, setCheckPassword] = useState("")
+  const [checkUsername, setCheckUsername] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -93,8 +91,18 @@ export function Connexion() {
   }
   // Hooks must be used inside a functional component
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged){
+        return navigate("/");
+      }
+    }
+  }
+
   return (
-    <section className="h-screen w-screen font-sans bg-gradient-to-t  from-cod-gray to-cod-gray-800 antialiased min-h-full flex flex-col">
+    <Fragment>
+      {estConnecter()}
+    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
@@ -102,12 +110,8 @@ export function Connexion() {
         linkName="S'inscrire"
         linkUrl="/inscription"
       />
-     
       <div className="  flex  flex-col items-center justify-center ">
-     
         <div></div>
-
-       
         <form onSubmit={(event) => verifierConnexion(event)}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
@@ -154,6 +158,7 @@ export function Connexion() {
         <div></div>
       </div>
     </section>
+    </Fragment>
   );
 }
 
@@ -173,7 +178,7 @@ export function Inscription() {
         alert("Nom d'utilisateur déjà utiliser");
         return; // est Utiliser
       }
-      database.push({ username: username, email: email, password: password });
+      database.push({ username: username, email: email, password: password, isLogged: true});
       alert("Compte créer avec succès");
       console.log(database);
       navigation("/");
@@ -203,8 +208,18 @@ export function Inscription() {
     }
   }
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged){
+        return navigation("/");
+      }
+    }
+  }
+
   return (
-    <section className="h-screen w-screen font-sans bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <Fragment>
+      {estConnecter()}
+    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Créez-vous un compte"
@@ -260,5 +275,6 @@ export function Inscription() {
         </form>
       </div>
     </section>
+    </Fragment>
   );
 }
