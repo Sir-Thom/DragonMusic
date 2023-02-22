@@ -15,7 +15,7 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
 
 function Body(){
   return(
-<div className="  overflow-y-scroll gradiant">
+<div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
       <div className=" mb-8">
         <StockListWithSearch data={stocks}/>
       </div>

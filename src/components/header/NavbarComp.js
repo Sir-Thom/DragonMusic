@@ -4,6 +4,7 @@ import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {Link} from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
+import {BiLogIn,BiLogOut } from "react-icons/bi"
 const Navigation =({E})=> {
   
   const [isOpen, setIsOpen] = useState(false);
@@ -13,13 +14,13 @@ const Navigation =({E})=> {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <nav className="flex font-Ubuntu space-y-4 absolute mb-7 pb-4  w-full justify-center  z-[2000] justify-items-center shadow-xl  item-center  bg-cod-gray-800   py-4 ">
-      <div className=" max-w-full container  ms-auto   bg-cod-gray-800 text-white">
+    <nav className="flex font-Ubuntu space-y-4 absolute mb-7 pb-4  w-full justify-center  z-[2000] justify-items-center shadow-xl  item-center  bg-cod-gray-700   py-4 ">
+      <div className=" max-w-full container  ms-auto   bg-cod-gray-700 text-white">
         <div className="flex items-center my-auto pr-4 justify-between">
-          <div className="inline-flex text-xs text-clip  items-center ">
+          <div className="inline-flex text-xs text-clip items-center ">
             <img className="h-[6vh] w-[6vw] " src={logo} alt="Logo" />
             <a href="#"
-              className="font-bold text-xs lg:text-xl items-center no-underline hover:text-gray-50 "
+              className="font-bold text-xs lg:text-xl divide-x  items-center no-underline hover:text-gray-50 "
             >
               Dragon Music
             </a>
@@ -32,11 +33,11 @@ const Navigation =({E})=> {
         className="flex items-center focus:outline-none"
         onClick={handleMenuClick}
       >
-        <HiUserCircle className="w-8 h-8 text-gray-600" />
+        <HiUserCircle size={16} className="w-8 h-8 text-gray-600" />
         
       </button>
       {isMenuOpen && (
-        <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800   rounded-md shadow-xl">
+        <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-700   rounded-md shadow-xl">
           <a
             href="#"
             className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
@@ -48,12 +49,13 @@ const Navigation =({E})=> {
             className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
           >
             Settings
+           
           </a>
           <Link
             to="/" 
-            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+            className="inline-flex items-center px-4 py-2 w-full text-white hover:bg-violet-500 hover:text-white"
           >
-            Logout
+             Logout  <BiLogOut> </BiLogOut> 
           </Link>
         </div>
       )}
@@ -63,12 +65,12 @@ const Navigation =({E})=> {
               data-bs-target="#collapseExample"
               aria-expanded="false"
               aria-controls="collapseExample"
-              className=" text-white pl-4 pr-0 flex items-center focus:outline-none "
+              className=" text-white mb-1 pl-4 pr-0  items-center focus:outline-none "
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? (
                 <AiOutlineClose
-                  className="items-center transition ease-in hover:scale-110 duration-300 menu-icon"
+                  className="items-center   transition ease-in hover:scale-110 duration-300 menu-icon"
                   fontSize={25}
                   scale={25}
                 />
