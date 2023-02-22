@@ -17,12 +17,12 @@
     .gradiantPage{
         
       
-        background: repeating-linear-gradient(#373737, #181818) 
+        background: repeating-linear-gradient(#dddada, #181818) 
     }
     .gradiant{
         @apply h-screen w-screen;
       
-        background: repeating-linear-gradient(#373737, #181818) 
+        background: repeating-linear-gradient(#d6d5d5, #181818) 
     }
     .animate-float-up {
         @apply   animate-spin ;

@@ -8,18 +8,19 @@ export default function ListeDeMusique(props){
   const tabRow = useCallback(() => {
 		if (props.data instanceof Array) {
 			return (
-      <div className="grid grid-cols-1  pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96 bg-cod-gray-500  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {props.data.map((stock, index) => {
           return (
           <div key={index} id={index} className="rounded  overflow-hidden shadow-lg">
             <img
               src={stock.image}
-              width={150}
+              width="150px"
+              height='150px'
               alt={stock.nomMusique}
-              className="object-contain w-full"
+              className=" aspect-square  w-full"
             />
            
-            <div className="font-Ubuntu  bg-cod-gray-400  px-6 py-4">
+            <div className="font-Ubuntu   bg-cod-gray-400  px-6 py-6">
 
               <p className="font-Ubuntu  text-white font-bold text-xl mb-2">{stock.nomMusique}</p>
               <div className="flex justify-between py-1 ">
