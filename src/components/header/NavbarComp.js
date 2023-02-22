@@ -1,14 +1,75 @@
-import React, { useState } from "react";
+import React, { useState,Fragment } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import {Link} from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import {BiLogIn,BiLogOut } from "react-icons/bi"
+const users = require("../data/users.json")
 const Navigation =({E})=> {
   
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  function estLogger(){
+    for (const i of users) {
+      if(i.isLogged === true){
+        return( 
+        <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800   rounded-md shadow-xl">
+        <Link
+          onClick={"logOut"}
+          to="/" 
+          className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+        >
+          Logout <BiLogOut></BiLogOut>
+        </Link>
+      </div>);
+      }
+    }
+    return( 
+      <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800 rounded-md shadow-xl">
+        <Link
+        to="/connexion" 
+        className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+      >
+        Connexion <BiLogIn></BiLogIn>
+      </Link>
+      <Link
+        to="/inscription" 
+        className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+      >
+        Inscription
+      </Link>
+    </div>);;
+  }
+
+  function estLoggerMenuPrincipal(){
+    for (const i of users) {
+      if(i.isLogged !== false){
+        console.log(i.isLogged);
+        return (
+           <Fragment>
+          <Link className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100" to="/"> 
+                Accueil
+              </Link>
+              <Link to="/" className=" block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100">
+                Bibliothèque
+              </Link>
+          </Fragment>
+        )
+      }
+    }
+    return (
+    <Fragment>
+        <Link to="/connexion" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100   ">
+            Connexion
+          </Link>
+        <Link to="/inscription" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100 ">
+            Inscription
+        </Link>
+      </Fragment>
+    )
+  }
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,27 +98,7 @@ const Navigation =({E})=> {
         
       </button>
       {isMenuOpen && (
-        <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-700   rounded-md shadow-xl">
-          <a
-            href="#"
-            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
-          >
-            Profile
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
-          >
-            Settings
-           
-          </a>
-          <Link
-            to="/" 
-            className="inline-flex items-center px-4 py-2 w-full text-white hover:bg-violet-500 hover:text-white"
-          >
-             Logout  <BiLogOut> </BiLogOut> 
-          </Link>
-        </div>
+        estLogger()
       )}
     </div>
             <button
@@ -90,19 +131,7 @@ const Navigation =({E})=> {
             isOpen ? 'block  ' : 'hidden'
           }  transform-gpu duration-500 ease-in-out rounded max-h-full transition-transform mt-2 bg-cod-gray-600 py-4`}
           >
-
-              <Link className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100" to="/"> 
-                Accueil
-              </Link>
-              <Link to="/" className=" block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100">
-                Bibliothèque
-              </Link>
-              <Link to="/connexion" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100   ">
-                Connexion
-              </Link>
-            <Link to="/inscription" className="block rounded-lg transition  ease-in-out duration-500 font-semibold px-4 py-2 text-lg text-white hover:bg-cod-gray-100 ">
-                Inscription
-              </Link>
+              {estLoggerMenuPrincipal()}
           </div>
         )}
       </div>

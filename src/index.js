@@ -27,6 +27,10 @@ const router = createBrowserRouter([
         element: <Inscription/>//http://localhost:3000/inscription
     },
     {
+        path:"blibliotheque",
+        element: <Accueil/>
+    },
+    {
         path: "/",
         element: <Accueil />,//http://localhost:3000/
         errorElement: <ErrorPage />,//http://localhost:3000/nimportequoi

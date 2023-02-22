@@ -10,11 +10,11 @@
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.2.0",
-
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
+    "edit-json-file": "^1.7.0",
     "emoji-regex": "^10.2.1",
     "font-awesome": "^4.7.0",
     "get-google-fonts": "^1.2.2",
