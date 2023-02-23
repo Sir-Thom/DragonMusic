@@ -28,7 +28,7 @@ export default function ListeDeMusique(props){
               <p className="font-Ubuntu text-white text-right text-md">{stock.duree}</p>
               </div>
               <div className="flex justify-end mt-4 ">
-              <BouttonJouerMusique className=" mt-2 left-auto  items-end" idMusique={index}  ></BouttonJouerMusique>
+              <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index}  ></BouttonJouerMusique>
             </div>
             </div>
           </div>

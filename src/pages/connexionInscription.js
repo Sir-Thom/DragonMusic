@@ -107,7 +107,7 @@ export function Connexion() {
   return (
     <Fragment>
       {estConnecter()}
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
@@ -224,7 +224,7 @@ export function Inscription() {
   return (
     <Fragment>
       {estConnecter()}
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
         heading="Créez-vous un compte"

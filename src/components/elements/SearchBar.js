@@ -15,6 +15,7 @@ export default  function SearchBar(WrappedComponent, searchFunction){
 		}
 
 		handleSearch = event => {
+			
 			this.setState({ searchTerm: event.target.value });
 			//this.setState({ updatedSearchTerm: event.target.value });
 		}
@@ -39,14 +40,14 @@ export default  function SearchBar(WrappedComponent, searchFunction){
 		<Fragment>
 			<Navigation className="gradiant" E={
 		<form>
-			<div className="px-2 ms-auto inline-flex ">
+			<div className="px-2   ms-auto inline-flex ">
 			<div className='flex'>
-			<input type={"search"} onChange={this.handleSearch} value={this.state.searchTerm} className="form-control rounded-full sm:w-46 md:w-96 lg:w-96 justify-items-end  flex-row flex-auto min-w-0 block  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  border-l-violet-600 focus:bg-white focus:border-violet-600 focus:outline-violet-600" 
+			<input type={"search"} onChange={this.handleSearch} value={this.state.searchTerm} className="form-control pointer-events-auto px-2 space-x-2 rounded-full sm:w-46 md:w-96 lg:w-96 justify-items-end  flex-row flex-auto min-w-0 block  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  border-l-violet-600 focus:bg-white focus:border-violet-600 focus:outline-violet-600" 
 						placeholder="Recherche" aria-label="Search" aria-describedby="button-addon3"></input>
 						
-			<button onClick={(e) => this.modifyValue(e)} className=" inline-block ms-auto px-6 transition ease-in-out  py-2 border-2 border-violet-600 text-violet-600 font-medium text-xs leading-tight uppercase rounded-full hover:scale-110 hover:bg-opacity-5 focus:outline-none focus:ring-0 " 
+			<button onClick={(e) => this.modifyValue(e)} className=" inline-block ml-2 px-6 transition ease-in-out  py-2 border-2 border-violet-600 text-violet-600 font-medium text-xs leading-tight uppercase rounded-full hover:scale-105 hover:bg-black hover:bg-opacity-5  focus:outline-none focus:ring-0 " 
 										type="submit" id="button-addon3">
-			<ImSearch className="transition ease-in-out hover:scale-110" size={15} />
+			<ImSearch className="" size={15} />
 			</button>
 			</div>
 		</div>
