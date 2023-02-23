@@ -20,7 +20,7 @@ const Navigation =({E})=> {
         <Link
           onClick={"logOut"}
           to="/" 
-          className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+          className=" inline-flex items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
         >
           Logout <BiLogOut></BiLogOut>
         </Link>
@@ -28,16 +28,16 @@ const Navigation =({E})=> {
       }
     }
     return( 
-      <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800 rounded-md shadow-xl">
+      <div className="absolute  right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800 rounded-md shadow-xl">
         <Link
         to="/connexion" 
-        className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+        className=" inline-flex items-center px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
       >
         Connexion <BiLogIn></BiLogIn>
       </Link>
       <Link
         to="/inscription" 
-        className="block px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
+        className=" inline-flex min-w-full items-center px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
       >
         Inscription
       </Link>
