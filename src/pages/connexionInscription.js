@@ -106,6 +106,7 @@ export function Connexion() {
 
   return (
     <Fragment>
+      
       {estConnecter()}
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
@@ -155,7 +156,7 @@ export function Connexion() {
 
           <button
             type="submit"
-            className="inline-block px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+            className="inline-block ease-in-out active:scale-90  border-2 border-transparent border-spacing-4 hover:border-violet-900 px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md  hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150  w-full"
           >
             Se Connecter
           </button>
@@ -196,6 +197,7 @@ export function Inscription() {
     for (const i of database) {
       if(i.username === e.target.value){
         setCheckUsername("Ce nom est déjà pris");
+        
         return;
       }
       setCheckUsername("");
@@ -224,6 +226,7 @@ export function Inscription() {
   return (
     <Fragment>
       {estConnecter()}
+
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
       <Header
@@ -280,6 +283,7 @@ export function Inscription() {
         </form>
       </div>
     </section>
+   
     </Fragment>
   );
 }
