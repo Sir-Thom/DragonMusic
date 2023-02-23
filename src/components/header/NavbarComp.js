@@ -12,13 +12,22 @@ const Navigation =({E})=> {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  function logOut(){
+    users.forEach(i => {
+      if(i.isLogged === true){
+        i.isLogged = false;
+      }
+    });
+    setIsMenuOpen(false);
+  }
+
   function estLogger(){
     for (const i of users) {
       if(i.isLogged === true){
         return( 
         <div className="absolute right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-800   rounded-md shadow-xl">
         <Link
-          onClick={"logOut"}
+          onClick={() => logOut()}
           to="/" 
           className=" inline-flex items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 hover:text-white"
         >
