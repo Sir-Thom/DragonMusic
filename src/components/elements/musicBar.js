@@ -19,7 +19,7 @@ console.log(timeString)
         max={duration}
         value={currentTime}
         onChange={(e) => setCurrentTime(e.target.value)}
-        className=" inline-flex w-screen mr-10 accent-violet-500  bg-gray-700"
+        className="range range-xs range-primary h-1/4 mt-1 "
       />
  <p className="text-white text-sm  ml-2">{timeString}</p>    
  </div>
@@ -27,10 +27,10 @@ console.log(timeString)
     <div className="flex justify-center  items-center text-xs font-semibold text-gray-500 px-4 py-3">
       <div className="space-x-3 p-2">
         <button onClick={() => { alert("previous") }} className="focus:outline-none">
-          <BsSkipStartCircleFill className=" relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150" size={30}></BsSkipStartCircleFill>
+          <BsSkipStartCircleFill className=" relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out " size={30}></BsSkipStartCircleFill>
         </button>
         <button onClick={() => { alert("play") }} className="snap-center items-center focus:outline-none">
-          <BsPlayCircleFill className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150" size={35}></BsPlayCircleFill>
+          <BsPlayCircleFill className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out " size={35}></BsPlayCircleFill>
         </button>
         <button onClick={() => { alert("next") }} className="focus:outline-none">
           <BsSkipEndCircleFill size={30} className="relative hover:scale-110 duration-300 focus:outline-none text-violet-600"></BsSkipEndCircleFill>
