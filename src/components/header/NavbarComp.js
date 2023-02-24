@@ -13,10 +13,10 @@ const Navigation =({E})=> {
  
 
   //sert a modifier le json qui vas être dans le local storage
-useEffect(() => {
+/*useEffect(() => {
   localStorage.setItem('IsLogged', JSON.stringify(users[1].isLogged));
 }, [users[1].isLogged =true]); //avec le = true on peut changer sa valeur.
-
+*/
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
