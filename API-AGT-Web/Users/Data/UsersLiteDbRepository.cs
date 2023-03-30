@@ -52,7 +52,7 @@ namespace API_AGT_Web.Users.Data
                         Name = u.Name,
                         Email = u.Email,
                         Password = u.Password,
-                        l
+                        
                     }
                 );
             }
