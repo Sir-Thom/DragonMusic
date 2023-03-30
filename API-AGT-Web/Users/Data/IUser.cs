@@ -2,9 +2,9 @@
 {
     public interface IUser
     {
-        IEnumerable<User> GetUsers();
+        public IEnumerable<User> GetUsers();
 
-        void createUser();
+        void createUser(IEnumerable<User> users);
 
         void LoginUser(string username, string password);
 
