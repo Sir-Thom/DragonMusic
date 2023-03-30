@@ -4,32 +4,58 @@
     {
         private const string collectionName = "users";
 
-        public void createUser()
+        private List<User> users = new List<User>
         {
-            throw new System.NotImplementedException();
+            new User()
+            {
+                    Name = "John Doe",
+                    Email = "johndoe@example.com",
+                    Password = "password"
+            },
+            new User()
+            {
+                 Name = "human",
+                 Email = "human@example.com",
+                 Password = "human"
+            }
+            ,
+            new User()
+            {
+                 Name = "human1",
+                 Email = "human1@example.com",
+                 Password = "human1"
+            }
+        };
+
+        private Random random = new Random();
+
+        public void createUser(IEnumerable<User> users)
+        {
+            //ajoute des utilisateurs
+            throw new NotImplementedException();
         }
 
         public void LoginUser(string username, string password)
         {
+            //ser à la connexion
             throw new System.NotImplementedException();
         }
 
         public void LogoutUser()
         {
+            //sert à la déconnexion
+
             throw new NotImplementedException();
         }
 
-        IEnumerable<User> IUser.GetUsers()
+        public IEnumerable<User> GetUsers()
         {
-            return new List<User>
+            return Enumerable.Range(0, 3).Select(index => new User()
             {
-                new User
-                {
-                    Name = "John Doe",
-                    Email = "johndoe@example.com",
-                    Password = "password"
-                }
-            }.ToArray();
+                Name = users[index].Name,
+                Email = users[index].Email,
+                Password = users[index].Password
+            });
         }
     }
 }

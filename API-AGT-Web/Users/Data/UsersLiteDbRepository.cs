@@ -12,19 +12,21 @@ namespace API_AGT_Web.Users.Data
             this.connectionString = connectionString;
         }
 
-        public void createUser()
+        public void createUser(IEnumerable<User> users)
         {
-            var user = new User
-            {
-                Name = "John Doe",
-                Email = "johndoe@example.com",
-                Password = "mysecretpassword"
-            };
-            //changer path pour le mettre dans le projets
             using (var db = new LiteDatabase(connectionString))
             {
-                var users = db.GetCollection<User>("users");
-                users.Insert(user);
+                var collection = db.GetCollection<UserEntity>(collectionName);
+
+                if (collection.Count() == 0)
+                    collection.InsertBulk(users.Select(u =>
+                        new UserEntity()
+                        {
+                            Name = u.Name,
+                            Email = u.Email,
+                            Password = u.Password,
+                        }
+                    ));
             }
         }
 
@@ -50,6 +52,7 @@ namespace API_AGT_Web.Users.Data
                         Name = u.Name,
                         Email = u.Email,
                         Password = u.Password,
+                        l
                     }
                 );
             }

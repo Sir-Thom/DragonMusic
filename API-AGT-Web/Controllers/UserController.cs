@@ -13,7 +13,7 @@ namespace API_AGT_Web.Controllers
         public UserController(IConfiguration configuration)
         {
             userRepository = new UsersLiteDbRepository(configuration["LiteDbFilePath"]);
-            userRepository.createUser();
+            userRepository.createUser((new UserInMemoryRepository().GetUsers()));
         }
 
         [HttpGet]
