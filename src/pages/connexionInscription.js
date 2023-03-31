@@ -225,6 +225,7 @@ export function Inscription() {
   };
   function creerCompte(event) {
     event.preventDefault();
+    addUserDb();
     
     for (const i of database) {
       if (i.username === username || i.email === email) {
@@ -238,6 +239,33 @@ export function Inscription() {
     navigation("/");
     return;
   }
+
+  const addUserDb = async() =>{
+    fetch("https://localhost:7246/User", {
+        method: 'POST',
+        body: JSON.stringify({
+            Name: username,
+            Email: email,
+            password: password,
+            IsLogged: false
+        }),
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        }
+    })
+    .then((response) => {
+            if (response.ok)
+            {
+                console.log("User added");
+            }
+            else
+            {
+                console.log("Le cast POST n'a pas fonctionné");
+            }
+        })
+        .catch((error) => 
+        {  console.log(error.message);  })
+    }
 
   function checkValidityUsername(e)
   {
