@@ -3,7 +3,8 @@
     public class MusicInMemoryRepository
     {
         private const string collectionName = "Musics";
-        private List<Music> musics = new List<Music>
+
+        private static readonly List<Music> musics = new List<Music>
         {
             new Music()
             {
@@ -16,7 +17,7 @@
             new Music()
             {
                 NomMusique="test2",Duree=69,Auteur="BABAJE",Image="asset/spag.png"
-            }, 
+            },
             new Music()
             {
                 NomMusique="Sad song",Duree=35,Auteur="Gabriel",Image="asset/Moai.png"
@@ -42,10 +43,11 @@
                 NomMusique="I am dancing",Duree=35,Auteur="Green Dancing Guy",Image="asset/dance.webp"
             },
             new Music()
-            {   
+            {
                 NomMusique="Moyai",Duree=30,Auteur="Le Bolduc",Image="asset/moyai-dancing.gif"
             }
         };
+        
         public IEnumerable<Music> GetMusics()
         {
             return Enumerable.Range(0, 9).Select(Index => new Music()

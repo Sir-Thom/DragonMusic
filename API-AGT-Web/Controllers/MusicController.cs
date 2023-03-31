@@ -8,16 +8,15 @@ namespace API_AGT_Web.Controllers
     [Route("[controller]")]
     public class MusicController : ControllerBase
     {
-        private readonly IMusic musicRepository;
+        private MusicInMemoryRepository musicInMemoryRepository;
         public MusicController(IConfiguration configuration)
         {
-         musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
-         
+            musicInMemoryRepository = new MusicInMemoryRepository();
         }
         [HttpGet]
         public IEnumerable<Music.Music> Get()
         {
-            return musicRepository.GetMusics();
+            return musicInMemoryRepository.GetMusics();
         }
     }
 }
