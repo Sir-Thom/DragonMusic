@@ -28,8 +28,7 @@ export default  function SearchBar(WrappedComponent, searchFunction){
 		filterData = (updatedSearchTerm) => {
 			updatedSearchTerm = updatedSearchTerm.toUpperCase();
 			return this.props.data.filter( (item) => {
-				return searchFunction(item, updatedSearchTerm);	// Ici on utilise la fonction de filtre passé en paramètre dans notre HOC
-															// Cela nous permet de personnalisé le comportement de la fonctionnalité de recherche
+				return searchFunction(item, updatedSearchTerm);	// Ici on utilise la fonction de filtre passé en paramètre dans notre HOC												// Cela nous permet de personnalisé le comportement de la fonctionnalité de recherche
 			});
 		}
 		
