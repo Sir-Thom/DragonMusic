@@ -4,6 +4,8 @@
     {
         public IEnumerable<User> GetUsers();
 
+        void createOneUser(User users);
+
         void createUser(IEnumerable<User> users);
 
         void LoginUser(string username, string password);
