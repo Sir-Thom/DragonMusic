@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImPlay2, ImPause } from "react-icons/im";
+import { ImPlay2, ImPause } from "react-icons/im";  
 import Music from "./musicBar";
 
 function BouttonJouerMusique(props) {
