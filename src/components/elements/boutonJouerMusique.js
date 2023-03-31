@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
-import MusicBar from "./musicBar";
+import Music from "./musicBar";
+
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
 

@@ -1,21 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoHome from "../components/elements/GoHome";
-import {Link} from "react-router-dom";
 
-let database = require('../components/data/users.json')
+const database = require('../components/data/users.json');
 
 export function Connexion() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [checkUsername, setCheckUsername] = useState("")
-  const [checkEmail, setCheckEmail] = useState("")
-
-  const [checkPassword, setCheckPassword] = useState("")
+  const [checkUsername, setCheckUsername] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,6 +24,11 @@ export function Connexion() {
         password === i.password &&
         (username === i.username || email === i.email)
       ) {
+        database.forEach(i => {
+          if(i.username === username){
+            i.isLogged = true;
+          }
+        });
         console.log("Username not available!");
         navigate("/");
         return;
@@ -93,21 +96,28 @@ export function Connexion() {
   }
   // Hooks must be used inside a functional component
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged === true){
+        return navigate("/");
+      }
+    }
+  }
+
   return (
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
-      <GoHome className="flex   justify-start"></GoHome>
+    <Fragment>
+      
+      {estConnecter()}
+    <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
+      <GoHome ></GoHome>
       <Header
         heading="Connectez-vous à votre compte"
         paragraph="Vous n'avez pas encore de compte? "
         linkName="S'inscrire"
         linkUrl="/inscription"
       />
-     
       <div className="  flex  flex-col items-center justify-center ">
-     
         <div></div>
-
-       
         <form onSubmit={(event) => verifierConnexion(event)}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
@@ -146,7 +156,7 @@ export function Connexion() {
 
           <button
             type="submit"
-            className="inline-block px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md hover:bg-violet-700 hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+            className="inline-block ease-in-out active:scale-90  border-2 border-transparent border-spacing-4 hover:border-violet-900 px-7 py-3 bg-violet-600 text-white text-lg font-bold leading-snug  rounded-full shadow-md  hover:shadow-lg focus:bg-violet-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-violet-800 active:shadow-lg transition duration-150  w-full"
           >
             Se Connecter
           </button>
@@ -154,6 +164,7 @@ export function Connexion() {
         <div></div>
       </div>
     </section>
+    </Fragment>
   );
 }
 
@@ -167,18 +178,18 @@ export function Inscription() {
 
   function creerCompte(event) {
     event.preventDefault();
-
-    for (const e of database) {
-      if (e.username === username /*|| e.email === this.state.email*/) {
-        alert("Nom d'utilisateur déjà utiliser");
+    
+    for (const i of database) {
+      if (i.username === username || i.email === email) {
+        alert("Nom d'utilisateur ou e-mail déjà utiliser");
         return; // est Utiliser
       }
-      database.push({ username: username, email: email, password: password });
-      alert("Compte créer avec succès");
-      console.log(database);
-      navigation("/");
-      return;
     }
+    database.push({ username: username, email: email, password: password, isLogged: true});
+    alert("Compte créer avec succès");
+    console.log(database);
+    navigation("/");
+    return;
   }
 
   function checkValidityUsername(e)
@@ -186,6 +197,7 @@ export function Inscription() {
     for (const i of database) {
       if(i.username === e.target.value){
         setCheckUsername("Ce nom est déjà pris");
+        
         return;
       }
       setCheckUsername("");
@@ -203,8 +215,20 @@ export function Inscription() {
     }
   }
 
+  function estConnecter(){
+    for (const i of database) {
+      if(i.isLogged){
+        return navigation("/");
+      }
+    }
+  }
+
   return (
-    <section className="h-screen font-sans gradiantPage antialiased min-h-full flex flex-col">
+    <Fragment>
+      {estConnecter()}
+
+    <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
+      <GoHome ></GoHome>
       <Header
         heading="Créez-vous un compte"
         paragraph="Vous avez déja un compte? "
@@ -259,5 +283,7 @@ export function Inscription() {
         </form>
       </div>
     </section>
+   
+    </Fragment>
   );
 }
