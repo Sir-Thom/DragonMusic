@@ -18,9 +18,31 @@ namespace API_AGT_Web.Controllers
 
         [HttpGet]
         public IEnumerable<User> Get()
-
         {
             return userRepository.GetUsers();
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(UserModels userModels)
+        {
+            try
+            {
+                userRepository.createOneUser(
+                    new User()
+                    {
+                        Name = userModels.Name,
+                        Email = userModels.Email,
+                        Password = userModels.Password,
+                        IsLogged = userModels.IsLogged
+                    }
+                );
+
+                return Ok();
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(500, exception.Message);
+            }
         }
     }
 }

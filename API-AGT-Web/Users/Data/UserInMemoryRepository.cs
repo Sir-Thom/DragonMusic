@@ -1,4 +1,6 @@
-﻿namespace API_AGT_Web.Users.Data
+﻿using LiteDB;
+
+namespace API_AGT_Web.Users.Data
 {
     public class UserInMemoryRepository : IUser
     {
@@ -32,7 +34,6 @@
         public void createUser(IEnumerable<User> users)
         {
             //ajoute des utilisateurs
-            throw new NotImplementedException();
         }
 
         public void LoginUser(string username, string password)
@@ -56,6 +57,11 @@
                 Email = users[index].Email,
                 Password = users[index].Password
             });
+        }
+
+        public void createOneUser(User users)
+        {
+            
         }
     }
 }
