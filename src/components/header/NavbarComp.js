@@ -9,10 +9,10 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
   //sert a modifier le json qui vas être dans le local storage
-  /*useEffect(() => {
+/*useEffect(() => {
   localStorage.setItem('IsLogged', JSON.stringify(users[1].isLogged));
-}, [users[1].isLogged =true]); //avec le = true on peut changer sa valeur.
-*/
+}, [users[1].isLogged =true]); //avec le = true on peut changer sa valeur.*/
+
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,7 +27,43 @@ const Navigation = ({ E }) => {
 
   function estLogger() {
     for (const i of users) {
-      if (i.isLogged === true) {
+      if(i.isLogged === true){
+        return( 
+      
+        <div className="absolute divide-y-4 divide-cod-gray-200/30  right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-400   rounded-md shadow-xl">
+        <Link
+          onClick={() => logOut()}
+          to="/" 
+          className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+        >
+          Logout <BiLogOut></BiLogOut>
+        </Link>
+      </div>
+      
+      );
+      }
+    }
+    return( 
+      <div className="absolute divide-y-4 divide-cod-gray-200/30   right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl">
+        <Link
+        to="/connexion" 
+        className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+      >
+        Connexion <BiLogIn></BiLogIn>
+      </Link>
+      <Link
+        to="/inscription" 
+        className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+      >
+        Inscription
+      </Link>
+    </div>);
+  }
+
+  function estLoggerMenuPrincipal(){
+    for (const i of users) {
+      if(i.isLogged !== false){
+        console.log(i.isLogged);
         return (
           <div className="absolute divide-y-4 divide-cod-gray-200/30  right-0 z-50 w-48 mt-2 py-2  bg-cod-gray-400   rounded-md shadow-xl">
             <Link
