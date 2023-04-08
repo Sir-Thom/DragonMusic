@@ -22,10 +22,7 @@ function BouttonJouerMusique(props) {
       onClick={(e) => Play(e,props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
-     <audio id="audio" className="w-full">
-  <source src="./Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+     
       {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
 
     </button>
