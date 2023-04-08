@@ -9,18 +9,18 @@
 
   <ItemGroup>
     <Compile Remove="Musics\Data\NewFolder\**" />
+    <Compile Remove="Music\**" />
     <Content Remove="Musics\Data\NewFolder\**" />
+    <Content Remove="Music\**" />
     <EmbeddedResource Remove="Musics\Data\NewFolder\**" />
+    <EmbeddedResource Remove="Music\**" />
     <None Remove="Musics\Data\NewFolder\**" />
+    <None Remove="Music\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="5.0.16" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Music\Data\" />
   </ItemGroup>
 
 </Project>
