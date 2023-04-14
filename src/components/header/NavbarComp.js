@@ -5,14 +5,9 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
-import {motion}  from 'framer-motion'
+import { motion } from "framer-motion";
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
-  //sert a modifier le json qui vas être dans le local storage
-  /*useEffect(() => {
-  localStorage.setItem('IsLogged', JSON.stringify(users[1].isLogged));
-}, [users[1].isLogged =true]); //avec le = true on peut changer sa valeur.
-*/
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,47 +23,47 @@ const Navigation = ({ E }) => {
   function estLogger() {
     for (const i of users) {
       if (i.isLogged === true) {
-        if(isMenuOpen === true){
-        return (
-          
-          <motion.div
-          className="absolute divide-y-4 divide-cod-gray-200/30   right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}
-        >            <Link
-              to="/"
-              className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+        if (isMenuOpen === true) {
+          return (
+            <motion.div
+              className="absolute divide-y-4 divide-cod-gray-200/30   right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
             >
-              Accueil
-            </Link>
-            <Link
-              to="/"
-              className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-            >
-              Bibliothèque
-            </Link>
-
-            <Link
-              onClick={() => logOut()}
-              to="/"
-              className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-            >
-              Logout <BiLogOut></BiLogOut>
-            </Link>
-    </motion.div>        );
-    
+              {" "}
+              <Link
+                to="/"
+                className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+              >
+                Accueil
+              </Link>
+              <Link
+                to="/AjoutMusique"
+                className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+              >
+                Ajout de musique
+              </Link>
+              <Link
+                onClick={() => logOut()}
+                to="/"
+                className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+              >
+                Logout <BiLogOut></BiLogOut>
+              </Link>
+            </motion.div>
+          );
+        }
       }
-    }
     }
     return (
       <motion.div
-      className="absolute divide-y-4 divide-cod-gray-200/30  -mr-16  right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-    >
+        className="absolute divide-y-4 divide-cod-gray-200/30  -mr-16  right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+      >
         <Link
           to="/connexion"
           className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
@@ -81,12 +76,9 @@ const Navigation = ({ E }) => {
         >
           Inscription
         </Link>
-      
       </motion.div>
     );
   }
-
-  
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -97,12 +89,12 @@ const Navigation = ({ E }) => {
         <div className="flex items-center my-auto pr-4 justify-between">
           <div className="inline-flex text-xs text-clip items-center ">
             <img className="h-[6vh] w-[6vw] " src={logo} alt="Logo" />
-            <a
-              href="#"
+            <Link
+              to="/"
               className="font-bold text-xs lg:text-xl divide-x  items-center no-underline hover:text-gray-50 "
             >
               Dragon Music
-            </a>
+              </Link>
           </div>
 
           <div className="px-2 ms-auto inline-flex ">
@@ -123,7 +115,7 @@ const Navigation = ({ E }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2 }}
               >
-              {isMenuOpen && estLogger()}
+                {isMenuOpen && estLogger()}
               </motion.div>
             </div>
           </div>
