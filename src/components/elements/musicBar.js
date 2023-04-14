@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import {BsPlayCircleFill,BsSkipStartCircleFill ,BsSkipEndCircleFill} from "react-icons/bs"
 
+function ConvertTime(timestamp)
+{
+  let minutes = Math.floor(timestamp / 60);
+  let seconds = timestamp - (minutes * 60);
+    if (seconds < 10) { seconds = '0' + seconds; }
+    timestamp = minutes + ':' + seconds;
+    return timestamp;
+}
+
 function MusicBar(props){
 
   const [currentTime, setCurrentTime] = useState(0);
