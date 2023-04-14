@@ -24,7 +24,7 @@ console.log(timeString)
       />
  <p className="text-white text-sm  ml-2">{timeString}</p>    
  </div>
-  
+ 
     <div className="flex justify-center  items-center text-xs font-semibold text-gray-500 px-4 py-3">
       <div className="space-x-3 p-2">
         <button onClick={() => { alert("previous") }} className="focus:outline-none">
