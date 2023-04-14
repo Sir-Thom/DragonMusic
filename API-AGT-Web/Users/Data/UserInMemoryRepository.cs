@@ -12,20 +12,20 @@ namespace API_AGT_Web.Users.Data
             {
                     Name = "John Doe",
                     Email = "johndoe@example.com",
-                    Password = "password"
+                    PasswordHash = "password"
             },
             new User()
             {
                  Name = "human",
                  Email = "human@example.com",
-                 Password = "human"
+                 PasswordHash = "human"
             }
             ,
             new User()
             {
                  Name = "human1",
                  Email = "human1@example.com",
-                 Password = "human1"
+                 PasswordHash = "human1"
             }
         };
 
@@ -55,13 +55,18 @@ namespace API_AGT_Web.Users.Data
             {
                 Name = users[index].Name,
                 Email = users[index].Email,
-                Password = users[index].Password
+                PasswordHash = users[index].PasswordHash
             });
         }
 
         public void createOneUser(User users)
         {
             
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }
