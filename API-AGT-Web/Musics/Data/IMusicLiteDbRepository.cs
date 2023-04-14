@@ -2,9 +2,11 @@
 
 namespace API_AGT_Web.Music.Data
 {
-    public interface IMusic
+    public interface IMusicLiteDbRepository
     {
         public IEnumerable<Music> GetMusics();
+
+        Music GetMusicByName(string nomMusique); 
 
     }
 }
