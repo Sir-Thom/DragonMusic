@@ -8,11 +8,9 @@ namespace API_AGT_Web.Controllers
     [Route("[controller]")]
     public class MusicController : ControllerBase
     {
-        private MusicInMemoryRepository musicInMemoryRepository;
         private IMusicLiteDbRepository music;
         public MusicController(IConfiguration configuration)
         {
-            musicInMemoryRepository = new MusicInMemoryRepository();
             music = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
         }
         [HttpGet]
