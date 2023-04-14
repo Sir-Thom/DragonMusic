@@ -22,8 +22,7 @@ namespace API_AGT_Web.Users.Data
                 {
                     Name = users.Name,
                     Email = users.Email,
-                    Password = users.Password,
-                    IsLogged = users.IsLogged
+                    PasswordHash = users.PasswordHash
                 });
             }
         }
@@ -40,8 +39,7 @@ namespace API_AGT_Web.Users.Data
                         {
                             Name = u.Name,
                             Email = u.Email,
-                            Password = u.Password,
-                            IsLogged = u.IsLogged
+                            PasswordHash = u.PasswordHash
                         }
                     ));
             }
@@ -57,6 +55,27 @@ namespace API_AGT_Web.Users.Data
             throw new NotImplementedException();
         }
 
+        public User GetUserByUsername(string username)
+        {
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collection = db.GetCollection<UserEntity>(collectionName);
+
+                var userEntity = collection.Find(u => u.Name == username).FirstOrDefault();
+
+                if (userEntity is null)
+                    return new User();
+
+                return new User()
+                {
+                    Name = userEntity.Name,
+                    Email = userEntity.Email,
+                    PasswordHash = userEntity.PasswordHash
+                };
+            }
+        }
+
+
         IEnumerable<User> IUser.GetUsers()
         {
             using (var db = new LiteDatabase(connectionString))
@@ -68,7 +87,7 @@ namespace API_AGT_Web.Users.Data
                     {
                         Name = u.Name,
                         Email = u.Email,
-                        Password = u.Password,
+                        PasswordHash = u.PasswordHash,
                         
                     }
                 );
