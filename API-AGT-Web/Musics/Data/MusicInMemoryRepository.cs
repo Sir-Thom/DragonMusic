@@ -85,15 +85,15 @@ namespace API_AGT_Web.Music.Data
             return musicList;
         }
 
-        public IEnumerable<Music> GetMusics()
+        /*public IEnumerable<Music> GetMusics()
         {
-            return Enumerable.Range(0, 9).Select(Index => new Music()
+            return Enumerable.Range(0, musics.Count).Select(Index => new Music()
             {
                 NomMusique = musics[Index].NomMusique,
                 Duree = musics[Index].Duree,
                 Auteur = musics[Index].Auteur,
                 Image = musics[Index].Image
             });
-        }
+        }*/
     }
 }
