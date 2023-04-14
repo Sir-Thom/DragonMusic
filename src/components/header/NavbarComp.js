@@ -8,6 +8,9 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
+
+
+  
   //sert a modifier le json qui vas être dans le local storage
 /*useEffect(() => {
   localStorage.setItem('IsLogged', JSON.stringify(users[1].isLogged));
