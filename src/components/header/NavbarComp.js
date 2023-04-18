@@ -1,12 +1,12 @@
 import React, { useState, Fragment, createContext } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
-import { AiOutlineClose, AiOutlineMenu,AiFillHome } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiFillHome } from "react-icons/ai";
 import { BsFileEarmarkMusicFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
-import {GoSignIn} from "react-icons/go";
+import { GoSignIn } from "react-icons/go";
 import { motion } from "framer-motion";
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
@@ -34,12 +34,11 @@ const Navigation = ({ E }) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
             >
-              
               <Link
                 to="/"
                 className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
               >
-               <AiFillHome className="mr-2"/> Accueil
+                <AiFillHome className="mr-2" /> Accueil
               </Link>
               <Link
                 to="/AjoutMusique"
@@ -52,7 +51,8 @@ const Navigation = ({ E }) => {
                 to="/"
                 className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
               >
-                <BiLogOut className="mr-2"/>Logout 
+                <BiLogOut className="mr-2" />
+                Logout
               </Link>
             </motion.div>
           );
@@ -67,27 +67,20 @@ const Navigation = ({ E }) => {
         transition={{ duration: 0.2 }}
       >
         <Link
-                to="/AjoutMusique"
-                className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-              >
-                Ajout de musique
-              </Link>
-        <Link
           to="/connexion"
           className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
         >
-         <BiLogIn  className="mr-2"/> Connexion 
+          <BiLogIn className="mr-2" /> Connexion
         </Link>
         <Link
           to="/inscription"
           className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
         >
-         <GoSignIn className="mr-2"/> Inscription
+          <GoSignIn className="mr-2" /> Inscription
         </Link>
       </motion.div>
     );
   }
-
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -103,7 +96,7 @@ const Navigation = ({ E }) => {
               className="font-bold text-xs lg:text-xl divide-x  items-center no-underline hover:text-gray-50 "
             >
               Dragon Music
-              </Link>
+            </Link>
           </div>
 
           <div className="px-2 ms-auto inline-flex ">
