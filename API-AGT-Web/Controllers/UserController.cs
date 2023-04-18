@@ -33,7 +33,7 @@ namespace API_AGT_Web.Controllers
                 if (user.Name == "")
                     return BadRequest("Usager invalide");
 
-                return Ok(userRepository.GetUserByUsername(username));
+                return Ok(user);
             }
             catch (Exception ex)
             {
@@ -52,16 +52,23 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                userRepository.createOneUser(
-                    new User()
-                    {
-                        Name = userModels.Name,
-                        Email = userModels.Email,
-                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(userModels.Password)
-                    }
-                );
+                var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name);
+                if (checkIfUserExist.Name is "")
+                {
+                    userRepository.createOneUser(
+                       new User()
+                       {
+                           Name = userModels.Name,
+                           Email = userModels.Email,
+                           PasswordHash = BCrypt.Net.BCrypt.HashPassword(userModels.Password)
+                       });
 
-                return Ok();
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Usager déjà existant");
+                }
             }
             catch (Exception exception)
             {
