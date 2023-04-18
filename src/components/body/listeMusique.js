@@ -16,7 +16,7 @@ const timeString = date.toISOString().substr(14, 5);
       <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {props.data.map((stock, index) => {
           return (
-          <div key={index} id={index} className="rounded  overflow-hidden shadow-lg">
+          <div key={index} id={index+1} className="rounded  overflow-hidden shadow-lg">
             <img
               src={stock.image}
               width="150px"
@@ -34,7 +34,7 @@ const timeString = date.toISOString().substr(14, 5);
               </div>
              
               <div className="flex justify-end mt-4 ">
-              <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index}  ></BouttonJouerMusique>
+              <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index+1} data={stock}  ></BouttonJouerMusique>
             </div>
             </div>
           </div>

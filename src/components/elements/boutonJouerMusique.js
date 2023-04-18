@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { ImPlay2, ImPause } from "react-icons/im";  
 import Music from "./musicBar";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-
-  /*const loadData = async () =>{
-    fetch("https://localhost:7246/Music", {
+  const [data, setData] = useState("");
+  const loadMusiqueChoisi = async () =>{
+    await fetch("https://localhost:7246/Music/1"/*(props.idMusique)*/, {
       mode: 'cors',
       method: 'GET'
     })
     .then((response) => 
       response.json()
     )
-    .then((data) => 
-      setData(data)
+    .then((music) => {
+      setData(music);
+      alert("salut " + music.nomMusique);
+    }
     )
   };
-  useEffect(() => {
-    loadData();
+  /*useEffect(() => {
+    loadMusiqueChoisi();
   }, []);*/
 
   function Play(e, idMusique) {
@@ -27,7 +29,9 @@ function BouttonJouerMusique(props) {
     const audio = document.getElementById("audio");
     if (CasePlayStop === 1) {
      // audio.play();
-      alert(props.idMusique);
+     loadMusiqueChoisi();
+      //alert(data);
+      //console.log(loadMusiqueChoisi);
     } else if (CasePlayStop === 2) {
       //audio.pause();
       alert(props.idMusique);
@@ -37,7 +41,7 @@ function BouttonJouerMusique(props) {
 
   return (
     <button
-      onClick={(e) => Play(e,props.idMusique)}
+      onClick={(e) => Play(e,props.id)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
      
