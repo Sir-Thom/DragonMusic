@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Inscription, Connexion} from './pages/connexionInscription';
 import ErrorPage from './pages/pageError';
 import Accueil from './pages/pageAccueil';
+import AjoutMusique from './pages/AjoutMusique';
 
 
 /*
@@ -27,8 +28,8 @@ const router = createBrowserRouter([
         element: <Inscription/>//http://localhost:3000/inscription
     },
     {
-        path:"blibliotheque",
-        element: <Accueil/>
+        path:"AjoutMusique",
+        element: <AjoutMusique/>
     },
     {
         path: "/",

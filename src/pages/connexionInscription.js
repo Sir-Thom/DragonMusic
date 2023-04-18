@@ -4,7 +4,7 @@ import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import GoHome from "../components/elements/GoHome";
-
+import { motion } from "framer-motion";
 const database = require('../components/data/users.json');
 
 export function Connexion({setToken}) {
@@ -14,6 +14,25 @@ export function Connexion({setToken}) {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const slideToScreen = {
+    hidden: {
+      x: "100vw",
+    },
+    visible: {
+      x: "0",
+      opacity: 1,
+
+      transition: {
+        duration: 0.35,
+        type: "tween",
+        anticipate: [0.17, 0.67, 0.83, 0.97],
+      },
+    },
+    exit: {
+      x: "-100vw",
+      opacity: 0,
+    },
+  };
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
@@ -138,15 +157,24 @@ export function Connexion({setToken}) {
   return (
     <Fragment>
       
-      {/*estConnecter()*/}
+      {estConnecter()}
+   
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
+    
       <GoHome ></GoHome>
+      <motion.div
+        variants={slideToScreen}
+        initial="hidden"
+        animate="visible"
+        exit={"exit"}
+      >
       <Header
         heading="Connectez-vous à votre compte"
         paragraph="Vous n'avez pas encore de compte? "
         linkName="S'inscrire"
         linkUrl="/inscription"
       />
+      
       <div className="  flex  flex-col items-center justify-center ">
         <div></div>
         <form onSubmit={handleLoginSubmit}>
@@ -191,10 +219,12 @@ export function Connexion({setToken}) {
           >
             Se Connecter
           </button>
-        </form>{" "}
+        </form>
         <div></div>
       </div>
+  </motion.div>
     </section>
+  
     </Fragment>
   );
 }
@@ -206,6 +236,13 @@ export function Inscription() {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const navigation = useNavigate();
+  const slideToScreen = {
+    hidden: {
+      x: "100vw",
+    },
+    visible: {
+      x: "0",
+      opacity: 1,
 
   const [data, setData] = useState([]);
 
@@ -226,6 +263,17 @@ export function Inscription() {
     loadData();
   }, []);
 
+      transition: {
+        duration: 0.35,
+        type: "tween",
+        anticipate: [0.17, 0.67, 0.83, 0.97],
+      },
+    },
+    exit: {
+      x: "-100vw",
+      opacity: 0,
+    },
+  };
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();
@@ -306,6 +354,12 @@ export function Inscription() {
 
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
+      <motion.div
+        variants={slideToScreen}
+        initial="hidden"
+        animate="visible"
+        exit={"exit"}
+      >
       <Header
         heading="Créez-vous un compte"
         paragraph="Vous avez déja un compte? "
@@ -359,6 +413,7 @@ export function Inscription() {
           </button>
         </form>
       </div>
+      </motion.div>
     </section>
    
     </Fragment>

@@ -1,10 +1,15 @@
-import React, { useCallback} from 'react';
+import React, { useState,useCallback} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
 
-//const musiques = require("../data/musique.json");
-
 export default function ListeDeMusique(props){
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(100);
+  
+  const date = new Date(0);
+date.setSeconds(currentTime);
+const timeString = date.toISOString().substr(14, 5);
+//console.log(timeString)
   const tabRow = useCallback(() => {
 		if (props.data instanceof Array) {
 			return (
@@ -27,6 +32,7 @@ export default function ListeDeMusique(props){
               <p className=" justify-end font-Ubuntu text-white text-sm">{stock.auteur} </p>
               <p className="font-Ubuntu text-white text-right text-md">{stock.duree}</p>
               </div>
+             
               <div className="flex justify-end mt-4 ">
               <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index}  ></BouttonJouerMusique>
             </div>
@@ -38,7 +44,6 @@ export default function ListeDeMusique(props){
     )
   }
 	}, [props.data]);
-//console.log(props.data)
     return (
       <>{tabRow()}</>
     );
