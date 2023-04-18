@@ -5,47 +5,47 @@ import Navigation from "../components/header/NavbarComp";
 import daisyui from "daisyui";
 import { useState, useEffect } from "react";
 import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
-export default function AjoutMusique({ o }) {
-  const [musicName, setMusicName] = useState("");
-  const [Artist, setArtist] = useState("");
-  const [Time, setTime] = useState("");
-  const [Cover, setCover] = useState("");
-  const [error, setError] = useState("");
-  useEffect(() => {
-    if (error !== "") {
-      const timeout = setTimeout(() => {
-        setError("");
-      }, 10000);
-      return () => clearTimeout(timeout);
-    }
-  }, [error]);
-
-  const addMusic = async () => {
-    fetch("https://localhost:7094/weatherforecast", {
-      method: "POST",
-      body: JSON.stringify({
-        nomMusique: musicName,
-        auteur: Artist,
-        duree: Time,
-        image: Cover,
-      }),
-      headers: {
-        "Content-Type": "application/json charset=UTF-8",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Forecast ajouté");
-          setTime("1");
-          setArtist("test");
-          setMusicName("test");
-          setCover("./assets/images/Moai.jpg");
-        } else {
-          console.log("Erreur pas facteur donc pas poste");
-        }
-      })
-      .catch((err) => {
-        setError(err.message);
+export default function AjoutMusique({o}) {
+    const [musicName, setMusicName]= useState("");
+    const [Artist, setArtist]= useState("");
+    const [Time, setTime]= useState("");
+    const [Cover, setCover]= useState("");
+    const [error, setError] = useState("");
+    useEffect(() => {
+      if (error !== "") {
+        const timeout = setTimeout(() => {
+          setError("");
+        }, 10000);
+        return () => clearTimeout(timeout);
+      }
+    }, [error]);
+  
+    const addMusic = async () => {
+      fetch("https://localhost:7246/Music", {
+        method: "POST",
+        body: JSON.stringify({
+          NomMusique: musicName ,
+          Auteur: Artist ,
+          Duree: Time ,
+          Image: Cover ,
+        }),
+        headers: {
+         
+          "Content-Type": "application/json charset=UTF-8" ,
+        },
+      }).then((response) => {
+          if(response.ok){
+              console.log("Forecast ajouté");
+              setTime("1");
+              setArtist("test")
+              setMusicName("test");
+              setCover("./assets/images/Moai.jpg");
+          }
+          else{
+              console.log("Erreur pas facteur donc pas poste");
+          }
+      }).catch((err) => {
+          setError(err.message);
       });
   };
 
