@@ -1,4 +1,4 @@
-import React from 'react';
+import { React,useState, useEffect } from 'react';
 //import { Card,Stack } from 'react-bootstrap';
 import './body.css'
 import MusicBar from '../elements/musicBar';
@@ -6,7 +6,7 @@ import StockMusique from "../body/listeMusique";
 import SearchBar from '../elements/SearchBar';
 import play from '../elements/boutonJouerMusique';
 const stocks = require("../data/musique.json");
-import { useState, useEffect } from 'react';
+
 /*import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';*/
 
@@ -30,7 +30,6 @@ function Body(){
       setData(data)
     )
   };
-
   useEffect(() => {
     loadData();
   }, []);
@@ -41,7 +40,7 @@ function Body(){
         <StockListWithSearch data={data}/>
       </div>
 
-      <div  className=" mb-8"> <MusicBar data={stocks} idMusique={play()} /></div>
+      <div  className=" mb-8"> <MusicBar data={loadData} idMusique={play()} /></div>
     </div>
   );
 }

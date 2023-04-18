@@ -10,9 +10,11 @@ function BouttonJouerMusique(props) {
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio");
     if (CasePlayStop === 1) {
-      audio.play();
+     // audio.play();
+      alert(props.idMusique);
     } else if (CasePlayStop === 2) {
-      audio.pause();
+      //audio.pause();
+      alert(props.idMusique);
     }
   }
   
