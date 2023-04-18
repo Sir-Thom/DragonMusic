@@ -21,16 +21,15 @@ export default function AjoutMusique({o}) {
     }, [error]);
   
     const addMusic = async () => {
-      fetch("https://localhost:7094/weatherforecast", {
+      fetch("https://localhost:7246/Music", {
         method: "POST",
         body: JSON.stringify({
-          nomMusique: musicName ,
-          auteur: Artist ,
-          duree: Time ,
-          image: Cover ,
+          NomMusique: musicName ,
+          Auteur: Artist ,
+          Duree: Time ,
+          Image: Cover ,
         }),
         headers: {
-         
           "Content-Type": "application/json charset=UTF-8" ,
         },
       }).then((response) => {
