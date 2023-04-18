@@ -15,7 +15,6 @@ function BouttonJouerMusique(props) {
     )
     .then((music) => {
       setData(music);
-      alert("salut " + music.nomMusique);
     }
     )
   };
@@ -30,8 +29,7 @@ function BouttonJouerMusique(props) {
     if (CasePlayStop === 1) {
      // audio.play();
      loadMusiqueChoisi();
-      //alert(data);
-      //console.log(loadMusiqueChoisi);
+      alert(data.nomMusique);
     } else if (CasePlayStop === 2) {
       //audio.pause();
       alert(props.idMusique);
