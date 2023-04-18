@@ -1,10 +1,15 @@
-import React, { useCallback} from 'react';
+import React, { useState,useCallback} from 'react';
 import './listeMusique.css';
 import BouttonJouerMusique from '../elements/boutonJouerMusique';
 
-//const musiques = require("../data/musique.json");
-
 export default function ListeDeMusique(props){
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(100);
+  
+  const date = new Date(0);
+date.setSeconds(currentTime);
+const timeString = date.toISOString().substr(14, 5);
+//console.log(timeString)
   const tabRow = useCallback(() => {
 		if (props.data instanceof Array) {
 			return (
@@ -39,7 +44,6 @@ export default function ListeDeMusique(props){
     )
   }
 	}, [props.data]);
-//console.log(props.data)
     return (
       <>{tabRow()}</>
     );
