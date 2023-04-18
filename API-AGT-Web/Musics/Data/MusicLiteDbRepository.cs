@@ -20,6 +20,7 @@ namespace API_AGT_Web.Music.Data
                 if (nombreMusic.Count() == 0)
                 {
                     collection.InsertBulk(InitializeSong().Select(m => new MusicEntity(){ 
+                        Id = m.Id,
                         NomMusique = m.NomMusique,
                         Duree = m.Duree,
                         Auteur = m.Auteur,
@@ -34,21 +35,22 @@ namespace API_AGT_Web.Music.Data
         {
              new Music()
              {
-                NomMusique = "RIP",Duree = 69420,Auteur = "Grim Reaper",Image = "asset/died.gif"
+             Id=1,  NomMusique = "RIP",Duree = 69420,Auteur = "Grim Reaper",Image = "asset/died.gif"
              },
              new Music(){
-                NomMusique = "testation",Duree = 35,Auteur = "Jean-Marc",Image = "asset/goofy_dragon.png"
+             Id=2, NomMusique = "testation",Duree = 35,Auteur = "Jean-Marc",Image = "asset/goofy_dragon.png"
              },
              new Music(){
-              NomMusique = "test2",Duree = 69,Auteur = "BABAJE",Image = "asset/spag.png"
+             Id=3, NomMusique = "test2",Duree = 69,Auteur = "BABAJE",Image = "asset/spag.png"
              },
-            new Music()
-            {
-                NomMusique = "Sad song",Duree = 35,Auteur = "Gabriel",Image = "asset/Moai.png"
-            },
+             new Music()
+             {
+             Id=4,  NomMusique = "Sad song",Duree = 35,Auteur = "Gabriel",Image = "asset/Moai.png"
+             },
 
              new Music()
              {
+                 Id=5,
                  NomMusique = "testation2",
                  Duree = 35,
                  Auteur = "Maxime",
@@ -56,7 +58,8 @@ namespace API_AGT_Web.Music.Data
              },
 
             new Music()
-            {
+            {   
+                Id=6,
                 NomMusique = "Fishium",
                 Duree = 35,
                 Auteur = "Maxance Gusse",
@@ -64,7 +67,8 @@ namespace API_AGT_Web.Music.Data
             },
 
             new Music()
-            {
+            {   
+                Id=7,
                 NomMusique = "we like fortnite",
                 Duree = 40,
                 Auteur = "FortiniteGamer",
@@ -73,6 +77,7 @@ namespace API_AGT_Web.Music.Data
 
              new Music()
              {
+                 Id=8,
                  NomMusique = "we like fortnite2",
                  Duree = 69,
                  Auteur = "Generated Gusse Feet",
@@ -81,6 +86,7 @@ namespace API_AGT_Web.Music.Data
 
              new Music()
              {
+                 Id=9,
                  NomMusique = "I am dancing",
                  Duree = 35,
                  Auteur = "Green Dancing Guy",
@@ -89,6 +95,7 @@ namespace API_AGT_Web.Music.Data
 
              new Music()
              {
+                 Id=10,
                  NomMusique = "Moyai",
                  Duree = 30,
                  Auteur = "Le Bolduc",
@@ -98,16 +105,17 @@ namespace API_AGT_Web.Music.Data
             return musicList;
         }
 
-
-        public Music GetMusicByName(string nomMusique)
+        
+        public Music GetMusicById(int idMusic)
         {
             using (var db = new LiteDatabase(connectionString))
             {
                 var collection = db.GetCollection<MusicEntity>(collectionName);
-                var musicEntity = collection.Find(m => m.NomMusique == nomMusique).FirstOrDefault();
+                var musicEntity = collection.Find(m => m.Id == idMusic).FirstOrDefault();
 
                 return new Music()
                 {
+                    Id = musicEntity.Id,
                     NomMusique = musicEntity.NomMusique,
                     Duree = musicEntity.Duree,
                     Auteur = musicEntity.Auteur,
@@ -124,7 +132,7 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<Music>(collectionName);
                 return collection.FindAll().Select(u =>
                     new Music()
-                    {
+                    {   Id = u.Id,
                         NomMusique = u.NomMusique,
                         Duree = u.Duree,
                         Auteur = u.Auteur,
@@ -139,8 +147,9 @@ namespace API_AGT_Web.Music.Data
             using (var db = new LiteDatabase(connectionString))
             {
                 var collection = db.GetCollection<MusicEntity>(collectionName);
+                collection.EnsureIndex(x => x.Id, true);
                 collection.Insert(new MusicEntity()
-                {
+                {   
                     Auteur = music.Auteur,
                     Duree = music.Duree,
                     Image = music.Image,

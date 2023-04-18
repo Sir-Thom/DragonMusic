@@ -14,11 +14,12 @@ namespace API_AGT_Web.Controllers
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
         }
         [HttpGet]
-        public IEnumerable<MusicModels> Get()
+        public IEnumerable<Music.Music> Get()
         {
             return musicRepository.GetMusics().Select(m=>
-            new MusicModels()
-            {
+            new Music.Music()
+            {   
+                Id = m.Id,
                 NomMusique=m.NomMusique,
                 Duree = m.Duree,
                 Auteur = m.Auteur,
@@ -29,15 +30,15 @@ namespace API_AGT_Web.Controllers
 
         
 
-        [HttpGet("{nomMusique}")]
-        public IActionResult GetActionResult(string nomMusique)
+        [HttpGet("{idMusic}")]
+        public IActionResult GetActionResult(int idMusic)
         {
             try
             {
-                var musique = musicRepository.GetMusicByName(nomMusique);
-                if (musique.NomMusique == "")
+                var musique = musicRepository.GetMusicById(idMusic);
+                if (musique.Id <0)
                     return BadRequest("musique invalide");
-                return Ok(musicRepository.GetMusicByName(nomMusique));
+                return Ok(musique);
             }
             catch (Exception ex)
             {
