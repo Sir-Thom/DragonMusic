@@ -2,6 +2,7 @@
 {
     public class MusicEntity
     {
+        public int Id { get; set; }
         public string NomMusique { get; set; } = "";
         public int Duree { get; set; } = 0;
         public string Auteur { get; set; } = "";
