@@ -8,15 +8,15 @@ namespace API_AGT_Web.Controllers
     [Route("[controller]")]
     public class MusicController : ControllerBase
     {
-        private IMusicLiteDbRepository music;
+        private IMusicLiteDbRepository musicRepository;
         public MusicController(IConfiguration configuration)
         {
-            music = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
+            musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
         }
         [HttpGet]
         public IEnumerable<MusicModels> Get()
         {
-            return music.GetMusics().Select(m=>
+            return musicRepository.GetMusics().Select(m=>
             new MusicModels()
             {
                 NomMusique=m.NomMusique,
@@ -34,10 +34,31 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var musique = music.GetMusicByName(nomMusique);
+                var musique = musicRepository.GetMusicByName(nomMusique);
                 if (musique.NomMusique == "")
                     return BadRequest("musique invalide");
-                return Ok(music.GetMusicByName(nomMusique));
+                return Ok(musicRepository.GetMusicByName(nomMusique));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddMusic(MusicModels music)
+        {
+            try
+            {
+                musicRepository.AddMusic(new Music.Music()
+                {
+                    NomMusique = music.NomMusique,
+                    Image = music.Image,
+                    Duree = music.Duree,
+                    Auteur = music.Auteur
+                });
+
+                return Ok();
             }
             catch (Exception ex)
             {

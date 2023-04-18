@@ -8,5 +8,6 @@ namespace API_AGT_Web.Music.Data
 
         Music GetMusicByName(string nomMusique); 
 
+        void AddMusic(Music music);
     }
 }

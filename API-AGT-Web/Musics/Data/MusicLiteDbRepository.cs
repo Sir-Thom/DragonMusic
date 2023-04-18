@@ -134,6 +134,19 @@ namespace API_AGT_Web.Music.Data
             }
         }
 
-
+        public void AddMusic(Music music)
+        {
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collection = db.GetCollection<MusicEntity>(collectionName);
+                collection.Insert(new MusicEntity()
+                {
+                    Auteur = music.Auteur,
+                    Duree = music.Duree,
+                    Image = music.Image,
+                    NomMusique = music.NomMusique
+                });
+            }
+        }
     }
 }
