@@ -7,7 +7,7 @@ import GoHome from "../components/elements/GoHome";
 
 const database = require('../components/data/users.json');
 
-export function Connexion() {
+export function Connexion({setToken}) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,25 +35,38 @@ export function Connexion() {
     loadData();
   }, []);
 
-  function verifierConnexion(event) {
-    event.preventDefault();
-    for (const i of data) {
-      if (
-        password === i.password &&
-        (username === i.username || email === i.email)
-      ) {
-        data.forEach(i => {
-          if(i.username === username){
-            i.isLogged = true;
-          }
-        });
-        console.log("Username not available!");
-        navigate("/");
-        return;
-      }
-    }
-    //alert("Nom d'utilisateur et/ou mot de passe incorrect");
-  }
+  const tryLogin = async () => {
+		await fetch('https://localhost:7094/Authentification/LogIn', {
+			method: 'POST',
+			body: JSON.stringify({
+				Name: username,
+        Email: email,
+				password: password
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8'
+			}
+		})
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					console.log("Mauvaises informations");
+					return {token: ""};
+				}
+			})
+			.then((data) => {
+				setToken(data.token);
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
+
+	const handleLoginSubmit = (e) => {
+		e.preventDefault();
+		tryLogin();
+	 };
 
   async function checkIfUsernameTaken(input)
   {
@@ -136,7 +149,7 @@ export function Connexion() {
       />
       <div className="  flex  flex-col items-center justify-center ">
         <div></div>
-        <form onSubmit={(event) => verifierConnexion(event)}>
+        <form onSubmit={handleLoginSubmit}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
             <input

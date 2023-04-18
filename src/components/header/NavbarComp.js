@@ -1,10 +1,11 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, createContext } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
+
 
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
