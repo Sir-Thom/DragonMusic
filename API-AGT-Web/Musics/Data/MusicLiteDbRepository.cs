@@ -32,76 +32,87 @@ namespace API_AGT_Web.Music.Data
         private List<Music> InitializeSong()
         {
             var musicList = new List<Music>()
-        {
-             new Music()
-             {
-             Id=1,  NomMusique = "RIP",Duree = 69420,Auteur = "Grim Reaper",Image = "asset/died.gif"
-             },
-             new Music(){
-             Id=2, NomMusique = "testation",Duree = 35,Auteur = "Jean-Marc",Image = "asset/goofy_dragon.png"
-             },
-             new Music(){
-             Id=3, NomMusique = "test2",Duree = 69,Auteur = "BABAJE",Image = "asset/spag.png"
-             },
-             new Music()
-             {
-             Id=4,  NomMusique = "Sad song",Duree = 35,Auteur = "Gabriel",Image = "asset/Moai.png"
-             },
-
-             new Music()
-             {
-                 Id=5,
-                 NomMusique = "testation2",
-                 Duree = 35,
-                 Auteur = "Maxime",
-                 Image = "asset/MoaiVoiture.png"
-             },
-
-            new Music()
-            {   
-                Id=6,
-                NomMusique = "Fishium",
-                Duree = 35,
-                Auteur = "Maxance Gusse",
-                Image = "asset/fish.gif"
-            },
-
-            new Music()
-            {   
-                Id=7,
-                NomMusique = "we like fortnite",
-                Duree = 40,
-                Auteur = "FortiniteGamer",
-                Image = "asset/fortiniteSong.png"
-            },
-
-             new Music()
-             {
-                 Id=8,
-                 NomMusique = "we like fortnite2",
-                 Duree = 69,
-                 Auteur = "Generated Gusse Feet",
-                 Image = "asset/GoussePied.png"
-             },
-
-             new Music()
-             {
-                 Id=9,
-                 NomMusique = "I am dancing",
-                 Duree = 35,
-                 Auteur = "Green Dancing Guy",
-                 Image = "asset/dance.webp"
-             },
-
-             new Music()
-             {
-                 Id=10,
-                 NomMusique = "Moyai",
-                 Duree = 30,
-                 Auteur = "Le Bolduc",
-                 Image = "asset/moyai-dancing.gif"
-             }
-        };
+            {
+                new Music()
+                {
+                    Id=1,
+                    NomMusique = "RIP",
+                    Duree = 69420,
+                    Auteur = "Grim Reaper",
+                    Image = "asset/died.gif"
+                },
+                new Music()
+                {
+                    Id=2,
+                    NomMusique = "testation",
+                    Duree = 35,
+                    Auteur = "Jean-Marc",
+                    Image = "asset/goofy_dragon.png"
+                },
+                new Music(){
+                    Id=3, 
+                    NomMusique = "test2",
+                    Duree = 69,
+                    Auteur = "BABAJE",
+                    Image = "asset/spag.png"
+                },
+                new Music()
+                {
+                    Id=4,
+                    NomMusique = "Sad song",
+                    Duree = 35,
+                    Auteur = "Gabriel",
+                    Image = "asset/Moai.png"
+                },
+                new Music()
+                {
+                    Id=5,
+                    NomMusique = "testation2",
+                    Duree = 35,
+                    Auteur = "Maxime",
+                    Image = "asset/MoaiVoiture.png"
+                },
+                new Music()
+                {   
+                    Id=6,
+                    NomMusique = "Fishium",
+                    Duree = 35,
+                    Auteur = "Maxance Gusse",
+                    Image = "asset/fish.gif"
+                },
+                new Music()
+                {   
+                    Id=7,
+                    NomMusique = "we like fortnite",
+                    Duree = 40,
+                    Auteur = "FortiniteGamer",
+                    Image = "asset/fortiniteSong.png"
+                },
+                new Music()
+                {
+                    Id=8,
+                    NomMusique = "we like fortnite2",
+                    Duree = 69,
+                    Auteur = "Generated Gusse Feet",
+                    Image = "asset/GoussePied.png"
+                },
+                new Music()
+                {
+                    Id=9,
+                    NomMusique = "I am dancing",
+                    Duree = 35,
+                    Auteur = "Green Dancing Guy",
+                    Image = "asset/dance.webp"
+                },
+                new Music()
+                {
+                    Id=10,
+                    NomMusique = "Moyai",
+                    Duree = 30,
+                    Auteur = "Le Bolduc",
+                    Image = "asset/moyai-dancing.gif"
+                } 
+            };
             return musicList;
         }
 
