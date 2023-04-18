@@ -92,7 +92,7 @@ export function Connexion({setToken}) {
     setUsername(input.target.value);
 
     for (const i of data) {
-      if(input.target.value === i.username){
+      if(input.target.value === i.name){
         setCheckUsername("");
         return;
       }
@@ -126,7 +126,7 @@ export function Connexion({setToken}) {
     }
   }
 
-  async function checkIfPassword(input)
+  /*async function checkIfPassword(input)
   {
     setPassword(input.target.value);
 
@@ -143,7 +143,7 @@ export function Connexion({setToken}) {
       }
       
     }
-  }
+  }*/
   // Hooks must be used inside a functional component
 
   /*function estConnecter(){
@@ -157,7 +157,7 @@ export function Connexion({setToken}) {
   return (
     <Fragment>
       
-      {estConnecter()}
+      {/*estConnecter()*/}
    
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
     
@@ -206,8 +206,6 @@ export function Connexion({setToken}) {
               className={`${checkPassword !== "" ? "border-red-600" : "border-gray-300"} form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
               type="password"
               placeholder="mot de passe"
-              
-              onChange={(input) => checkIfPassword(input)}
             ></input>
             <span className={`inline-flex text-sm ${checkPassword !== "" ? "text-red-600 " : "hidden"}`}>{checkPassword}</span>
 
@@ -243,6 +241,17 @@ export function Inscription() {
     visible: {
       x: "0",
       opacity: 1,
+      transition: {
+        duration: 0.35,
+        type: "tween",
+        anticipate: [0.17, 0.67, 0.83, 0.97],
+      },
+    },
+    exit: {
+      x: "-100vw",
+      opacity: 0,
+    },
+  };
 
   const [data, setData] = useState([]);
 
@@ -263,17 +272,7 @@ export function Inscription() {
     loadData();
   }, []);
 
-      transition: {
-        duration: 0.35,
-        type: "tween",
-        anticipate: [0.17, 0.67, 0.83, 0.97],
-      },
-    },
-    exit: {
-      x: "-100vw",
-      opacity: 0,
-    },
-  };
+    
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();

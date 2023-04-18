@@ -65,6 +65,12 @@ const Navigation = ({ E }) => {
         transition={{ duration: 0.2 }}
       >
         <Link
+                to="/AjoutMusique"
+                className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+              >
+                Ajout de musique
+              </Link>
+        <Link
           to="/connexion"
           className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
         >
