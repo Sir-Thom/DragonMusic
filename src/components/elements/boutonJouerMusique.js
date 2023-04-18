@@ -5,6 +5,22 @@ import Music from "./musicBar";
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
 
+  /*const loadData = async () =>{
+    fetch("https://localhost:7246/Music", {
+      mode: 'cors',
+      method: 'GET'
+    })
+    .then((response) => 
+      response.json()
+    )
+    .then((data) => 
+      setData(data)
+    )
+  };
+  useEffect(() => {
+    loadData();
+  }, []);*/
+
   function Play(e, idMusique) {
     e.preventDefault();
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
