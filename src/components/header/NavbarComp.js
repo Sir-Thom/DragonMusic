@@ -1,4 +1,4 @@
-import React, { useState, Fragment, createContext } from "react";
+import React, { useState, Fragment, createContext, useContext } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
@@ -6,23 +6,21 @@ import { Link } from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { motion } from "framer-motion";
+
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [token , setToken] = useState(sessionStorage.getItem("token"));
+  //const { token } = useContext(AuthContext);
 
   function logOut() {
-    users.forEach((i) => {
-      if (i.isLogged === true) {
-        i.isLogged = false;
-      }
-    });
-    setIsMenuOpen(false);
+    setToken(null);
+    sessionStorage.removeItem("token");
   }
 
   function estLogger() {
-    for (const i of users) {
-      if (i.isLogged === true) {
+      if (token != null) {
         if (isMenuOpen === true) {
           return (
             <motion.div
@@ -55,7 +53,6 @@ const Navigation = ({ E }) => {
             </motion.div>
           );
         }
-      }
     }
     return (
       <motion.div
@@ -64,12 +61,6 @@ const Navigation = ({ E }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <Link
-                to="/AjoutMusique"
-                className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-              >
-                Ajout de musique
-              </Link>
         <Link
           to="/connexion"
           className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
