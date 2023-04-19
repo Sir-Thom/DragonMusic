@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import SearchBar from './components/elements/SearchBar';
 import StockMusique from './components/body/listeMusique';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const stocks = require("./components/data/musique.json");
 
@@ -15,7 +16,11 @@ describe('SearchBar component', () => {
       return item.nomMusique.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
     });
     
-    const { getByText, getByPlaceholderText } = render(<StockListWithSearch data={stocks} />);
+    const { getByText, getByPlaceholderText } = render(
+      <Router>
+      <StockListWithSearch data={stocks} />
+    </Router>
+    );
     const searchInput =getByPlaceholderText('Recherche');
 
    // expect(getByText('testation')).toBeInTheDocument();
