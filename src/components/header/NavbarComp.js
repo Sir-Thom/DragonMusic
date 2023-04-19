@@ -1,4 +1,4 @@
-import React, { useState, Fragment, createContext } from "react";
+import React, { useState, Fragment, createContext, useContext } from "react";
 import "./NavbarComp.css";
 import logo from "../../logo.svg";
 import { AiOutlineClose, AiOutlineMenu, AiFillHome } from "react-icons/ai";
@@ -8,23 +8,21 @@ import { HiUserCircle } from "react-icons/hi";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { GoSignIn } from "react-icons/go";
 import { motion } from "framer-motion";
+
 const users = require("../data/users.json");
 const Navigation = ({ E }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [token , setToken] = useState(sessionStorage.getItem("token"));
+  //const { token } = useContext(AuthContext);
 
   function logOut() {
-    users.forEach((i) => {
-      if (i.isLogged === true) {
-        i.isLogged = false;
-      }
-    });
-    setIsMenuOpen(false);
+    setToken(null);
+    sessionStorage.removeItem("token");
   }
 
   function estLogger() {
-    for (const i of users) {
-      if (i.isLogged === true) {
+      if (token != null) {
         if (isMenuOpen === true) {
           return (
             <motion.div
@@ -57,7 +55,6 @@ const Navigation = ({ E }) => {
             </motion.div>
           );
         }
-      }
     }
     return (
       <motion.div

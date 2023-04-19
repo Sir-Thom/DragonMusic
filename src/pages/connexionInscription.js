@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
@@ -7,13 +7,14 @@ import GoHome from "../components/elements/GoHome";
 import { motion } from "framer-motion";
 const database = require('../components/data/users.json');
 
-export function Connexion({setToken}) {
+export function Connexion() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+
   const slideToScreen = {
     hidden: {
       x: "100vw",
@@ -55,11 +56,11 @@ export function Connexion({setToken}) {
   }, []);
 
   const tryLogin = async () => {
-		await fetch('https://localhost:7094/Authentification/LogIn', {
+		await fetch('https://localhost:7246/User/LogIn', {
 			method: 'POST',
 			body: JSON.stringify({
-				Name: username,
-        Email: email,
+				name: username,
+        email: email,
 				password: password
 			}),
 			headers: {
@@ -75,7 +76,8 @@ export function Connexion({setToken}) {
 				}
 			})
 			.then((data) => {
-				setToken(data.token);
+				sessionStorage.setItem('token', data.token);
+        navigate("/");
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -206,6 +208,7 @@ export function Connexion({setToken}) {
               className={`${checkPassword !== "" ? "border-red-600" : "border-gray-300"} form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
               type="password"
               placeholder="mot de passe"
+              onChange={(input) => setPassword(input.target.value)}
             ></input>
             <span className={`inline-flex text-sm ${checkPassword !== "" ? "text-red-600 " : "hidden"}`}>{checkPassword}</span>
 

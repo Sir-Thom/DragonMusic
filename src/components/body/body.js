@@ -14,24 +14,39 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
 
 function Body() {
   const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
 
   const loadData = async () => {
     fetch("https://localhost:7246/Music", {
       mode: "cors",
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((data) => setData(data));
+    .then((response) => {
+      if (!response.ok) {
+        throw Error("Failed to fetch data");
+      }
+      else{
+      setError(null);
+      return response.json();
+    }})
+    .then((data) => 
+      setData(data)
+    )
+    .catch((error) => {
+      setError(error.message);
+    });
   };
 
   useEffect(() => {
     loadData();
   }, []);
 
-  return (
-    <div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
+  return(
+<div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
+  <h3 className="text-red-800 font-bold m-8 text-5xl" style={{display: error == null ? 'none' : 'block' }}>{error}</h3>
       <div className=" mb-8">
-        <StockListWithSearch data={data} />
+        
+        <StockListWithSearch data={data}/>
       </div>
 
       <div className=" mb-8">
