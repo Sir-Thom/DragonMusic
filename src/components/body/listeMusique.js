@@ -6,18 +6,17 @@ export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
 
-
-
   const tabRow = useCallback(() => {
     if (props.data instanceof Array) {
       return (
         <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-         {props.data.map((stock, index) => {
-          const date = new Date(0);
-          date.setSeconds(parseInt(stock.duree));
-          const timeString = date.toISOString().substr(14, 5);
+          {props.data.map((stock, index) => {
+            const date = new Date(0);
+            date.setSeconds(parseInt(stock.duree));
+            const timeString = date.toISOString().substr(14, 5);
+            //se chose là recup l'id de la musique
+            console.log(props.data[index].id);
             return (
-              
               <div
                 key={index}
                 id={index}
@@ -37,9 +36,9 @@ export default function ListeDeMusique(props) {
                   </p>
                   <div className="flex justify-between py-1 ">
                     <p className=" justify-end font-Ubuntu text-white text-sm">
-                      {stock.auteur}{" "}
+                      {stock.auteur}
                     </p>
-                    <p className="font-Ubuntu text-white text-right text-md" >
+                    <p className="font-Ubuntu text-white text-right text-md">
                       {timeString}
                     </p>
                   </div>
