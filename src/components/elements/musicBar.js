@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   BsPlayCircleFill,
   BsSkipStartCircleFill,
@@ -14,14 +14,26 @@ function ConvertTime(timestamp) {
   timestamp = minutes + ":" + seconds;
   return timestamp;
 }
-
+function Play(e, idMusique) {
+  e.preventDefault();
+  const [CasePlayStop, setSelectedIcon] = useState(1);
+  setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
+  const audio = document.getElementById(
+    "audio" + localStorage.getItem("idMusique")
+  );
+  if (CasePlayStop === 1) {
+    audio.play();
+  } else if (CasePlayStop === 2) {
+    audio.pause();
+  }
+}
 function MusicBar(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
+
   console.log(timeString);
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
@@ -51,9 +63,8 @@ function MusicBar(props) {
             ></BsSkipStartCircleFill>
           </button>
           <button
-            onClick={() => {
-              alert("play");
-            }}
+            id={"audio" + localStorage.getItem("idMusique")}
+            onClick={(e) => Play(e, localStorage.getItem("idMusique"))}
             className="snap-center items-center focus:outline-none"
           >
             <BsPlayCircleFill
