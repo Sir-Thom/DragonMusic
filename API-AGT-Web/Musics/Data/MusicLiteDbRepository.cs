@@ -4,7 +4,7 @@ using LiteDB;
 
 namespace API_AGT_Web.Music.Data
 {
-    public class MusicLiteDbRepository:IMusicLiteDbRepository
+    public class MusicLiteDbRepository : IMusicLiteDbRepository
     {
         private const string collectionName = "musics";
         private readonly string connectionString;
@@ -19,7 +19,8 @@ namespace API_AGT_Web.Music.Data
                 var nombreMusic = collection.FindAll();
                 if (nombreMusic.Count() == 0)
                 {
-                    collection.InsertBulk(InitializeSong().Select(m => new MusicEntity(){ 
+                    collection.InsertBulk(InitializeSong().Select(m => new MusicEntity()
+                    {
                         Id = m.Id,
                         NomMusique = m.NomMusique,
                         Duree = m.Duree,
@@ -50,7 +51,7 @@ namespace API_AGT_Web.Music.Data
                     Image = "asset/goofy_dragon.png"
                 },
                 new Music(){
-                    Id=3, 
+                    Id=3,
                     NomMusique = "test2",
                     Duree = 69,
                     Auteur = "BABAJE",
@@ -73,7 +74,7 @@ namespace API_AGT_Web.Music.Data
                     Image = "asset/MoaiVoiture.png"
                 },
                 new Music()
-                {   
+                {
                     Id=6,
                     NomMusique = "Fishium",
                     Duree = 35,
@@ -81,7 +82,7 @@ namespace API_AGT_Web.Music.Data
                     Image = "asset/fish.gif"
                 },
                 new Music()
-                {   
+                {
                     Id=7,
                     NomMusique = "we like fortnite",
                     Duree = 40,
@@ -111,12 +112,12 @@ namespace API_AGT_Web.Music.Data
                     Duree = 30,
                     Auteur = "Le Bolduc",
                     Image = "asset/moyai-dancing.gif"
-                } 
+                }
             };
             return musicList;
         }
 
-        
+
         public Music GetMusicById(int idMusic)
         {
             using (var db = new LiteDatabase(connectionString))
@@ -131,7 +132,7 @@ namespace API_AGT_Web.Music.Data
                     Duree = musicEntity.Duree,
                     Auteur = musicEntity.Auteur,
                     Image = musicEntity.Image,
-                    
+
                 };
             }
         }
@@ -143,7 +144,8 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<Music>(collectionName);
                 return collection.FindAll().Select(u =>
                     new Music()
-                    {   Id = u.Id,
+                    {
+                        Id = u.Id,
                         NomMusique = u.NomMusique,
                         Duree = u.Duree,
                         Auteur = u.Auteur,
@@ -160,7 +162,7 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<MusicEntity>(collectionName);
                 collection.EnsureIndex(x => x.Id, true);
                 collection.Insert(new MusicEntity()
-                {   
+                {
                     Auteur = music.Auteur,
                     Duree = music.Duree,
                     Image = music.Image,
