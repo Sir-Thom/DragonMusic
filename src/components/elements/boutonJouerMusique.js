@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
-import { MusicContext ,MusicProvider} from "./musicContext";
+import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -12,25 +12,21 @@ function BouttonJouerMusique(props) {
     3: "audio-file3.mp3",
     // add more mappings as needed
   };
-  const loadMusiqueChoisi = async () =>{
-    await fetch("https://localhost:7246/Music/"+props.idMusique, {
-      mode: 'cors',
-      method: 'GET'
+  const loadMusiqueChoisi = async () => {
+    await fetch("https://localhost:7246/Music/" + props.idMusique, {
+      mode: "cors",
+      method: "GET",
     })
-    .then((response) => 
-      response.json()
-    )
-    .then((music) => {
-      //MusicContext.setCurrentMusicId(music.idMusique);
-      console.log("music: " + music);
-    }
-    )
+      .then((response) => response.json())
+      .then((music) => {
+        //MusicContext.setCurrentMusicId(music.idMusique);
+        console.log("music: " + music);
+      });
   };
+
   /*useEffect(() => {
     loadMusiqueChoisi();
   }, []);*/
-
-  
 
   //useContext(MusicContext);
   //  console.log("id dans button: " + useContext(MusicContext));
@@ -38,23 +34,28 @@ function BouttonJouerMusique(props) {
     e.preventDefault();
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
+    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
+
+    const MyComponent = () => {
+      setCurrentMusicId(props.idMusique);
+    };
     if (CasePlayStop === 1) {
       audio.play();
-      //vont ensemble
-    //  loadMusiqueChoisi();
+      //  loadMusiqueChoisi();
       alert(props.idMusique);
-      MusicContext.props.setCurrentMusicId(props.idMusique);
-      alert( MusicContext.currentMusicId);
-     alert(props.musiqueAJouer);
+      //MusicContext.props.setCurrentMusicId(props.idMusique);
+      alert(MyComponent());
+      alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
       alert(MusicContext.currentMusicId);
-     // alert(props.idMusique);
+      // alert(props.idMusique);
     }
   }
 
   return (
-    <button onLoad={loadMusiqueChoisi()}
+    <button
+      onLoad={loadMusiqueChoisi()}
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
