@@ -3,9 +3,15 @@ import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
 import MusicBar from "./musicBar";
 
-function BouttonJouerMusique(props, {musicQuiJoue} ,{setMusicQuiJoue}) {
+function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
   const [data, setData] = useState("");
+  const audioFiles = {
+    1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
+    2: "audio-file2.mp3",
+    3: "audio-file3.mp3",
+    // add more mappings as needed
+  };
   const loadMusiqueChoisi = async () =>{
     await fetch("https://localhost:7246/Music/"+props.idMusique, {
       mode: 'cors',
@@ -16,6 +22,7 @@ function BouttonJouerMusique(props, {musicQuiJoue} ,{setMusicQuiJoue}) {
     )
     .then((music) => {
       setData(music);
+      
     }
     )
   };
@@ -23,12 +30,7 @@ function BouttonJouerMusique(props, {musicQuiJoue} ,{setMusicQuiJoue}) {
     loadMusiqueChoisi();
   }, []);*/
 
-  const audioFiles = {
-    0: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
-    1: "audio-file2.mp3",
-    2: "audio-file3.mp3",
-    // add more mappings as needed
-  };
+  
 
   //useContext(MusicContext);
   //  console.log("id dans button: " + useContext(MusicContext));
@@ -39,11 +41,14 @@ function BouttonJouerMusique(props, {musicQuiJoue} ,{setMusicQuiJoue}) {
     if (CasePlayStop === 1) {
       audio.play();
       localStorage.setItem("idMusique", props.idMusique);
+      alert(data);
+
       //vont ensemble
-      //loadMusiqueChoisi();
-      //alert(data.nomMusique);
+      loadMusiqueChoisi();
+      alert(data.nomMusique);
+      //alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
-      //audio.pause();
+      audio.pause();
       alert(props.idMusique);
     }
   }

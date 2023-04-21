@@ -5,8 +5,9 @@ import MusicBar from "../elements/musicBar";
 import StockMusique from "../body/listeMusique";
 import SearchBar from '../elements/SearchBar';
 import play from '../elements/boutonJouerMusique';
-const stocks = require("../data/musique.json");
 import { MusicProvider, MusicContext } from "../elements/musicContext";
+const stocks = require("../data/musique.json");
+
 /*import ListeDeMusique from './listeMusique'; 
 import {Inscription} from'./Inscription';*/
 
@@ -16,7 +17,7 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
 
 function Body(){
   const [musics, setMusics] = useState([]);
-  const [musicQuiJoue, setMusicQuiJoue] = useState("1");
+  const [musicQuiJoue, setMusicQuiJoue] = useState("");
   const [error, setError] = useState(null);
 
   const loadData = async () => {
@@ -47,7 +48,7 @@ function Body(){
   }, []);
   const [currentSong, setCurrentSong] = useState(null);
 
-  console.log(data.map((stock) => stock.id));
+  //console.log(data.map((stock) => stock.id));
   return (
     <MusicContext.Provider value={{ currentSong, setCurrentSong }}>
       <div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
@@ -61,7 +62,7 @@ function Body(){
           <StockListWithSearch  data={musics} musicAJouer={musicQuiJoue} />
         </div>
       <div  className=" mb-8">
-         <MusicBar data={loadData} idMusique={play()} /></div>
+         <MusicBar /></div>
         </div>
     </MusicContext.Provider>
   );
