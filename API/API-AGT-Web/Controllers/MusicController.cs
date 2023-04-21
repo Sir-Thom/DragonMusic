@@ -1,6 +1,7 @@
 ﻿using API_AGT_Web.Music.Data;
 using Microsoft.AspNetCore.Mvc;
 using API_AGT_Web.Music;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace API_AGT_Web.Controllers
 {
@@ -9,6 +10,7 @@ namespace API_AGT_Web.Controllers
     public class MusicController : ControllerBase
     {
         private IMusicLiteDbRepository musicRepository;
+        const string directoryPath = "C:\\Users\\Client\\Desktop\\projet-agt-travail-session\\public\\asset\\";
         public MusicController(IConfiguration configuration)
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
@@ -24,12 +26,10 @@ namespace API_AGT_Web.Controllers
                 Duree = m.Duree,
                 Auteur = m.Auteur,
                 Image = m.Image
-            })
-               ;
+            });
         }
 
         
-
         [HttpGet("{idMusic}")]
         public IActionResult GetActionResult(int idMusic)
         {
@@ -58,7 +58,7 @@ namespace API_AGT_Web.Controllers
                     Duree = music.Duree,
                     Auteur = music.Auteur
                 });
-
+                
                 return Ok();
             }
             catch (Exception ex)
@@ -66,5 +66,47 @@ namespace API_AGT_Web.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost("/Image")]
+        public IActionResult SaveImageInSystem(IFormFile image)
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            try
+            {
+                if (image is null)
+                    return StatusCode(StatusCodes.Status400BadRequest, new { message = "Aucune image dans la requête" });
+
+                if (image.Length > 0)
+                {
+                    var fileName = image.FileName;
+                    var filePath = Path.Combine(directoryPath, fileName);
+                    var fileExtension = Path.GetExtension(filePath).ToLower();
+
+                    if (fileExtension != ".gif" && fileExtension != ".jpg" && fileExtension != ".jpeg" &&
+                         fileExtension != ".png" && fileExtension != ".webp")
+                        return StatusCode(StatusCodes.Status400BadRequest, new { message = "Ce format n'est pas supporté" });
+
+                    if (!System.IO.File.Exists(filePath))
+                    {
+                        using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            image.CopyTo(fileStream);
+                        }
+                    }
+
+                    musicRepository.updateImagePathGivenMusic(filePath);
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(700, ex.Message);
+            }
+        }        
     }
 }

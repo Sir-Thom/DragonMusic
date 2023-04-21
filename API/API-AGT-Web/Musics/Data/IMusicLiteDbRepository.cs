@@ -9,5 +9,7 @@ namespace API_AGT_Web.Music.Data
         Music GetMusicById(int idMusic); 
 
         void AddMusic(Music music);
+
+        void updateImagePathGivenMusic(string filePath);
     }
 }
