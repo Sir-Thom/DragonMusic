@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
-import { MusicContext ,MusicProvider} from "./musicContext";
+import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -26,6 +26,9 @@ function BouttonJouerMusique(props) {
     }
     )
   };
+
+  /*const MyComponent = () => {
+    const [currentMusicId, setCurrentMusicId] = useContext(MyContext);}*/
   /*useEffect(() => {
     loadMusiqueChoisi();
   }, []);*/
