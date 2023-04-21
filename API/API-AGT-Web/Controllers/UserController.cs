@@ -77,7 +77,7 @@ namespace API_AGT_Web.Controllers
         }
 
         [HttpPost("LogIn")]
-        public IActionResult LogIn([FromBody] UserModel userModel)
+        public IActionResult LogIn(UserModel userModel)
         {
             try
             {
