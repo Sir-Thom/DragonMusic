@@ -11,6 +11,9 @@ export default function AjoutMusique({o}) {
     const [Time, setTime]= useState("");
     const [Cover, setCover]= useState("");
     const [error, setError] = useState("");
+    const [file , setFile] = useState(null);
+    const [result, setResult] = useState("");
+
     useEffect(() => {
       if (error !== "") {
         const timeout = setTimeout(() => {
@@ -35,11 +38,12 @@ export default function AjoutMusique({o}) {
         },
       }).then((response) => {
           if(response.ok){
-              console.log("Forecast ajouté");
+              console.log("Music ajouté");
+              addImage();
               setTime("1");
               setArtist("test")
               setMusicName("test");
-              setCover("./assets/images/Moai.jpg");
+              setCover("../asset/Moai.png");
           }
           else{
               console.log("Erreur pas facteur donc pas poste");
@@ -49,16 +53,40 @@ export default function AjoutMusique({o}) {
       });
   };
 
+  const addImage = async () => {
+
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+
+    await fetch('https://localhost:7246/Image', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': '*/*'
+        }
+      })
+      .then((response) => {
+        if (response.ok) {
+          setResult("Téléversement réussi");
+        } else
+          setResult("Téléversement échoué, erreur: " + response.status);
+      })
+      .catch((err) => {
+        setResult("Erreur: " + err.message);
+      });
+    };
+
+
   const onSubmitForm = (event) => {
     event.preventDefault();
-    const music = {
+    /*const music = {
       musicName,
       Artist,
       Time,
       Cover,
-    };
+    };*/
     addMusic();
-    console.log(music);
+    //console.log(music);
   };
 
   const handleMusicNameChange = (event) => {
@@ -73,8 +101,8 @@ export default function AjoutMusique({o}) {
     setTime(event.target.value);
   };
   const handleCoverChange = (event) => {
-    const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
+    setFile(event.target.files[0]);
+    const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
     console.log(imageUrl);
   };
