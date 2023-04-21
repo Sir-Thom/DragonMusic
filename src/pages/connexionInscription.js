@@ -289,7 +289,7 @@ export function Inscription() {
     database.push({ username: username, email: email, password: password, isLogged: true});
     alert("Compte créer avec succès");
     console.log(data);
-    navigation("/");
+    navigation("/connexion");
     return;
   }
 
