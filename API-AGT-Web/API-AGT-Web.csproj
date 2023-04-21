@@ -8,13 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Musics\Data\NewFolder\**" />
     <Compile Remove="Music\**" />
-    <Content Remove="Musics\Data\NewFolder\**" />
     <Content Remove="Music\**" />
-    <EmbeddedResource Remove="Musics\Data\NewFolder\**" />
     <EmbeddedResource Remove="Music\**" />
-    <None Remove="Musics\Data\NewFolder\**" />
     <None Remove="Music\**" />
   </ItemGroup>
 
@@ -31,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Musics\Data\UploadedImages\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>
 
