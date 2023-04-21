@@ -178,6 +178,8 @@ export default function AjoutMusique({o}) {
             </label>
             <input
               type="file"
+              security="true"
+              accept=".jpg, .png, .jpeg,webp,gif"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
               onChange={handleCoverChange}
@@ -189,7 +191,7 @@ export default function AjoutMusique({o}) {
         <div className="rounded  ml-10  h-fit w-[60%] bg-cod-gray-600   overflow-hidden shadow-lg">
           <img
             src={Cover}
-            width={150} 
+            width={150}
             height={150}
             alt={musicName}
             className=" aspect-square  w-full h-full object-cover"
