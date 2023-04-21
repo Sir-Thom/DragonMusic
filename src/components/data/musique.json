@@ -1,0 +1,12 @@
+[
+    {"nomMusique":"RIP","duree":69420,"auteur":"Grim Reaper","image":"asset/died.gif"},
+    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/goofy_dragon.png"},
+    {"nomMusique":"test2","duree":69,"auteur":"BABAJE","image":"asset/spag.png"},
+    {"nomMusique":"Sad song","duree":35,"auteur":"Gabriel","image":"asset/Moai.png"},
+    {"nomMusique":"testation","duree":35,"auteur":"Jean-Marc","image":"asset/MoaiVoiture.png"},
+    {"nomMusique":"Fishium","duree":35,"auteur":"Maxance Gusse","image":"asset/fish.gif"},
+    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/fortiniteSong.png"},
+    {"nomMusique":"we like fortnite","duree":35,"auteur":"FortiniteGamer","image":"asset/GoussePied.png"},
+    {"nomMusique":"I am dancing","duree":35,"auteur":"Green Dancing Guy","image":"asset/dance.webp"},
+    {"nomMusique":"Moyai","duree":35,"auteur":"Le Bolduc","image":"asset/moyai-dancing.gif"}
+]

@@ -1,33 +1,47 @@
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import Navigation from './components/tailwindnavbar';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faCubes } from '@fortawesome/fontawesome-free-solid';
-import NavBarApp from "./components/NavbarApp"
-import Body from './components/body'; 
-//import ButtonAppBar from './components/NavbarComp';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<Fragment>
+import React, { Fragment } from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Inscription, Connexion } from "./pages/connexionInscription";
+import ErrorPage from "./pages/pageError";
+import Accueil from "./pages/pageAccueil";
+import AjoutMusique from "./pages/AjoutMusique";
 
- <Navigation></Navigation>
-  
-  
-  
-  
-  
- 
-</Fragment>
+/*
+note pour futur moi 
+
+les class empêche d'utiliser les routes comme il faut
+
+*/
+const router = createBrowserRouter([
+  {
+    path: "connexion",
+    element: <Connexion />,
+  },
+  {
+    path: "inscription",
+    element: <Inscription />,
+  },
+  {
+    path: "AjoutMusique",
+    element: <AjoutMusique />,
+  },
+  {
+    path: "/",
+    element: <Accueil />,
+    errorElement: <ErrorPage />,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <Fragment>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </Fragment>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals();
+//reportWebVitals(console.log);
