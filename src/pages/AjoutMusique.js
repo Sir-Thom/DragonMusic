@@ -5,63 +5,88 @@ import Navigation from "../components/header/NavbarComp";
 import daisyui from "daisyui";
 import { useState, useEffect } from "react";
 import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
-import GoHome from "../components/elements/GoHome";
-export default function AjoutMusique({ o }) {
-  const [musicName, setMusicName] = useState("");
-  const [Artist, setArtist] = useState("");
-  const [Time, setTime] = useState("");
-  const [Cover, setCover] = useState("");
-  const [error, setError] = useState("");
-  const formData = new FormData();
+export default function AjoutMusique({o}) {
+    const [musicName, setMusicName]= useState("");
+    const [Artist, setArtist]= useState("");
+    const [Time, setTime]= useState("");
+    const [Cover, setCover]= useState("");
+    const [error, setError] = useState("");
+    const [file , setFile] = useState(null);
+    const [result, setResult] = useState("");
 
-  useEffect(() => {
-    if (error !== "") {
-      const timeout = setTimeout(() => {
-        setError("");
-      }, 10000);
-      return () => clearTimeout(timeout);
-    }
-  }, [error]);
-
-  const addMusic = async () => {
-    fetch("https://localhost:7246/Music", {
-      method: "POST",
-      body: JSON.stringify({
-        NomMusique: musicName,
-        Auteur: Artist,
-        Duree: Time,
-        Image: Cover,
-      }),
-      headers: {
-        "Content-Type": "application/json charset=UTF-8",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Forecast ajouté");
-          setTime("1");
-          setArtist("test");
-          setMusicName("test");
-          setCover("./assets/images/Moai.jpg");
-        } else {
-          console.log("Erreur pas facteur donc pas poste");
-        }
-      })
-      .catch((err) => {
-        setError(err.message);
+    useEffect(() => {
+      if (error !== "") {
+        const timeout = setTimeout(() => {
+          setError("");
+        }, 10000);
+        return () => clearTimeout(timeout);
+      }
+    }, [error]);
+  
+    const addMusic = async () => {
+      fetch("https://localhost:7246/Music", {
+        method: "POST",
+        body: JSON.stringify({
+          NomMusique: musicName ,
+          Auteur: Artist ,
+          Duree: Time ,
+          Image: Cover ,
+        }),
+        headers: {
+         
+          "Content-Type": "application/json charset=UTF-8" ,
+        },
+      }).then((response) => {
+          if(response.ok){
+              console.log("Music ajouté");
+              addImage();
+              setTime("1");
+              setArtist("test")
+              setMusicName("test");
+              setCover("../asset/Moai.png");
+          }
+          else{
+              console.log("Erreur pas facteur donc pas poste");
+          }
+      }).catch((err) => {
+          setError(err.message);
       });
   };
 
+  const addImage = async () => {
+
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+
+    await fetch('https://localhost:7246/Image', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': '*/*'
+        }
+      })
+      .then((response) => {
+        if (response.ok) {
+          setResult("Téléversement réussi");
+        } else
+          setResult("Téléversement échoué, erreur: " + response.status);
+      })
+      .catch((err) => {
+        setResult("Erreur: " + err.message);
+      });
+    };
+
+
   const onSubmitForm = (event) => {
     event.preventDefault();
-    const music = {
+    /*const music = {
       musicName,
       Artist,
       Time,
       Cover,
-    };
+    };*/
     addMusic();
-    console.log(music);
+    //console.log(music);
   };
 
   const handleMusicNameChange = (event) => {
@@ -76,8 +101,8 @@ export default function AjoutMusique({ o }) {
     setTime(event.target.value);
   };
   const handleCoverChange = (event) => {
-    const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
+    setFile(event.target.files[0]);
+    const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
     console.log(imageUrl);
   };
@@ -115,7 +140,6 @@ export default function AjoutMusique({ o }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <GoHome />
       <div className="grid grid-cols-2 justify-center min-w-max  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-4">
         <div className="rounded ml-10 max-w-[70%] min-w-[70%]  h-fit w-[70%] bg-cod-gray-600  shadow-lg">
           <form
