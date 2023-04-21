@@ -48,7 +48,7 @@ function BouttonJouerMusique(props) {
      alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
-      alert(MusicContext.currentMusicId);
+      alert("penis "+ MusicContext.currentMusicId);
      // alert(props.idMusique);
     }
   }
