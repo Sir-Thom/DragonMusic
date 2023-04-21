@@ -47,19 +47,12 @@ function BouttonJouerMusique(props) {
     setCurrentMusicId(props.idMusique);
     }
     if (CasePlayStop === 1) {
-
-
-
       audio.play();
-    //  loadMusiqueChoisi();
-      alert(props.idMusique);
-      //MusicContext.props.setCurrentMusicId(props.idMusique);
+      //alert(props.idMusique);
       alert( MyComponent() );
-      alert(props.musiqueAJouer);
+     // alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
-      alert(MusicContext.currentMusicId);
-     // alert(props.idMusique);
     }
   }
 
