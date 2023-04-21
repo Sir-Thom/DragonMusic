@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+
 import {
   BsPlayCircleFill,
   BsSkipStartCircleFill,
@@ -30,6 +31,7 @@ function Play(e, idMusique) {
 function MusicBar(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
+
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);

@@ -41,12 +41,11 @@ function BouttonJouerMusique(props) {
     if (CasePlayStop === 1) {
       audio.play();
       localStorage.setItem("idMusique", props.idMusique);
-      alert(data);
 
       //vont ensemble
       loadMusiqueChoisi();
       alert(data.nomMusique);
-      //alert(props.musiqueAJouer);
+    //  alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
       alert(props.idMusique);
@@ -54,7 +53,7 @@ function BouttonJouerMusique(props) {
   }
 
   return (
-    <button
+    <button onLoad={loadMusiqueChoisi()}
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >

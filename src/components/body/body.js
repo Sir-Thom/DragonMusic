@@ -47,7 +47,6 @@ function Body(){
     loadData();
   }, []);
   const [currentSong, setCurrentSong] = useState(null);
-
   //console.log(data.map((stock) => stock.id));
   return (
     <MusicContext.Provider value={{ currentSong, setCurrentSong }}>
