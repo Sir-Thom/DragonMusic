@@ -5,16 +5,16 @@ import BouttonJouerMusique from '../elements/boutonJouerMusique';
 export default function ListeDeMusique(props){
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-  
+  //const [data,setData] = useState("");
   const date = new Date(0);
 date.setSeconds(currentTime);
 const timeString = date.toISOString().substr(14, 5);
-//console.log(timeString)
+  //console.log(props.musicAJouer);
   const tabRow = useCallback(() => {
-		if (props.data instanceof Array) {
+		if (props.musics instanceof Array) {
 			return (
       <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {props.data.map((stock, index) => {
+      {props.musics.map((stock, index) => {
           return (
           <div key={index} id={index+1} className="rounded  overflow-hidden shadow-lg">
             <img
@@ -34,7 +34,7 @@ const timeString = date.toISOString().substr(14, 5);
               </div>
              
               <div className="flex justify-end mt-4 ">
-              <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index+1} data={stock}  ></BouttonJouerMusique>
+              <BouttonJouerMusique  className=" mt-2 left-auto  items-end" idMusique={index+1} setData={props.musicAJouer}  ></BouttonJouerMusique>
             </div>
             </div>
           </div>

@@ -16,7 +16,8 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
 });
 
 function Body(){
-  const [data, setData] = useState([]);
+  const [musics, setMusics] = useState([]);
+  const [musicQuiJoue, setMusicQuiJoue] = useState("1");
 
   const loadData = async () =>{
     fetch("https://localhost:7246/Music", {
@@ -27,7 +28,7 @@ function Body(){
       response.json()
     )
     .then((data) => 
-      setData(data)
+      setMusics(data)
     )
   };
   useEffect(() => {
@@ -37,7 +38,7 @@ function Body(){
   return(
 <div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
       <div className=" mb-8">
-        <StockListWithSearch data={data}/>
+        <StockListWithSearch data={musics} musicAJouer={musicQuiJoue}/>
       </div>
 
       <div  className=" mb-8"> <MusicBar data={loadData} idMusique={play()} /></div>
