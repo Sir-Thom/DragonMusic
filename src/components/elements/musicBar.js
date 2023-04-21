@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
@@ -35,7 +35,6 @@ function MusicBar(props) {
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
 
-  MusicContext.currentMusicId =props.idMusique;
   console.log(MusicContext.currentMusicId);
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
@@ -65,8 +64,8 @@ function MusicBar(props) {
             ></BsSkipStartCircleFill>
           </button>
           <button
-            id={"audio" + MusicContext.currentMusicId}
-            onClick={(e) => Play(e, MusicContext.currentMusicId)}
+            id={"audio" + localStorage.getItem("idMusique")}
+            onClick={(e) => Play(e, localStorage.getItem("idMusique"))}
             className="snap-center items-center focus:outline-none"
           >
             <BsPlayCircleFill

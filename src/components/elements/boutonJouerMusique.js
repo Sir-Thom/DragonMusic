@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
+import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -11,19 +12,21 @@ function BouttonJouerMusique(props) {
     2: "audio-file3.mp3",
     // add more mappings as needed
   };
-
+  //const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
+  //setCurrentMusicId(1);
   //useContext(MusicContext);
-  //  console.log("id dans button: " + useContext(MusicContext));
+  //const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
+  console.log("id dans button: " + MusicContext.currentMusicId);
   function Play(e, idMusique) {
     e.preventDefault();
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
     if (CasePlayStop === 1) {
       audio.play();
-      localStorage.setItem("idMusique", props.idMusique);
     } else if (CasePlayStop === 2) {
       audio.pause();
     }
+    console.log(MusicContext.Provider.name.length());
   }
 
   return (
