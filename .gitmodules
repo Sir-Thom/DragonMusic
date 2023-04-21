@@ -1,0 +1,3 @@
+[submodule "API-AGT"]
+	path = API-AGT
+	url = https://github.com/CBA-DeveloppementWeb3-H2023/API-AGT.git

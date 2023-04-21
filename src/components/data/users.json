@@ -1,0 +1,20 @@
+[
+    {
+      "username": "joe",
+      "email": "joe@joe.com",
+      "password": "1234",
+      "isLogged": false
+    },
+    {
+      "username": "humain",
+      "email": "humain",
+      "password": "1234",
+      "isLogged": false
+    },
+    {
+      "username": "human1",
+      "email": "human1",
+      "password": "12345",
+      "isLogged": false
+    }
+  ]

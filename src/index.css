@@ -1,5 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Ubuntu";
+
+  src: url("../public/font/Ubuntu/Ubuntu-Medium.ttf");
+}
 
 
+@layer components {
+    
+      
+  .gradiantPage{
+      
+    
+      background: repeating-linear-gradient(#555555, #181818) 
+  }
+  .gradiant{
+      @apply h-screen w-screen;
+    
+      background: repeating-linear-gradient(#646464, #181818) 
+  }
+}
 
 body::-webkit-scrollbar {
   display: none;

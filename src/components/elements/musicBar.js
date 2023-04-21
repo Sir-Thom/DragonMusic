@@ -57,7 +57,6 @@ function MusicBar(props) {
             onClick={() => {
               alert("previous");
             }}
-            
             className="focus:outline-none"
           >
             <BsSkipStartCircleFill
