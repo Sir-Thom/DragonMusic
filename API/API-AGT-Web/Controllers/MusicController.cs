@@ -98,7 +98,7 @@ namespace API_AGT_Web.Controllers
                         }
                     }
 
-                    musicRepository.updateImagePathGivenMusic(filePath);
+                    musicRepository.updateImagePathGivenMusic(fileName);
                 }
 
                 return Ok();
