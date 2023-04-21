@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import "../components/body/body.css";
 import Header from "../components/header/headerLogin";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GoHome from "../components/elements/GoHome";
 import { motion } from "framer-motion";
 const database = require('../components/data/users.json');
@@ -14,6 +14,7 @@ export function Connexion() {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+
   const slideToScreen = {
     hidden: {
       x: "100vw",
@@ -35,32 +36,65 @@ export function Connexion() {
   };
   const navigate = useNavigate();
 
-  function verifierConnexion(event) {
-    event.preventDefault();
-    for (const i of database) {
-      if (
-        password === i.password &&
-        (username === i.username || email === i.email)
-      ) {
-        database.forEach(i => {
-          if(i.username === username){
-            i.isLogged = true;
-          }
-        });
-        console.log("Username not available!");
+  const [data, setData] = useState([]);
+
+  const loadData = async () =>{
+    fetch("https://localhost:7246/User", {
+      mode: 'cors',
+      method: 'GET'
+    })
+    .then((response) => 
+      response.json()
+    )
+    .then((data) => 
+      setData(data)
+    )
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const tryLogin = async () => {
+		await fetch('https://localhost:7246/User/LogIn', {
+			method: 'POST',
+			body: JSON.stringify({
+				name: username,
+        email: email,
+				password: password
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8'
+			}
+		})
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					console.log("Mauvaises informations");
+					return {token: ""};
+				}
+			})
+			.then((data) => {
+				sessionStorage.setItem('token', data.token);
         navigate("/");
-        return;
-      }
-    }
-    //alert("Nom d'utilisateur et/ou mot de passe incorrect");
-  }
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
+
+	const handleLoginSubmit = (e) => {
+		e.preventDefault();
+		tryLogin();
+	 };
 
   async function checkIfUsernameTaken(input)
   {
     setUsername(input.target.value);
 
-    for (const i of database) {
-      if(input.target.value === i.username){
+    for (const i of data) {
+      if(input.target.value === i.name){
         setCheckUsername("");
         return;
       }
@@ -78,7 +112,7 @@ export function Connexion() {
   {
     setEmail(input.target.value);
 
-    for (const i of database) {
+    for (const i of data) {
       if(input.target.value === i.email){
         setCheckEmail("");
         return;
@@ -94,11 +128,11 @@ export function Connexion() {
     }
   }
 
-  async function checkIfPassword(input)
+  /*async function checkIfPassword(input)
   {
     setPassword(input.target.value);
 
-    for (const i of database) {
+    for (const i of data) {
       if(input.target.value === i.password){
         setCheckPassword("");
         return;
@@ -111,21 +145,21 @@ export function Connexion() {
       }
       
     }
-  }
+  }*/
   // Hooks must be used inside a functional component
 
-  function estConnecter(){
-    for (const i of database) {
+  /*function estConnecter(){
+    for (const i of data) {
       if(i.isLogged === true){
         return navigate("/");
       }
     }
-  }
+  }*/
 
   return (
     <Fragment>
       
-      {estConnecter()}
+      {/*estConnecter()*/}
    
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
     
@@ -145,7 +179,7 @@ export function Connexion() {
       
       <div className="  flex  flex-col items-center justify-center ">
         <div></div>
-        <form onSubmit={(event) => verifierConnexion(event)}>
+        <form onSubmit={handleLoginSubmit}>
           <div className="mb-6 ">
             <label className="text-white">nom d'utilisateur</label>
             <input
@@ -174,8 +208,7 @@ export function Connexion() {
               className={`${checkPassword !== "" ? "border-red-600" : "border-gray-300"} form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
               type="password"
               placeholder="mot de passe"
-              
-              onChange={(input) => checkIfPassword(input)}
+              onChange={(input) => setPassword(input.target.value)}
             ></input>
             <span className={`inline-flex text-sm ${checkPassword !== "" ? "text-red-600 " : "hidden"}`}>{checkPassword}</span>
 
@@ -211,7 +244,6 @@ export function Inscription() {
     visible: {
       x: "0",
       opacity: 1,
-
       transition: {
         duration: 0.35,
         type: "tween",
@@ -223,11 +255,32 @@ export function Inscription() {
       opacity: 0,
     },
   };
+
+  const [data, setData] = useState([]);
+
+  const loadData = async () =>{
+    fetch("https://localhost:7246/User", {
+      mode: 'cors',
+      method: 'GET'
+    })
+    .then((response) => 
+      response.json()
+    )
+    .then((data) => 
+      setData(data)
+    )
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+    
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();
     
-    for (const i of database) {
+    for (const i of data) {
       if (i.username === username || i.email === email) {
         alert("Nom d'utilisateur ou e-mail déjà utiliser");
         return; // est Utiliser
@@ -235,19 +288,18 @@ export function Inscription() {
     }
     database.push({ username: username, email: email, password: password, isLogged: true});
     alert("Compte créer avec succès");
-    console.log(database);
+    console.log(data);
     navigation("/");
     return;
   }
 
   const addUserDb = async() =>{
-    fetch("https://localhost:7246/User", {
+    fetch("https://localhost:7246/User/SignUp", {
         method: 'POST',
         body: JSON.stringify({
             Name: username,
             Email: email,
-            password: password,
-            IsLogged: false
+            password: password
         }),
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
@@ -269,7 +321,7 @@ export function Inscription() {
 
   function checkValidityUsername(e)
   {
-    for (const i of database) {
+    for (const i of data) {
       if(i.username === e.target.value){
         setCheckUsername("Ce nom est déjà pris");
         
@@ -281,7 +333,7 @@ export function Inscription() {
 
   function checkValidityEmail(e)
   {
-    for (const i of database) {
+    for (const i of data) {
       if(i.email === e.target.value){
         setCheckEmail("Cette e-mail est déjà pris");
         return;
@@ -290,17 +342,17 @@ export function Inscription() {
     }
   }
 
-  function estConnecter(){
+  /*function estConnecter(){
     for (const i of database) {
       if(i.isLogged){
         return navigation("/");
       }
     }
-  }
+  }*/
 
   return (
     <Fragment>
-      {estConnecter()}
+      {/*estConnecter()*/}
 
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>

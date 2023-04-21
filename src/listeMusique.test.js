@@ -7,13 +7,13 @@ describe('ListeDeMusique', () => {
     {
       nomMusique: 'Musique 1',
       auteur: 'Auteur 1',
-      duree: '3:30',
+      duree: '330',
       image: 'http://example.com/image1.jpg',
     },
     {
       nomMusique: 'Musique 2',
       auteur: 'Auteur 2',
-      duree: '4:15',
+      duree: '415',
       image: 'http://example.com/image2.jpg',
     },
   ];
@@ -23,12 +23,12 @@ describe('ListeDeMusique', () => {
 
     expect(getByText('Musique 1')).toBeInTheDocument();
     expect(getByText('Auteur 1')).toBeInTheDocument();
-    expect(getByText('3:30')).toBeInTheDocument();
+    expect(getByText('05:30')).toBeInTheDocument();
     expect(getAllByAltText('Musique 1')[0].getAttribute('src')).toBe('http://example.com/image1.jpg');
 
     expect(getByText('Musique 2')).toBeInTheDocument();
     expect(getByText('Auteur 2')).toBeInTheDocument();
-    expect(getByText('4:15')).toBeInTheDocument();
+    expect(getByText('06:55')).toBeInTheDocument();
     expect(getAllByAltText('Musique 2')[0].getAttribute('src')).toBe('http://example.com/image2.jpg');
   });
 });
