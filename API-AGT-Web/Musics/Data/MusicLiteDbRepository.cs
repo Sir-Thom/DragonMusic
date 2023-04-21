@@ -168,5 +168,17 @@ namespace API_AGT_Web.Music.Data
                 });
             }
         }
+
+        public void updateImagePathGivenMusic(string filePath)
+        {
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collection = db.GetCollection<Music>(collectionName);
+                int lastId = collection.Max(x => x.Id);
+                Music music = collection.FindById(lastId);
+                music.Image = "..\\asset\\cucumbers-700x700.jpg";
+                collection.Update(music);
+            }
+        }
     }
 }
