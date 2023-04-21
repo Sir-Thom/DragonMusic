@@ -27,8 +27,8 @@ function BouttonJouerMusique(props) {
     )
   };
 
-  /*const MyComponent = () => {
-    const [currentMusicId, setCurrentMusicId] = useContext(MyContext);}*/
+ 
+
   /*useEffect(() => {
     loadMusiqueChoisi();
   }, []);*/
@@ -41,14 +41,21 @@ function BouttonJouerMusique(props) {
     e.preventDefault();
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
+
+    const MyComponent = () => {
+    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
+    setCurrentMusicId(props.idMusique);
+    }
     if (CasePlayStop === 1) {
+
+
+
       audio.play();
-      //vont ensemble
     //  loadMusiqueChoisi();
       alert(props.idMusique);
-      MusicContext.props.setCurrentMusicId(props.idMusique);
-      alert( MusicContext.currentMusicId);
-     alert(props.musiqueAJouer);
+      //MusicContext.props.setCurrentMusicId(props.idMusique);
+      alert( MyComponent() );
+      alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
       alert(MusicContext.currentMusicId);
