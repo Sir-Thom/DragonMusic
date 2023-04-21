@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
-import MusicBar from "./musicBar";
+import { MusicContext ,MusicProvider} from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -21,8 +21,8 @@ function BouttonJouerMusique(props) {
       response.json()
     )
     .then((music) => {
-      setData(music);
-      
+      //MusicContext.setCurrentMusicId(music.idMusique);
+      console.log("music: " + music);
     }
     )
   };
@@ -40,15 +40,16 @@ function BouttonJouerMusique(props) {
     const audio = document.getElementById("audio" + idMusique);
     if (CasePlayStop === 1) {
       audio.play();
-      localStorage.setItem("idMusique", props.idMusique);
-
       //vont ensemble
-      loadMusiqueChoisi();
-      alert(data.nomMusique);
-    //  alert(props.musiqueAJouer);
+    //  loadMusiqueChoisi();
+      alert(props.idMusique);
+      MusicContext.props.setCurrentMusicId(props.idMusique);
+      alert( MusicContext.currentMusicId);
+     alert(props.musiqueAJouer);
     } else if (CasePlayStop === 2) {
       audio.pause();
-      alert(props.idMusique);
+      alert(MusicContext.currentMusicId);
+     // alert(props.idMusique);
     }
   }
 
