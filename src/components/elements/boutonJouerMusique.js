@@ -12,7 +12,6 @@ function BouttonJouerMusique(props) {
     3: "audio-file3.mp3",
     // add more mappings as needed
   };
-  
 
   const loadMusiqueChoisi = async () =>{
     await fetch("https://localhost:7246/Music/"+props.idMusique, {
@@ -30,18 +29,17 @@ function BouttonJouerMusique(props) {
 
   function Play(e, idMusique)  {
     e.preventDefault(); 
-    //setCurrentMusicId(props.idMusique);
     loadMusiqueChoisi();
     
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
-    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
-
     
+
+    alert(props.idMusique);
     if (CasePlayStop === 1) {
       audio.play();
       alert( currentMusicId );
-      alert(props.idMusique);
+      
       
     } else if (CasePlayStop === 2) {
       audio.pause();
