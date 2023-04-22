@@ -5,11 +5,12 @@ import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-  const { currentMusicId, setCurrentMusicId } = useContext(MusicContext);
+  const {currentMusicId, setCurrentMusicId} = useContext(MusicContext);
   const audioFiles = {
     1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     2: "audio-file2.mp3",
     3: "audio-file3.mp3",
+    null : "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     // add more mappings as needed
   };
 
@@ -48,7 +49,7 @@ function BouttonJouerMusique(props) {
 
   return (
     <button
-      onLoad={loadMusiqueChoisi()}
+      onLoad={loadMusiqueChoisi}
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >

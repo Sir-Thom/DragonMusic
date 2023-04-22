@@ -33,7 +33,6 @@ export default function ListeDeMusique(props) {
   //const [data,setData] = useState("");
   const date = new Date(0);
 date.setSeconds(currentTime);
-const timeString = date.toISOString().substr(14, 5);
   //console.log(props.musicAJouer);
   const tabRow = useCallback(() => {
 		if (props.data instanceof Array) {
