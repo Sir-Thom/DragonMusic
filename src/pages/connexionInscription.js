@@ -15,6 +15,10 @@ export function Connexion() {
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
 
+  useEffect(() => {
+    estConnecter();
+  }, []);
+
   const slideToScreen = {
     hidden: {
       x: "100vw",
@@ -128,38 +132,15 @@ export function Connexion() {
     }
   }
 
-  /*async function checkIfPassword(input)
-  {
-    setPassword(input.target.value);
-
-    for (const i of data) {
-      if(input.target.value === i.password){
-        setCheckPassword("");
-        return;
-      }
-      else if (input.target.value ===""){
-        setCheckPassword("");
-      }
-      else{
-        setCheckPassword("Ce mot de passe est invalide.");
-      }
-      
+  function estConnecter(){
+    if(sessionStorage.getItem('token') !== null){
+      navigate("/");
     }
-  }*/
-  // Hooks must be used inside a functional component
+  }
 
-  /*function estConnecter(){
-    for (const i of data) {
-      if(i.isLogged === true){
-        return navigate("/");
-      }
-    }
-  }*/
 
   return (
     <Fragment>
-      
-      {/*estConnecter()*/}
    
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
     
@@ -256,6 +237,10 @@ export function Inscription() {
     },
   };
 
+  useEffect(() => {
+    estConnecter();
+  }, []);
+
   const [data, setData] = useState([]);
 
   const loadData = async () =>{
@@ -342,17 +327,14 @@ export function Inscription() {
     }
   }
 
-  /*function estConnecter(){
-    for (const i of database) {
-      if(i.isLogged){
-        return navigation("/");
-      }
+  function estConnecter(){
+    if(sessionStorage.getItem('token') !== null){
+      navigation("/");
     }
-  }*/
+  }
 
   return (
     <Fragment>
-      {/*estConnecter()*/}
 
     <section className="h-screen w-screen  bg-gradient-to-t  from-cod-gray to-cod-gray-800 font-sans gradiantPage antialiased min-h-full flex flex-col">
       <GoHome ></GoHome>
