@@ -5,6 +5,31 @@ export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
 
+  function formatTime(totalSeconds) {
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    let timeString = '';
+    if (days > 0) {
+      timeString += `${days}:`;
+    }
+    if (hours == 0 && days == 0 && minutes != 0) {
+      timeString += `00:`;
+    }
+    if (hours > 0 || days > 0 && minutes != 0) {
+      timeString += `${hours <= 9 ? '0' : ''}${hours}:`;
+    }
+    if (minutes == 0 && hours == 0) {
+      timeString += `00:`;
+    }
+    if (minutes > 0 || hours > 0 || days > 0) {
+      timeString += `${minutes <= 9 ? '0' : ''}${minutes}:`;
+    }
+    timeString += `${seconds <= 9 ? '0' : ''}${seconds}`;
+    return timeString;
+  }
+
   //const [data,setData] = useState("");
   const date = new Date(0);
 date.setSeconds(currentTime);
@@ -38,7 +63,7 @@ const timeString = date.toISOString().substr(14, 5);
                       {stock.auteur}
                     </p>
                     <p className="font-Ubuntu text-white text-right text-md">
-                      {timeString}
+                      {formatTime(stock.duree)}
                     </p>
                   </div>
 
