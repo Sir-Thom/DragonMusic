@@ -60,15 +60,15 @@ namespace API_AGT_Web.Tests
             public void GetUsers_ReturnsUsersFromDatabase()
             {
                 // Arrange
-                var collectionMock = new Mock<ILiteCollection<UserEntity>>();
-                var users = new List<UserEntity>
+                var collectionMock = new Mock<ILiteCollection<Users.User>>();
+                var users = new List<Users.User>
     {
-        new UserEntity { Name = "John Doe", Email = "johndoe@example.com", PasswordHash = "password" },
-        new UserEntity { Name = "Jane Smith", Email = "janesmith@example.com", PasswordHash = "password123" },
-        new UserEntity { Name = "human1", Email = "human1@example.com", PasswordHash = "password" }
+        new Users.User { Name = "John Doe", Email = "johndoe@example.com", PasswordHash = "password" },
+        new Users.User { Name = "Jane Smith", Email = "janesmith@example.com", PasswordHash = "password123" },
+        new Users.User { Name = "human1", Email = "human1@example.com", PasswordHash = "password" }
     };
                 collectionMock.Setup(c => c.FindAll()).Returns(users.AsQueryable());
-                mockDatabase.Setup(db => db.GetCollection<UserEntity>()).Returns(collectionMock.Object);
+                mockDatabase.Setup(db => db.GetCollection<Users.User>()).Returns(collectionMock.Object);
 
                 // Act
                 var result = repository.GetUserByUsername("human1");
