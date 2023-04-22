@@ -5,13 +5,15 @@ import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-  const [data, setData] = useState("");
+  const { currentMusicId, setCurrentMusicId } = useContext(MusicContext);
   const audioFiles = {
     1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     2: "audio-file2.mp3",
     3: "audio-file3.mp3",
     // add more mappings as needed
   };
+  
+
   const loadMusiqueChoisi = async () =>{
     await fetch("https://localhost:7246/Music/"+props.idMusique, {
       mode: 'cors',
@@ -21,36 +23,25 @@ function BouttonJouerMusique(props) {
       response.json()
     )
     .then((music) => {
-      //MusicContext.setCurrentMusicId(music.idMusique);
-      console.log("music: " + music);
-    }
-    )
+      setCurrentMusicId(music.idMusique);
+      console.log(music.idMusique);
+    });
   };
 
- 
-
-  /*useEffect(() => {
+  function Play(e, idMusique)  {
+    e.preventDefault(); 
+    //setCurrentMusicId(props.idMusique);
     loadMusiqueChoisi();
-  }, []);*/
-
-  
-
-  //useContext(MusicContext);
-  //  console.log("id dans button: " + useContext(MusicContext));
-  function Play(e, idMusique) {
-    e.preventDefault();
+    
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
 
-    const MyComponent = () => {
-    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
-    setCurrentMusicId(props.idMusique);
-    }
+    
     if (CasePlayStop === 1) {
       audio.play();
-      //alert(props.idMusique);
-      alert( MyComponent() );
-     // alert(props.musiqueAJouer);
+      alert( currentMusicId );
+      alert(props.idMusique);
+      
     } else if (CasePlayStop === 2) {
       audio.pause();
     }
