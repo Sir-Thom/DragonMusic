@@ -1,11 +1,11 @@
-import { React,useState, useEffect } from 'react';
+import { React,useState, useEffect, useContext } from 'react';
 //import { Card,Stack } from 'react-bootstrap';
 import "./body.css";
 import MusicBar from "../elements/musicBar";
 import StockMusique from "../body/listeMusique";
 import SearchBar from '../elements/SearchBar';
 import play from '../elements/boutonJouerMusique';
-import { MusicProvider, MusicContext } from "../elements/musicContext";
+import { MusicContext } from "../elements/musicContext";
 const stocks = require("../data/musique.json");
 
 /*import ListeDeMusique from './listeMusique'; 
@@ -46,7 +46,7 @@ function Body(){
   useEffect(() => {
     loadData();
   }, []);
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSong, setCurrentSong] = useState(MusicContext);
   //console.log(data.map((stock) => stock.id));
   return (
     <MusicContext.Provider value={{ currentSong, setCurrentSong }}>
