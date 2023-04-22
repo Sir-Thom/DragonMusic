@@ -72,3 +72,5 @@ namespace API_AGT_Web.Tests.Users.Data
             // Assert
             mockCollection.Verify(c => c.InsertBulk(expectedUserEntities), Times.Once());
         }
+    }
+}

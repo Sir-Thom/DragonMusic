@@ -2,6 +2,7 @@ import "./..//index.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navigation from "../components/header/NavbarComp";
+import { useNavigate } from "react-router-dom";
 import daisyui from "daisyui";
 import { useState, useEffect } from "react";
 import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
@@ -13,6 +14,11 @@ export default function AjoutMusique({o}) {
     const [error, setError] = useState("");
     const [file , setFile] = useState(null);
     const [result, setResult] = useState("");
+    const navigation = useNavigate();
+
+    useEffect(() => {
+      estConnecter();
+    }, []);
 
     useEffect(() => {
       if (error !== "") {
@@ -100,9 +106,15 @@ export default function AjoutMusique({o}) {
     console.log(imageUrl);
   };
 
+  function estConnecter(){
+    if(sessionStorage.getItem("token") === null){
+      navigation("/");
+    }
+  }
+
   return (
     <>
-      <Navigation />
+      <Navigation/>
       <AnimatePresence>
         {error !== "" && (
           <motion.div
@@ -212,6 +224,7 @@ export default function AjoutMusique({o}) {
           </div>
         </div>
       </div>
+      {estConnecter()}
     </>
   );
 }

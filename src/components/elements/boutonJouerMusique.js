@@ -41,18 +41,12 @@ function BouttonJouerMusique(props) {
     const audio = document.getElementById("audio" + idMusique);
     
 
-    alert(props.idMusique);
-
-    if (CasePlayStop === 2) {
-      audio.pause();
-    }
-
+    //alert(props.idMusique);
     if (CasePlayStop === 1) {
       audio.play();
-     // alert( currentMusicId );
-      
-      
-    } else if (CasePlayStop === 2) {
+     // alert( currentMusicId ); 
+    } 
+    else if (CasePlayStop === 2) {
       audio.pause();
     }
   }
