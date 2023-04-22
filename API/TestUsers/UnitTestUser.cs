@@ -1,47 +1,74 @@
+using System.Collections.Generic;
+using API_AGT_Web.Users.Data;
 using LiteDB;
 using Moq;
 
-namespace TestUsers
+namespace API_AGT_Web.Tests.Users.Data
 {
-    [TestClass]
-    public class UnitTestUser
+    [SetUp]
+    public void SetUp()
     {
-        //private Mock<LiteDatabase> mockDatabase;
-        //private Mock<LiteCollection<API_AGT_Web.UserModel>> mockCollection;
-        //private UsersLiteDbRepository  usersRepository;
-
-        //[TestInitialize]
-        //public void Setup()
-        //{
-        //    // Create the mock LiteDB database and collection
-        //    mockDatabase = new Mock<LiteDatabase>();
-        //    mockCollection = new Mock<LiteCollection<UserEntity>>();
-
-        //    // Setup the mock collection to return some data when queried
-        //    var testData = new List<UserEntity>
-        //    {
-        //        new UserEntity { Name = "Alice", Email = "alice@example.com", PasswordHash = "hash1" },
-        //        new UserEntity { Name = "Bob", Email = "bob@example.com", PasswordHash = "hash2" }
-        //    };
-        //    mockCollection.Setup(c => c.FindAll()).Returns(testData.AsQueryable());
-
-        //    // Setup the mock database to return the mock collection
-        //    mockDatabase.Setup(db => db.GetCollection<UserEntity>("users")).Returns(mockCollection.Object);
-
-        //    // Create the UsersLiteDbRepository instance with the mock database connection string
-        //    usersRepository = new UsersLiteDbRepository("mockConnectionString");
-        //}
-
-        //[TestMethod]
-        //public void GetUsers_ReturnsAllUsersFromDatabase()
-        //{
-        //    // Act
-        //    var result = usersRepository.GetUsers();
-
-        //    // Assert
-        //    Assert.AreEqual(2, result.Count());
-        //    Assert.AreEqual("Alice", result.First().Name);
-        //    Assert.AreEqual("bob@example.com", result.Last().Email);
-        //}
+        mockCollection = new Mock<LiteCollection<UserEntity>>();
+        mockDb = new Mock<LiteDatabase>();
+        mockDb.Setup(db => db.GetCollection<UserEntity>("users")).Returns(mockCollection.Object);
     }
-}
+
+    public class UsersLiteDbRepositoryTests
+    {
+        private Mock<LiteCollection<UserEntity>> mockCollection;
+        private Mock<LiteDatabase> mockDb;
+
+        [Test]
+        public void CreateOneUser_InsertsUserEntityIntoCollection()
+        {
+            // Arrange
+            var usersRepo = new UsersLiteDbRepository(mockDb.Object);
+            var user = new User() { Name = "John Doe", Email = "john@example.com", PasswordHash = "password" };
+            var expectedUserEntity = new UserEntity() { Name = "John Doe", Email = "john@example.com", PasswordHash = "password" };
+
+            // Act
+            usersRepo.createOneUser(user);
+
+            // Assert
+            mockCollection.Verify(c => c.Insert(expectedUserEntity), Times.Once());
+        }
+
+        [Test]
+        public void CreateUser_DoesNotInsertUserEntitiesIntoCollectionIfCollectionIsNotEmpty()
+        {
+            // Arrange
+            var usersRepo = new UsersLiteDbRepository(mockDb.Object);
+            var users = new List<User>() {
+                new User() { Name = "John Doe", Email = "john@example.com", PasswordHash = "password" },
+                new User() { Name = "Jane Doe", Email = "jane@example.com", PasswordHash = "password" },
+            };
+            mockCollection.Setup(c => c.Count()).Returns(1);
+
+            // Act
+            usersRepo.createUser(users);
+
+            // Assert
+            mockCollection.Verify(c => c.InsertBulk(It.IsAny<IEnumerable<UserEntity>>()), Times.Never());
+        }
+
+        [Test]
+        public void CreateUser_InsertsUserEntitiesIntoCollectionIfCollectionIsEmpty()
+        {
+            // Arrange
+            var usersRepo = new UsersLiteDbRepository(mockDb.Object);
+            var users = new List<User>() {
+                new User() { Name = "John Doe", Email = "john@example.com", PasswordHash = "password" },
+                new User() { Name = "Jane Doe", Email = "jane@example.com", PasswordHash = "password" },
+            };
+            var expectedUserEntities = new List<UserEntity>() {
+                new UserEntity() { Name = "John Doe", Email = "john@example.com", PasswordHash = "password" },
+                new UserEntity() { Name = "Jane Doe", Email = "jane@example.com", PasswordHash = "password" },
+            };
+            mockCollection.Setup(c => c.Count()).Returns(0);
+
+            // Act
+            usersRepo.createUser(users);
+
+            // Assert
+            mockCollection.Verify(c => c.InsertBulk(expectedUserEntities), Times.Once());
+        }
