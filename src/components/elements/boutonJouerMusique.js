@@ -49,7 +49,11 @@ function BouttonJouerMusique(props) {
 
     if (CasePlayStop === 1) {
       audio.play();
-      alert(currentMusicId);
+     // alert( currentMusicId );
+      
+      
+    } else if (CasePlayStop === 2) {
+      audio.pause();
     }
   }
 

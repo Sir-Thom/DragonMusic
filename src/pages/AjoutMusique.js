@@ -133,8 +133,8 @@ export default function AjoutMusique({o}) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="grid grid-cols-2 justify-center min-w-max  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-4">
-        <div className="rounded ml-10 max-w-[70%] min-w-[70%]  h-fit w-[70%] bg-cod-gray-600  shadow-lg">
+      <div className="grid grid-cols-2 justify-center min-w-max w-full  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-8">
+        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg">
           <form
             onSubmit={onSubmitForm}
             className=" ml-4 pb-6 bg-transparent w-full max-w-xs "
@@ -181,7 +181,7 @@ export default function AjoutMusique({o}) {
           </form>
         </div>
 
-        <div className="rounded  ml-10  h-fit w-[60%] bg-cod-gray-600   overflow-hidden shadow-lg">
+        <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
           <img
             src={Cover}
             width={150}
