@@ -10,7 +10,7 @@ namespace API_AGT_Web.Controllers
     public class MusicController : ControllerBase
     {
         private IMusicLiteDbRepository musicRepository;
-        const string directoryPath = "C:\\Users\\Client\\Desktop\\projet-agt-travail-session\\public\\asset\\";
+        const string directoryPath = "..\\..\\public\\asset\\";
         public MusicController(IConfiguration configuration)
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
