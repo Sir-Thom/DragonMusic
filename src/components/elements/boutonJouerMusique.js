@@ -38,7 +38,7 @@ function BouttonJouerMusique(props) {
     alert(props.idMusique);
     if (CasePlayStop === 1) {
       audio.play();
-      alert( currentMusicId );
+     // alert( currentMusicId );
       
       
     } else if (CasePlayStop === 2) {
