@@ -35,6 +35,7 @@ function BouttonJouerMusique(props) {
     
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
+    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
 
     
     if (CasePlayStop === 1) {
@@ -48,7 +49,8 @@ function BouttonJouerMusique(props) {
   }
 
   return (
-    <button onLoad={loadMusiqueChoisi()}
+    <button
+      onLoad={loadMusiqueChoisi()}
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
