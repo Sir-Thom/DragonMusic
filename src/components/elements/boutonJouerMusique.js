@@ -5,51 +5,44 @@ import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-  const [data, setData] = useState("");
+  const { currentMusicId, setCurrentMusicId } = useContext(MusicContext);
   const audioFiles = {
     1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     2: "audio-file2.mp3",
     3: "audio-file3.mp3",
     // add more mappings as needed
   };
-  const loadMusiqueChoisi = async () => {
-    await fetch("https://localhost:7246/Music/" + props.idMusique, {
-      mode: "cors",
-      method: "GET",
+
+  const loadMusiqueChoisi = async () =>{
+    await fetch("https://localhost:7246/Music/"+props.idMusique, {
+      mode: 'cors',
+      method: 'GET'
     })
-      .then((response) => response.json())
-      .then((music) => {
-        //MusicContext.setCurrentMusicId(music.idMusique);
-        console.log("music: " + music);
-      });
+    .then((response) => 
+      response.json()
+    )
+    .then((music) => {
+      setCurrentMusicId(music.idMusique);
+      console.log(music.idMusique);
+    });
   };
 
-  /*useEffect(() => {
+  function Play(e, idMusique)  {
+    e.preventDefault(); 
     loadMusiqueChoisi();
-  }, []);*/
-
-  //useContext(MusicContext);
-  //  console.log("id dans button: " + useContext(MusicContext));
-  function Play(e, idMusique) {
-    e.preventDefault();
+    
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
-    const [currentMusicId, setCurrentMusicId] = useContext(MusicContext);
+    
 
-    const MyComponent = () => {
-      setCurrentMusicId(props.idMusique);
-    };
+    alert(props.idMusique);
     if (CasePlayStop === 1) {
       audio.play();
-      //  loadMusiqueChoisi();
-      alert(props.idMusique);
-      //MusicContext.props.setCurrentMusicId(props.idMusique);
-      alert(MyComponent());
-      alert(props.musiqueAJouer);
+     // alert( currentMusicId );
+      
+      
     } else if (CasePlayStop === 2) {
       audio.pause();
-      alert(MusicContext.currentMusicId);
-      // alert(props.idMusique);
     }
   }
 
