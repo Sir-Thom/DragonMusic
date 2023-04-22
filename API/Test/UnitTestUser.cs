@@ -1,9 +1,8 @@
-using System;
-using Moq;
+
 
 namespace API_AGT_Web.Tests
 {
-    [TestCla]
+    [TestClass]
     public class UsersLiteDbRepositoryTests
     {
         private Mock<LiteDatabase> mockDatabase;

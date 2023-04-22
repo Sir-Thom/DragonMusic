@@ -79,7 +79,14 @@ export default function AjoutMusique({o}) {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
+    /*const music = {
+      musicName,
+      Artist,
+      Time,
+      Cover,
+    };*/
     addMusic();
+    //console.log(music);
   };
 
   const handleMusicNameChange = (event) => {
@@ -172,7 +179,7 @@ export default function AjoutMusique({o}) {
             <input
               type="file"
               security="true"
-              accept=".jpg, .png, .jpeg, .webp, .gif"
+              accept=".jpg, .png, .jpeg,webp,gif"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
               onChange={handleCoverChange}
