@@ -45,16 +45,6 @@ namespace API_AGT_Web.Users.Data
             }
         }
 
-        public void LoginUser(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void LogoutUser()
-        {
-            throw new NotImplementedException();
-        }
-
         public User GetUserByUsername(string username)
         {
             using (var db = new LiteDatabase(connectionString))
@@ -75,7 +65,6 @@ namespace API_AGT_Web.Users.Data
             }
         }
 
-
         IEnumerable<User> IUser.GetUsers()
         {
             using (var db = new LiteDatabase(connectionString))
@@ -88,10 +77,19 @@ namespace API_AGT_Web.Users.Data
                         Name = u.Name,
                         Email = u.Email,
                         PasswordHash = u.PasswordHash,
-
                     }
                 );
             }
+        }
+
+        public void LoginUser(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LogoutUser()
+        {
+            throw new NotImplementedException();
         }
     }
 }
