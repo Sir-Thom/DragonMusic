@@ -49,7 +49,7 @@ export default function AjoutMusique({o}) {
               setTime("1");
               setArtist("test")
               setMusicName("test");
-              setCover("../asset/Moai.png");
+              setCover("../asset/placeholder.png");
           }
           else{
               console.log("Erreur pas facteur donc pas poste");
@@ -158,6 +158,7 @@ export default function AjoutMusique({o}) {
               type="text"
               placeholder="Nom Musique"
               className="input input-bordered text-gray-200  bg-cod-gray-500 w-full max-w-xs"
+              required
               onChange={handleMusicNameChange}
             />
             <label className="label">
@@ -166,6 +167,7 @@ export default function AjoutMusique({o}) {
             <input
               type="text"
               placeholder="Auteur"
+              required
               className="input input-bordered text-gray-200 bg-cod-gray-500 w-full max-w-xs"
               onChange={handleArtistChange}
             />
@@ -175,6 +177,7 @@ export default function AjoutMusique({o}) {
             <input
               type="number"
               placeholder="Duree en seconde"
+              required
               className="input input-bordered text-gray-200 bg-cod-gray-500 w-full max-w-xs"
               onChange={handleTimeChange}
             />
@@ -184,6 +187,7 @@ export default function AjoutMusique({o}) {
             <input
               type="file"
               security="true"
+              required
               accept=".jpg, .png, .jpeg, .webp, .gif"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
