@@ -10,6 +10,7 @@ function BouttonJouerMusique(props) {
     1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     2: "audio-file2.mp3",
     3: "audio-file3.mp3",
+    null : "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
     // add more mappings as needed
   };
   const loadMusiqueChoisi = async () => {
