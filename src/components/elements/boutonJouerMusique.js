@@ -5,13 +5,18 @@ import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-  const {currentMusicId, setCurrentMusicId} = useContext(MusicContext);
-  const audioFiles = {
-    1: "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
-    2: "audio-file2.mp3",
-    3: "audio-file3.mp3",
-    null : "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3",
-    // add more mappings as needed
+  const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
+  const audioFiles = (e) => {
+    switch(e) {
+      case 1:
+        return "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3";
+      case 2:
+        return "audio-file2.mp3";
+      case 3:
+        return "audio-file3.mp3";
+      default:
+        return "/asset/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3";
+    }
   };
 
   const loadMusiqueChoisi = async () =>{
@@ -23,8 +28,8 @@ function BouttonJouerMusique(props) {
       response.json()
     )
     .then((music) => {
-      setCurrentMusicId(music.idMusique);
-      console.log(music.idMusique);
+      setCurrentMusicId(music.id);
+      console.log(music.id);
     });
   };
 
@@ -37,13 +42,14 @@ function BouttonJouerMusique(props) {
     
 
     alert(props.idMusique);
+
+    if (CasePlayStop === 2) {
+      audio.pause();
+    }
+
     if (CasePlayStop === 1) {
       audio.play();
-      alert( currentMusicId );
-      
-      
-    } else if (CasePlayStop === 2) {
-      audio.pause();
+      alert(currentMusicId);
     }
   }
 
@@ -56,7 +62,7 @@ function BouttonJouerMusique(props) {
       {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
       <Music
         idMusique={props.idMusique}
-        audioFile={audioFiles[props.idMusique]}
+        audioFile={audioFiles(currentMusicId)}
       />
     </button>
   );

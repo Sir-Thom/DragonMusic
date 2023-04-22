@@ -6,8 +6,8 @@ namespace TestUsers
     [TestClass]
     public class UnitTestUser
     {
-        //private Mock<LiteDatabase> mockDatabase;
-        //private Mock<LiteCollection<API_AGT_Web.UserModel>> mockCollection;
+        private Mock<LiteDatabase> mockDatabase;
+        private Mock<LiteCollection<API_AGT_Web.UserModel>> mockCollection;
         //private UsersLiteDbRepository  usersRepository;
 
         //[TestInitialize]
