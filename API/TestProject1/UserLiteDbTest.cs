@@ -5,7 +5,7 @@ using System.Linq;
 namespace API_AGT_Web.Tests
 {
     [TestClass]
-    public class UserInMemoryRepositoryTests
+    public class UserLiteDbTest
     {
         [TestMethod]
         public void GetUsers_ReturnsThreeUsers()

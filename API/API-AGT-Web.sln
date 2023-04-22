@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-AGT-Web", "API-AGT-Web\API-AGT-Web.csproj", "{1A57C0C9-412A-4FA2-A710-9A496993A7FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D46F22FB-A1FE-4E26-844C-4D914E0D0BCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnit", "TestProject1\TestUnit.csproj", "{D46F22FB-A1FE-4E26-844C-4D914E0D0BCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
