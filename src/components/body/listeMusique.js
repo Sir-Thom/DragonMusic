@@ -10,29 +10,29 @@ export default function ListeDeMusique(props) {
     const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-    let timeString = '';
+    let timeString = "";
     if (days > 0) {
       timeString += `${days}:`;
     }
     if (hours == 0 && days == 0 && minutes != 0) {
       timeString += `00:`;
     }
-    if (hours > 0 || days > 0 && minutes != 0) {
-      timeString += `${hours <= 9 ? '0' : ''}${hours}:`;
+    if (hours > 0 || (days > 0 && minutes != 0)) {
+      timeString += `${hours <= 9 ? "0" : ""}${hours}:`;
     }
     if (minutes == 0 && hours == 0) {
       timeString += `00:`;
     }
     if (minutes > 0 || hours > 0 || days > 0) {
-      timeString += `${minutes <= 9 ? '0' : ''}${minutes}:`;
+      timeString += `${minutes <= 9 ? "0" : ""}${minutes}:`;
     }
-    timeString += `${seconds <= 9 ? '0' : ''}${seconds}`;
+    timeString += `${seconds <= 9 ? "0" : ""}${seconds}`;
     return timeString;
   }
 
   //const [data,setData] = useState("");
   const date = new Date(0);
-date.setSeconds(currentTime);
+  date.setSeconds(currentTime);
   //console.log(props.musicAJouer);
   const tabRow = useCallback(() => {
     if (props.data instanceof Array) {
@@ -64,20 +64,18 @@ date.setSeconds(currentTime);
                       {formatTime(stock.duree)}
                     </p>
                   </div>
-                    <div className="flex justify-between py-1 ">
-                      <p className=" justify-end font-Ubuntu text-white text-sm">
-                        {stock.auteur}
-                      </p>
-                      
-                    </div>
+                  <div className="flex justify-between py-1 ">
+                    <p className=" justify-end font-Ubuntu text-white text-sm">
+                      {stock.auteur}
+                    </p>
+                  </div>
 
-                    <div className="flex justify-end mt-4 ">
-                      <BouttonJouerMusique
-                        className=" mt-2 left-auto  items-end"
-                        idMusique={index + 1}
-                        musiqueAJouer={props.musicAJouer}
-                      ></BouttonJouerMusique>
-                    </div>
+                  <div className="flex justify-end mt-4 ">
+                    <BouttonJouerMusique
+                      className=" mt-2 left-auto  items-end"
+                      idMusique={index + 1}
+                      musiqueAJouer={props.musicAJouer}
+                    ></BouttonJouerMusique>
                   </div>
                 </div>
               </div>

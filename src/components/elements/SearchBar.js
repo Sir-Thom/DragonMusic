@@ -47,11 +47,11 @@ export default function SearchBar(WrappedComponent, searchFunction) {
                       type={"search"}
                       onChange={this.handleSearch}
                       value={this.state.searchTerm}
-                      className="form-control hover:outline-cod-gray-100 outline outline-offset-2 outline-2 space-x-2 outline-transparent pointer-events-auto pl-4 rounded-full sm:w-52 md:w-96 w-52 px-6 justify-items-end flex  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding transition ease-in-out m-0 focus:border-transparent focus:shadow-cod-gray-100 focus:text-gray-700 sm:max-w-screen-sm"
+                      className="hover:outline-cod-gray-100 outline outline-offset-2 outline-2 space-x-2 outline-transparent pointer-events-auto pl-4 rounded-full sm:w-52 md:w-96 w-52 px-6 justify-items-end flex  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding transition ease-in-out m-0 focus:border-transparent focus:shadow-cod-gray-100 focus:text-gray-700 sm:max-w-screen-sm"
                       placeholder="Recherche"
                       aria-label="Search"
                       aria-describedby="button-addon3"
-                    />
+                    ></input>
 
                     <button
                       onClick={(e) => this.modifyValue(e)}
@@ -59,7 +59,7 @@ export default function SearchBar(WrappedComponent, searchFunction) {
                       type="submit"
                       id="button-addon3"
                     >
-                      <ImSearch className="outline-none" size={15} />
+                      <ImSearch className=" outline-none" size={15} />
                     </button>
                   </div>
                 </div>
