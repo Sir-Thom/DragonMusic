@@ -1,7 +1,7 @@
 import React from "react";
 
 function Music(props) {
-  console.log("la musique à jouer: " + props.audioFile);
+  //console.log("la musique à jouer: " + props.audioFile);
   return (
     <audio
       id={"audio" + props.idMusique}
