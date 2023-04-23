@@ -1,10 +1,10 @@
-import { React,useState, useEffect, useContext } from 'react';
+import { React, useState, useEffect, useContext } from "react";
 //import { Card,Stack } from 'react-bootstrap';
 import "./body.css";
 import MusicBar from "../elements/musicBar";
 import StockMusique from "../body/listeMusique";
-import SearchBar from '../elements/SearchBar';
-import play from '../elements/boutonJouerMusique';
+import SearchBar from "../elements/SearchBar";
+import play from "../elements/boutonJouerMusique";
 import { MusicContext } from "../elements/musicContext";
 const stocks = require("../data/musique.json");
 
@@ -15,7 +15,7 @@ const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
   return item.nomMusique.toUpperCase().indexOf(searchTerm) >= 0;
 });
 
-function Body(){
+function Body() {
   const [musics, setMusics] = useState([]);
   const [musicQuiJoue, setMusicQuiJoue] = useState("");
   const [error, setError] = useState(null);
@@ -57,12 +57,13 @@ function Body(){
         >
           {error}
         </h3>
+        <div className=" mb-4">
+          <StockListWithSearch data={musics} musicAJouer={musicQuiJoue} />
+        </div>
         <div className=" mb-8">
-          <StockListWithSearch  data={musics} musicAJouer={musicQuiJoue} />
+          <MusicBar />
         </div>
-      <div  className=" mb-8">
-         <MusicBar /></div>
-        </div>
+      </div>
     </MusicContext.Provider>
   );
 }

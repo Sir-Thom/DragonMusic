@@ -5,81 +5,82 @@ import Navigation from "../components/header/NavbarComp";
 import daisyui from "daisyui";
 import { useState, useEffect } from "react";
 import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
-export default function AjoutMusique({o}) {
-    const [musicName, setMusicName]= useState("");
-    const [Artist, setArtist]= useState("");
-    const [Time, setTime]= useState("");
-    const [Cover, setCover]= useState("");
-    const [error, setError] = useState("");
-    const [file , setFile] = useState(null);
-    const [result, setResult] = useState("");
+export default function AjoutMusique({ o }) {
+  const [musicName, setMusicName] = useState("");
+  const [Artist, setArtist] = useState("");
+  const [Time, setTime] = useState("");
+  const [Cover, setCover] = useState("");
+  const [MusicFile, setMusicFile] = useState("");
+  const [error, setError] = useState("");
+  const [file, setFile] = useState(null);
+  const [result, setResult] = useState("");
 
-    useEffect(() => {
-      if (error !== "") {
-        const timeout = setTimeout(() => {
-          setError("");
-        }, 10000);
-        return () => clearTimeout(timeout);
-      }
-    }, [error]);
-  
-    const addMusic = async () => {
-      fetch("https://localhost:7246/Music", {
-        method: "POST",
-        body: JSON.stringify({
-          NomMusique: musicName ,
-          Auteur: Artist ,
-          Duree: Time ,
-          Image: Cover ,
-        }),
-        headers: {
-         
-          "Content-Type": "application/json charset=UTF-8" ,
-        },
-      }).then((response) => {
-          if(response.ok){
-              console.log("Music ajouté");
-              addImage();
-              setTime("1");
-              setArtist("test")
-              setMusicName("test");
-              setCover("../asset/Moai.png");
-          }
-          else{
-              console.log("Erreur pas facteur donc pas poste");
-          }
-      }).catch((err) => {
-          setError(err.message);
+  useEffect(() => {
+    if (error !== "") {
+      const timeout = setTimeout(() => {
+        setError("");
+      }, 10000);
+      return () => clearTimeout(timeout);
+    }
+  }, [error]);
+
+  const addMusic = async () => {
+    fetch("https://localhost:7246/Music", {
+      method: "POST",
+      body: JSON.stringify({
+        NomMusique: musicName,
+        Auteur: Artist,
+        Duree: Time,
+        Image: Cover,
+      }),
+      headers: {
+        "Content-Type": "application/json charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Music ajouté");
+          addImage();
+          setTime("1");
+          setArtist("test");
+          setMusicName("test");
+          setCover("../asset/Moai.png");
+        } else {
+          console.log("Erreur pas facteur donc pas poste");
+        }
+      })
+      .catch((err) => {
+        setError(err.message);
       });
   };
 
   const addImage = async () => {
-
     const formData = new FormData();
-    formData.append('image', file, file.name);
+    formData.append("image", file, file.name);
 
-    await fetch('https://localhost:7246/Image', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': '*/*'
-        }
-      })
+    await fetch("https://localhost:7246/Image", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "*/*",
+      },
+    })
       .then((response) => {
         if (response.ok) {
           setResult("Téléversement réussi");
-        } else
-          setResult("Téléversement échoué, erreur: " + response.status);
+        } else setResult("Téléversement échoué, erreur: " + response.status);
       })
       .catch((err) => {
         setResult("Erreur: " + err.message);
       });
-    };
-
+  };
 
   const onSubmitForm = (event) => {
     event.preventDefault();
     addMusic();
+  };
+  const handleMusicFileChange = (event) => {
+    setMusicFile(event.target.value);
   };
 
   const handleMusicNameChange = (event) => {
@@ -133,8 +134,8 @@ export default function AjoutMusique({o}) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="grid grid-cols-2 justify-center min-w-max w-full  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-8">
-        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg">
+      <div className="grid grid-cols-2 justify-center min-w-max  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-8">
+        <div className="rounded ml-4 h-fit w-96 bg-cod-gray-600  shadow-lg">
           <form
             onSubmit={onSubmitForm}
             className=" ml-4 pb-6 bg-transparent w-full max-w-xs "
@@ -177,7 +178,20 @@ export default function AjoutMusique({o}) {
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
               onChange={handleCoverChange}
             />
-            <button className="btn btn-primary left-100 mt-4">Ajouter</button>
+            <label className="label">
+              <span className="label-text">Chanson</span>
+            </label>
+            <input
+              type="file"
+              security="true"
+              accept=".mp3,wav,ogg"
+              placeholder="Chanson"
+              className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
+              onChange={handleMusicFileChange}
+            />
+            <button className=" flex justify-center btn btn-primary  left-100 mt-4">
+              Ajouter la Musique
+            </button>
           </form>
         </div>
 

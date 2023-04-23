@@ -13,7 +13,7 @@ const users = require("../data/users.json");
 const Navigation = ({ E }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [token , setToken] = useState(sessionStorage.getItem("token"));
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
   //const { token } = useContext(AuthContext);
 
   function logOut() {
@@ -22,43 +22,43 @@ const Navigation = ({ E }) => {
   }
 
   function estLogger() {
-      if (token != null) {
-        if (isMenuOpen === true) {
-          return (
-            <motion.div
-              className="absolute divide-y-4 divide-cod-gray-200/30  -right-12  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
+    if (token != null) {
+      if (isMenuOpen === true) {
+        return (
+          <motion.div
+            className="absolute divide-y-4 divide-cod-gray-200/30  -right-12  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Link
+              to="/"
+              className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
             >
-              <Link
-                to="/"
-                className=" flex w-full active:scale-90 h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-              >
-                <AiFillHome className="mr-2" /> Accueil
-              </Link>
-              <Link
-                to="/AjoutMusique"
-                className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-              >
-                <BsFileEarmarkMusicFill className="mr-2" /> Ajout de musique
-              </Link>
-              <Link
-                onClick={() => logOut()}
-                to="/"
-                className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
-              >
-                <BiLogOut className="mr-2" />
-                Logout
-              </Link>
-            </motion.div>
-          );
-        }
+              <AiFillHome className="mr-2" /> Accueil
+            </Link>
+            <Link
+              to="/AjoutMusique"
+              className=" flex w-full h-full items-center px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+            >
+              <BsFileEarmarkMusicFill className="mr-2" /> Ajout de musique
+            </Link>
+            <Link
+              onClick={() => logOut()}
+              to="/"
+              className=" flex active:scale-90 items-center w-full h-full px-4 py-2 text-white hover:bg-violet-500 rounded-md hover:text-white"
+            >
+              <BiLogOut className="mr-2" />
+              Logout
+            </Link>
+          </motion.div>
+        );
+      }
     }
     return (
       <motion.div
-        className="absolute divide-y-4 divide-cod-gray-200/30  -mr-16  right-0  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
+        className="absolute divide-y-4 divide-cod-gray-200/30  -mr-16  right-2  z-50 w-52 mt-2 py-2   bg-cod-gray-400  rounded-md shadow-xl"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
