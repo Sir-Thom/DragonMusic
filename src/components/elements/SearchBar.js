@@ -47,7 +47,7 @@ export default function SearchBar(WrappedComponent, searchFunction) {
                       type={"search"}
                       onChange={this.handleSearch}
                       value={this.state.searchTerm}
-                      className="form-control   hover:outline-cod-gray-100  outline outline-offset-2 outline-2 outline-transparent pointer-events-auto px-2 space-x-2 rounded-full sm:w-46 md:w-96 lg:w-96 justify-items-end  flex-row flex-auto min-w-0 block  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding    transition ease-in-out m-0 focus:border-transparent focus:shadow-cod-gray-100 focus:text-gray-700 "
+                      className="hover:outline-cod-gray-100 outline outline-offset-2 outline-2 space-x-2 outline-transparent pointer-events-auto pl-4 rounded-full sm:w-52 md:w-96 w-52 px-6 justify-items-end flex  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding transition ease-in-out m-0 focus:border-transparent focus:shadow-cod-gray-100 focus:text-gray-700 sm:max-w-screen-sm"
                       placeholder="Recherche"
                       aria-label="Search"
                       aria-describedby="button-addon3"
@@ -55,7 +55,7 @@ export default function SearchBar(WrappedComponent, searchFunction) {
 
                     <button
                       onClick={(e) => this.modifyValue(e)}
-                      className=" inline-block ml-2 px-6  outline-transparent py-2  active:scale-90 bg-violet-600 font-medium  text-xs leading-tight uppercase rounded-full hover:outline-cod-gray-100  outline outline-offset-2 outline-2  active:bg-violet-700    "
+                      className="inline-block px-6 py-2 outline-transparent active:scale-90 bg-violet-600 font-medium text-xs leading-tight uppercase rounded-full hover:outline-cod-gray-100 outline outline-offset-2 outline-2 active:bg-violet-700 sm:ml-2"
                       type="submit"
                       id="button-addon3"
                     >

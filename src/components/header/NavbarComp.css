@@ -9,15 +9,12 @@
 }
 
 @layer components {
- .collapse {
-    @apply h-0 hidden invisible overflow-hidden transition-all  delay-700 ease-in-out  ;
-   
+  .collapse {
+    @apply h-0 hidden invisible overflow-hidden transition-all  delay-700 ease-in-out;
   }
   .collapse.show {
     @apply h-auto visible  transition-all ease-in;
   }
-  
-  
 }
 .flex {
   display: flex;
@@ -28,4 +25,3 @@ input {
   flex-grow: 1;
   padding: 10px;
 }
-  
