@@ -1,3 +1,4 @@
+[![Node.js CI](https://github.com/CBA-DeveloppementWeb3-H2023/projet-agt-travail-session/actions/workflows/node.js.yml/badge.svg?branch=Thomas)](https://github.com/CBA-DeveloppementWeb3-H2023/projet-agt-travail-session/actions/workflows/node.js.yml)
 # Getting Started with Create React App
 test
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
