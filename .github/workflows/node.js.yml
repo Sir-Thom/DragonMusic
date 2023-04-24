@@ -11,6 +11,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
   build:
 
@@ -29,17 +30,12 @@ jobs:
       uses: actions/cache@v2.1.8
       with:
           path: |
-              ~/.pnpm-store
               node_modules
               */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-              ${{ runner.os }}-
-          run-id: ${{ github.run_id }}
-      env:
-          PNPM_STORE_DIR: ~/.pnpm-store
-          PNPM_REGISTRY: https://registry.npmjs.org/
-          PNPM_UPDATE: true
-    - run: npm install -g pnpm
-    - run: pnpm install
-    - run: pnpm run test
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+    - run: npm ci    
+    - run: npm install
+    - run: npm run test
