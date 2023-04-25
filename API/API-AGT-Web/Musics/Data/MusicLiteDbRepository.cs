@@ -25,7 +25,8 @@ namespace API_AGT_Web.Music.Data
                         NomMusique = m.NomMusique,
                         Duree = m.Duree,
                         Auteur = m.Auteur,
-                        Image = m.Image
+                        Image = m.Image,
+                        MusicFile = m.MusicFile
                     }));
                 }
             }
@@ -40,7 +41,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "RIP",
                     Duree = 69420,
                     Auteur = "Grim Reaper",
-                    Image = "asset/died.gif"
+                    Image = "asset/died.gif",
+                    MusicFile ="asset/music/Nintendo Wii - Mii Channel Theme.mp3"
                 },
                 new Music()
                 {
@@ -48,14 +50,16 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "testation",
                     Duree = 35,
                     Auteur = "Jean-Marc",
-                    Image = "asset/goofy_dragon.png"
+                    Image = "asset/goofy_dragon.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music(){
                     Id=3,
                     NomMusique = "test2",
                     Duree = 69,
                     Auteur = "BABAJE",
-                    Image = "asset/spag.png"
+                    Image = "asset/spag.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -63,7 +67,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "Sad song",
                     Duree = 35,
                     Auteur = "Gabriel",
-                    Image = "asset/Moai.png"
+                    Image = "asset/Moai.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -71,7 +76,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "testation2",
                     Duree = 35,
                     Auteur = "Maxime",
-                    Image = "asset/MoaiVoiture.png"
+                    Image = "asset/MoaiVoiture.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -79,7 +85,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "Fishium",
                     Duree = 35,
                     Auteur = "Maxance Gusse",
-                    Image = "asset/fish.gif"
+                    Image = "asset/fish.gif",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -87,7 +94,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "we like fortnite",
                     Duree = 40,
                     Auteur = "FortiniteGamer",
-                    Image = "asset/fortiniteSong.png"
+                    Image = "asset/fortiniteSong.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -95,7 +103,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "we like fortnite2",
                     Duree = 69,
                     Auteur = "Generated Gusse Feet",
-                    Image = "asset/GoussePied.png"
+                    Image = "asset/GoussePied.png",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -103,7 +112,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "I am dancing",
                     Duree = 35,
                     Auteur = "Green Dancing Guy",
-                    Image = "asset/dance.webp"
+                    Image = "asset/dance.webp",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 },
                 new Music()
                 {
@@ -111,7 +121,8 @@ namespace API_AGT_Web.Music.Data
                     NomMusique = "Moyai",
                     Duree = 30,
                     Auteur = "Le Bolduc",
-                    Image = "asset/moyai-dancing.gif"
+                    Image = "asset/moyai-dancing.gif",
+                    MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
                 }
             };
             return musicList;
@@ -132,6 +143,7 @@ namespace API_AGT_Web.Music.Data
                     Duree = musicEntity.Duree,
                     Auteur = musicEntity.Auteur,
                     Image = musicEntity.Image,
+                    MusicFile = musicEntity.MusicFile
 
                 };
             }
@@ -149,7 +161,8 @@ namespace API_AGT_Web.Music.Data
                         NomMusique = u.NomMusique,
                         Duree = u.Duree,
                         Auteur = u.Auteur,
-                        Image = u.Image
+                        Image = u.Image,
+                        MusicFile = u.MusicFile
                     }
                 );
             }
@@ -166,7 +179,8 @@ namespace API_AGT_Web.Music.Data
                     Auteur = music.Auteur,
                     Duree = music.Duree,
                     Image = music.Image,
-                    NomMusique = music.NomMusique
+                    NomMusique = music.NomMusique,
+                    MusicFile = music.MusicFile
                 });
             }
         }
@@ -179,6 +193,18 @@ namespace API_AGT_Web.Music.Data
                 int lastId = collection.Max(x => x.Id);
                 Music music = collection.FindById(lastId);
                 music.Image = "..\\asset\\" + fileName;
+                collection.Update(music);
+            }
+        }
+
+        public void updateMusicPathGivenMusic(string fileName)
+        {
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collection = db.GetCollection<Music>(collectionName);
+                int lastId = collection.Max(x => x.Id);
+                Music music = collection.FindById(lastId);
+                music.MusicFile = "asset/music/" + fileName;
                 collection.Update(music);
             }
         }

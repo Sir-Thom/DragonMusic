@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/API/API-AGT-Web/bin/Debug/net7.0/API-AGT-Web.dll",
+      "program": "${workspaceFolder}/API/API-AGT-Web/bin/Debug/net6.0/API-AGT-Web.dll",
       "args": [],
       "cwd": "${workspaceFolder}/API/API-AGT-Web",
       "stopAtEntry": false,
