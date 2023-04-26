@@ -150,7 +150,7 @@ export default function AjoutMusique({ o }) {
     audioFile.addEventListener("loadedmetadata", () => {
       const duration = Math.floor(audioFile.duration);
       const musicTime = formatTime(duration.toString());
-      setTime(musicTime);
+      setTime(duration);
       console.log("Duration:", duration); // The duration of the audio file in second
     });
     if (Musicfile == null) {

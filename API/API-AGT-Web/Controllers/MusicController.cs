@@ -150,7 +150,7 @@ namespace API_AGT_Web.Controllers
 
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status405MethodNotAllowed, "action impossible");
             }
