@@ -1,11 +1,9 @@
 import "./..//index.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 import Navigation from "../components/header/NavbarComp";
 import { useNavigate } from "react-router-dom";
 import { ImPlay2, ImPause } from "react-icons/im";
 import { useState, useEffect } from "react";
-import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
 
 function formatTime(totalSeconds) {
   const days = Math.floor(totalSeconds / 86400);
@@ -16,13 +14,13 @@ function formatTime(totalSeconds) {
   if (days > 0) {
     timeString += `${days}:`;
   }
-  if (hours == 0 && days == 0 && minutes != 0) {
+  if (hours === 0 && days === 0 && minutes !== 0) {
     timeString += `00:`;
   }
-  if (hours > 0 || (days > 0 && minutes != 0)) {
+  if (hours > 0 || (days > 0 && minutes !== 0)) {
     timeString += `${hours <= 9 ? "0" : ""}${hours}:`;
   }
-  if (minutes == 0 && hours == 0) {
+  if (minutes === 0 && hours === 0) {
     timeString += `00:`;
   }
   if (minutes > 0 || hours > 0 || days > 0) {
@@ -48,7 +46,7 @@ export default function AjoutMusique({ o }) {
 
   useEffect(() => {
     estConnecter();
-  }, []);
+  });
 
   useEffect(() => {
     if (error !== "") {
@@ -78,7 +76,6 @@ export default function AjoutMusique({ o }) {
           debugger;
           console.log("Music ajouté");
           addMusicFile();
-
           addImage();
           setTime("1");
           setArtist("test");

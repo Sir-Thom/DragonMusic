@@ -138,7 +138,7 @@ namespace API_AGT_Web.Music.Data
 
                 return new Music()
                 {
-                    Id = musicEntity.Id,
+                    Id = musicEntity?.Id,
                     NomMusique = musicEntity.NomMusique,
                     Duree = musicEntity.Duree,
                     Auteur = musicEntity.Auteur,
