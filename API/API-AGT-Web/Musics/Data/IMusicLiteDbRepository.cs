@@ -6,10 +6,11 @@ namespace API_AGT_Web.Music.Data
     {
         public IEnumerable<Music> GetMusics();
 
-        Music GetMusicById(int idMusic); 
+        Music GetMusicById(int idMusic);
 
         void AddMusic(Music music);
 
         void updateImagePathGivenMusic(string filePath);
+        void updateMusicPathGivenMusic(string filePath);
     }
 }

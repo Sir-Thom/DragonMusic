@@ -1,14 +1,10 @@
 ﻿using API_AGT_Web.Controllers;
 using API_AGT_Web.Music.Data;
 using API_AGT_Web.Music;
-using LiteDB;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LiteDB;
+using Microsoft.VisualStudio.TestTools;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestUnit
 {
@@ -39,7 +35,7 @@ namespace TestUnit
             //Test method TestUnit.MusicLiteDbTest.TestAddMusic threw exception: 
             //System.NullReferenceException: Object reference not set to an instance of an object.
 
-                        // When
+            // When
             musicRepo.AddMusic(music);
             //var result = controller.AddMusic(music) as OkResult;
 
@@ -77,14 +73,14 @@ namespace TestUnit
 
 
 
-            /* // Arrange
-            var MusicRepository = musicLiteDbRepositoryMock;
+        /* // Arrange
+        var MusicRepository = musicLiteDbRepositoryMock;
 
-            // Act
-            var musics = MusicRepository();
+        // Act
+        var musics = MusicRepository();
 
-            // Assert
-            Assert.AreEqual(3, musics.Count());*/
-        }
+        // Assert
+        Assert.AreEqual(3, musics.Count());*/
     }
 }
+
