@@ -10,9 +10,11 @@ namespace API_AGT_Web.Controllers
     public class MusicController : ControllerBase
     {
         private IMusicLiteDbRepository musicRepository;
-        //const string directoryPath = "../../public/asset/";
-        const string directoryPath = "..\\..\\public\\asset\\";
-        const string directoryPathMusic = "../../public/asset/music";
+        //const string directoryPath = "..\\..\\public\\asset\\";
+
+        //le path a été ajuster pour quand on vas le mettre dans le vm changer si sur windows
+        const string directoryPath = "../../public/asset/";
+        const string directoryPathMusic = "../../public/asset/music/";
         public MusicController(IConfiguration configuration)
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
@@ -131,7 +133,7 @@ namespace API_AGT_Web.Controllers
                     var fileName = music.FileName;
                     var filePath = Path.Combine(directoryPathMusic, fileName);
                     var fileExtension = Path.GetExtension(filePath).ToLower();
-
+                    Console.WriteLine(filePath.ToString());
                     if (fileExtension != ".mp3" && fileExtension != ".wav" && fileExtension != ".ogg")
                         return StatusCode(StatusCodes.Status400BadRequest, new { message = "Ce format n'est pas supporté" });
 
@@ -150,7 +152,7 @@ namespace API_AGT_Web.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status405MethodNotAllowed, ex.Message);
+                return StatusCode(StatusCodes.Status405MethodNotAllowed, "action impossible");
             }
         }
     }

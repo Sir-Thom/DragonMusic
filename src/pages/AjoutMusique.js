@@ -3,85 +3,137 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navigation from "../components/header/NavbarComp";
 import { useNavigate } from "react-router-dom";
-import daisyui from "daisyui";
+import { ImPlay2, ImPause } from "react-icons/im";
 import { useState, useEffect } from "react";
 import BouttonJouerMusique from "../components/elements/boutonJouerMusique";
-export default function AjoutMusique({o}) {
-    const [musicName, setMusicName]= useState("");
-    const [Artist, setArtist]= useState("");
-    const [Time, setTime]= useState("");
-    const [Cover, setCover]= useState("");
-    const [error, setError] = useState("");
-    const [file , setFile] = useState(null);
-    const [result, setResult] = useState("");
-    const navigation = useNavigate();
 
-    useEffect(() => {
-      estConnecter();
-    }, []);
+function formatTime(totalSeconds) {
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  let timeString = "";
+  if (days > 0) {
+    timeString += `${days}:`;
+  }
+  if (hours == 0 && days == 0 && minutes != 0) {
+    timeString += `00:`;
+  }
+  if (hours > 0 || (days > 0 && minutes != 0)) {
+    timeString += `${hours <= 9 ? "0" : ""}${hours}:`;
+  }
+  if (minutes == 0 && hours == 0) {
+    timeString += `00:`;
+  }
+  if (minutes > 0 || hours > 0 || days > 0) {
+    timeString += `${minutes <= 9 ? "0" : ""}${minutes}:`;
+  }
+  timeString += `${seconds <= 9 ? "0" : ""}${seconds}`;
+  return timeString;
+}
 
-    useEffect(() => {
-      if (error !== "") {
-        const timeout = setTimeout(() => {
-          setError("");
-        }, 10000);
-        return () => clearTimeout(timeout);
-      }
-    }, [error]);
-  
-    const addMusic = async () => {
-      fetch("https://localhost:7246/Music", {
-        method: "POST",
-        body: JSON.stringify({
-          NomMusique: musicName ,
-          Auteur: Artist ,
-          Duree: Time ,
-          Image: Cover ,
-        }),
-        headers: {
-         
-          "Content-Type": "application/json charset=UTF-8" ,
-        },
-      }).then((response) => {
-          if(response.ok){
-              console.log("Music ajouté");
-              addImage();
-              setTime("1");
-              setArtist("test")
-              setMusicName("test");
-              setCover("../asset/placeholder.png");
-          }
-          else{
-              console.log("Erreur pas facteur donc pas poste");
-          }
-      }).catch((err) => {
-          setError(err.message);
+export default function AjoutMusique({ o }) {
+  const [musicName, setMusicName] = useState("");
+  const [Artist, setArtist] = useState("");
+  const [Time, setTime] = useState("");
+  const [Cover, setCover] = useState("");
+  const [error, setError] = useState("");
+  const [music, setMusic] = useState("");
+  const [file, setFile] = useState(null);
+  const [Musicfile, setMusicfile] = useState(null);
+  const [result, setResult] = useState("");
+  const [CasePlayStop, setSelectedIcon] = useState(1);
+
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    estConnecter();
+  }, []);
+
+  useEffect(() => {
+    if (error !== "") {
+      const timeout = setTimeout(() => {
+        setError("");
+      }, 10000);
+      return () => clearTimeout(timeout);
+    }
+  }, [error]);
+
+  const addMusic = async () => {
+    fetch("https://localhost:7246/Music", {
+      method: "POST",
+      body: JSON.stringify({
+        NomMusique: musicName,
+        Auteur: Artist,
+        Duree: Time,
+        Image: Cover,
+        Musicfile: music,
+      }),
+      headers: {
+        "Content-Type": "application/json charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          debugger;
+          console.log("Music ajouté");
+          addMusicFile();
+
+          addImage();
+          setTime("1");
+          setArtist("test");
+          setMusicName("test");
+          setCover("../asset/placeholder.png");
+          setMusic("../asset/music/Enormous Penis.mp3");
+        } else {
+          console.log("Erreur pas facteur donc pas poste");
+        }
+      })
+      .catch((err) => {
+        setError(err.message);
       });
   };
 
-  const addImage = async () => {
-
+  const addMusicFile = async () => {
     const formData = new FormData();
-    formData.append('image', file, file.name);
-
-    await fetch('https://localhost:7246/Image', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': '*/*'
-        }
-      })
+    formData.append("musicFile", Musicfile, Musicfile.name);
+    await fetch("https://localhost:7246/MusicFile", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "*/*",
+      },
+    })
       .then((response) => {
         if (response.ok) {
           setResult("Téléversement réussi");
-        } else
-          setResult("Téléversement échoué, erreur: " + response.status);
+        } else setResult("Téléversement échoué, erreur: " + response.status);
       })
       .catch((err) => {
         setResult("Erreur: " + err.message);
       });
-    };
+  };
 
+  const addImage = async () => {
+    const formData = new FormData();
+    formData.append("image", file, file.name);
+
+    await fetch("https://localhost:7246/Image", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "*/*",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setResult("Téléversement réussi");
+        } else setResult("Téléversement échoué, erreur: " + response.status);
+      })
+      .catch((err) => {
+        setResult("Erreur: " + err.message);
+      });
+  };
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -97,8 +149,18 @@ export default function AjoutMusique({o}) {
   };
 
   const handleTimeChange = (event) => {
-    setTime(event.target.value);
+    const audioFile = new Audio(URL.createObjectURL(event.target.files[0]));
+    audioFile.addEventListener("loadedmetadata", () => {
+      const duration = Math.floor(audioFile.duration);
+      const musicTime = formatTime(duration.toString());
+      setTime(musicTime);
+      console.log("Duration:", duration); // The duration of the audio file in second
+    });
+    if (Musicfile == null) {
+      setTime("00:00");
+    }
   };
+
   const handleCoverChange = (event) => {
     setFile(event.target.files[0]);
     const imageUrl = URL.createObjectURL(event.target.files[0]);
@@ -106,15 +168,24 @@ export default function AjoutMusique({o}) {
     console.log(imageUrl);
   };
 
-  function estConnecter(){
-    if(sessionStorage.getItem("token") === null){
+  const handleMusicFile = (event) => {
+    setMusicfile(event.target.files[0]);
+    const MusicUrl = URL.createObjectURL(Musicfile);
+    console.log(event.target.files[0]);
+    setMusic(MusicUrl);
+    console.log(MusicUrl);
+    handleTimeChange();
+  };
+
+  function estConnecter() {
+    if (sessionStorage.getItem("token") === null) {
       navigation("/");
     }
   }
 
   return (
     <>
-      <Navigation/>
+      <Navigation />
       <AnimatePresence>
         {error !== "" && (
           <motion.div
@@ -171,16 +242,7 @@ export default function AjoutMusique({o}) {
               className="input input-bordered text-gray-200 bg-cod-gray-500 w-full max-w-xs"
               onChange={handleArtistChange}
             />
-            <label className="label">
-              <span className="label-text">Duree en seconde</span>
-            </label>
-            <input
-              type="number"
-              placeholder="Duree en seconde"
-              required
-              className="input input-bordered text-gray-200 bg-cod-gray-500 w-full max-w-xs"
-              onChange={handleTimeChange}
-            />
+
             <label className="label">
               <span className="label-text">Image de couverture</span>
             </label>
@@ -192,6 +254,18 @@ export default function AjoutMusique({o}) {
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
               onChange={handleCoverChange}
+            />
+            <label className="label">
+              <span className="label-text">Musique</span>
+            </label>
+            <input
+              type="file"
+              security="true"
+              required
+              accept=".mp3, .wav, .ogg"
+              placeholder="Image de couverture"
+              className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
+              onChange={(handleMusicFile, handleTimeChange)}
             />
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
@@ -220,10 +294,9 @@ export default function AjoutMusique({o}) {
             </div>
 
             <div className="flex justify-end mt-4 ">
-              <BouttonJouerMusique
-                idMusique={1}
-                className=" mt-2 left-auto  items-end"
-              ></BouttonJouerMusique>
+              <button className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150">
+                {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
+              </button>
             </div>
           </div>
         </div>
