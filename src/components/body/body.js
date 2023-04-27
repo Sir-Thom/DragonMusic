@@ -5,7 +5,7 @@ import MusicBar from "../elements/musicBar";
 import StockMusique from "../body/listeMusique";
 import SearchBar from "../elements/SearchBar";
 import play from "../elements/boutonJouerMusique";
-import { MusicContext } from "../elements/musicContext";
+import { MusicContext, MusicProvider } from "../elements/musicContext";
 const stocks = require("../data/musique.json");
 
 /*import ListeDeMusique from './listeMusique'; 
@@ -47,9 +47,10 @@ function Body() {
     loadData();
   }, []);
   const [currentSong, setCurrentSong] = useState(MusicContext);
+  
   //console.log(data.map((stock) => stock.id));
   return (
-    <MusicContext.Provider value={{ currentSong, setCurrentSong }}>
+    <MusicProvider>
       <div className="h-screen w-screen  overflow-y-scroll  bg-gradient-to-t  from-cod-gray to-cod-gray-800">
         <h3
           className="text-red-800 font-bold m-8 text-5xl"
@@ -64,7 +65,7 @@ function Body() {
           <MusicBar />
         </div>
       </div>
-    </MusicContext.Provider>
+      </MusicProvider>
   );
 }
 

@@ -101,7 +101,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=8,
                     NomMusique = "we like fortnite2",
-                    Duree = 69,
+                    Duree =216 ,
                     Auteur = "Generated Gusse Feet",
                     Image = "asset/GoussePied.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
