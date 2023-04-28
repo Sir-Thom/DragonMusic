@@ -1,10 +1,11 @@
 import React, { useState, useCallback, useContext } from "react";
 import "./listeMusique.css";
 import BouttonJouerMusique from "../elements/boutonJouerMusique";
+import { MusicContext } from "../elements/musicContext";
 export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-
+  const [Musics, setMusics] = useContext(MusicContext);
   function formatTime(totalSeconds) {
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -39,6 +40,7 @@ export default function ListeDeMusique(props) {
       return (
         <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {props.data.map((stock, index) => {
+           
             //se chose là recup l'id de la musique
             //  console.log(props.data[index].id);
             return (
