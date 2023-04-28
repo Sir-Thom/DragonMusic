@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
   BsSkipStartCircleFill,
   BsSkipEndCircleFill,
 } from "react-icons/bs";
+import Music from "./music";
+
 
 function ConvertTime(timestamp) {
   let minutes = Math.floor(timestamp / 60);
@@ -15,13 +17,30 @@ function ConvertTime(timestamp) {
   timestamp = minutes + ":" + seconds;
   return timestamp;
 }
+
+
+
 function Play(e, idMusique) {
+ 
+  const loadMusiqueChoisi = async () => {
+    await fetch("https://localhost:7246/Music/" + MusicContext.currentMusicId, {
+      mode: "cors",
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((music) => {
+     //   setCurrentMusicId(music.id);
+      
+      });
+  };
+
   e.preventDefault();
   const [CasePlayStop, setSelectedIcon] = useState(1);
   setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
   const audio = document.getElementById(
-    "audio" + localStorage.getItem("idMusique")
+    "audio" + loadMusiqueChoisi
   );
+
   if (CasePlayStop === 1) {
     audio.play();
   } else if (CasePlayStop === 2) {
@@ -29,8 +48,25 @@ function Play(e, idMusique) {
   }
 }
 function MusicBar(props) {
+  const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const loadMusiqueChoisi = async () => {
+    
+    await fetch("https://localhost:7246/Music/" + currentMusicId.id, {
+      mode: "cors",
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((music) => {
+        
+     setCurrentMusicId(music.id);
+      console.log("okefjldsfhvcsdmfhds "+music.id);
+      });
+  };
+
 
   const date = new Date(0);
   date.setSeconds(currentTime);
@@ -66,7 +102,7 @@ function MusicBar(props) {
           </button>
           <button
             id={"audio" + localStorage.getItem("idMusique")}
-            onClick={(e) => Play(e, localStorage.getItem("idMusique"))}
+            onClick={( loadMusiqueChoisi)/*loadMusiqueChoisi*/}
             className="snap-center items-center focus:outline-none"
           >
             <BsPlayCircleFill

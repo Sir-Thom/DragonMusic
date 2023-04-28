@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { ImPlay2, ImPause } from "react-icons/im";
 import Music from "./music";
 import { MusicContext } from "./musicContext";
+import { useContext } from "react";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
-  const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
+  const {currentMusicId, setCurrentMusicId} = useContext(MusicContext);
   const audioFiles = (e) => {
     switch (e) {
       case 1:
@@ -27,7 +28,7 @@ function BouttonJouerMusique(props) {
       .then((response) => response.json())
       .then((music) => {
         setCurrentMusicId(music.id);
-        console.log(music.id);
+        console.log(currentMusicId);
       });
   };
 
