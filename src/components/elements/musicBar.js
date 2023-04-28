@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext,useEffect } from "react";
 import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
@@ -6,6 +6,8 @@ import {
   BsSkipEndCircleFill,
 } from "react-icons/bs";
 import Music from "./music";
+import { ImPlay2, ImPause } from "react-icons/im";
+
 
 
 function ConvertTime(timestamp) {
@@ -21,15 +23,15 @@ function ConvertTime(timestamp) {
 
 
 function Play(e, idMusique) {
- 
+  const [currentMusicId, setCurrentMusicId,Musics,setMusics] = useContext(MusicContext);
   const loadMusiqueChoisi = async () => {
-    await fetch("https://localhost:7246/Music/" + MusicContext.currentMusicId, {
+    await fetch("https://localhost:7246/Music/" +currentMusicId, {
       mode: "cors",
       method: "GET",
     })
       .then((response) => response.json())
       .then((music) => {
-     //   setCurrentMusicId(music.id);
+       setCurrentMusicId(music.id);
       
       });
   };
@@ -48,30 +50,33 @@ function Play(e, idMusique) {
   }
 }
 function MusicBar(props) {
-  const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
+  const [currentMusicId, setCurrentMusicId,Musics,setMusics] = useContext(MusicContext);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const loadMusiqueChoisi = async () => {
-    
-    await fetch("https://localhost:7246/Music/" + currentMusicId.id, {
+  
+ const loadMusiqueChoisi = async () => {
+    console.log(currentMusicId);
+    await fetch("https://localhost:7246/Music/" +currentMusicId, {
       mode: "cors",
       method: "GET",
     })
       .then((response) => response.json())
       .then((music) => {
-        
-     setCurrentMusicId(music.id);
+        setMusics(Musics => Musics = music.musicFile);
+        setCurrentMusicId(currentMusicId => currentMusicId= music.id);
       console.log("okefjldsfhvcsdmfhds "+music.id);
       });
-  };
+  }; 
+  useEffect(() => {
+    loadMusiqueChoisi();
 
-
+  }, [currentMusicId]);
+  console.log("SZXDFCGVHBJ "+ currentMusicId);
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
-
+  
   //console.log(MusicContext.currentMusicId);
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
@@ -101,7 +106,7 @@ function MusicBar(props) {
             ></BsSkipStartCircleFill>
           </button>
           <button
-            id={"audio" + localStorage.getItem("idMusique")}
+            id={"audio" + currentMusicId}
             onClick={( loadMusiqueChoisi)/*loadMusiqueChoisi*/}
             className="snap-center items-center focus:outline-none"
           >

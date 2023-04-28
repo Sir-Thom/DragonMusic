@@ -62,7 +62,7 @@ function Body() {
           <StockListWithSearch data={musics} musicAJouer={musicQuiJoue} />
         </div>
         <div className=" mb-8">
-          <MusicBar />
+          <MusicBar data={musics}/>
         </div>
       </div>
       </MusicProvider>

@@ -5,7 +5,7 @@ import { MusicContext } from "../elements/musicContext";
 export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-  const [Musics, setMusics] = useContext(MusicContext);
+  const [currentMusicId,setCurrentMusicId,Musics, setMusics] = useContext(MusicContext);
   function formatTime(totalSeconds) {
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -29,7 +29,8 @@ export default function ListeDeMusique(props) {
     }
     timeString += `${seconds <= 9 ? "0" : ""}${seconds}`;
     return timeString;
-  }
+  } 
+
 
   //const [data,setData] = useState("");
   const date = new Date(0);

@@ -32,9 +32,7 @@ function BouttonJouerMusique(props) {
       .then((response) => response.json())
       .then((music) => {
         setCurrentMusicId(music.id);
-        console.log(music)
-        setMusics(Musics => Musics = music.musicFile)
-        console.log(music.id);
+        setMusics(Musics => Musics = music.musicFile);
        
       });
   };

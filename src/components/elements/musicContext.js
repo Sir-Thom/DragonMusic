@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const MusicContext = createContext([{}, () => {}]);
 
 export const MusicProvider = (props) => {
-  const [currentMusicId, setCurrentMusicId] =  useState();
+  const [currentMusicId, setCurrentMusicId] =  useState({id:0});
   const [Musics, setMusics] =  useState({});
 
   return (
