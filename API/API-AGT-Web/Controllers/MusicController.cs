@@ -20,18 +20,28 @@ namespace API_AGT_Web.Controllers
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
         }
         [HttpGet]
-        public IEnumerable<Music.Music> Get()
+        public IEnumerable<Music.Music> Get(int page = 1, int limit = 8)
         {
-            return musicRepository.GetMusics().Select(m =>
-            new Music.Music()
-            {
-                Id = m.Id,
-                NomMusique = m.NomMusique,
-                Duree = m.Duree,
-                Auteur = m.Auteur,
-                Image = m.Image,
-                MusicFile = m.MusicFile
-            });
+            var skip = (page - 1) * limit;
+            return musicRepository.GetMusics()
+                .Skip(skip)
+                .Take(limit)
+                .Select(m =>
+                    new Music.Music()
+                    {
+                        Id = m.Id,
+                        NomMusique = m.NomMusique,
+                        Duree = m.Duree,
+                        Auteur = m.Auteur,
+                        Image = m.Image,
+                        MusicFile = m.MusicFile
+                    });
+        }
+        [HttpGet]
+        [Route("Count")]
+        public int GetCount()
+        {
+            return musicRepository.GetMusics().Count();
         }
 
 

@@ -1,11 +1,24 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import "./listeMusique.css";
 import BouttonJouerMusique from "../elements/boutonJouerMusique";
 import { MusicContext } from "../elements/musicContext";
+import InfiniteScroll from "react-infinite-scroll-component";
 export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-  const [Musics, setMusics] = useContext(MusicContext);
+  //const [Musics, setMusics] = useContext(MusicContext);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [musics, setMusics] = useState([]);
+
+  // define a function to to count load data
+
   function formatTime(totalSeconds) {
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -35,57 +48,60 @@ export default function ListeDeMusique(props) {
   const date = new Date(0);
   date.setSeconds(currentTime);
   //console.log(props.musicAJouer);
-  const tabRow = useCallback(() => {
-    if (props.data instanceof Array) {
-      return (
-        <div className="grid grid-cols-1  h-full pt-32 mb-12 shadow-lg  font-Ubuntu  pb-96   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {props.data.map((stock, index) => {
-           
-            //se chose là recup l'id de la musique
-            //  console.log(props.data[index].id);
-            return (
-              <div
-                key={index}
-                id={index + 1}
-                className="rounded  overflow-hidden shadow-lg"
-              >
-                <img
-                  src={stock.image}
-                  width="150px"
-                  height="150px"
-                  alt={stock.nomMusique}
-                  className=" aspect-square  w-full"
-                />
+  const tabRow = () => {
+    return (
+      <div className="grid grid-cols-1 h-full pt-32 mb-12 shadow-lg font-Ubuntu pb-96 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {props.data.map((stock, index) => (
+          <div
+            key={index}
+            id={index + 1}
+            className="rounded overflow-hidden shadow-lg"
+          >
+            <img
+              src={stock.image}
+              width="150px"
+              height="150px"
+              alt={stock.nomMusique}
+              className="aspect-square w-full"
+            />
 
-                <div className="font-Ubuntu   bg-cod-gray-400  px-6 py-6">
-                  <div className="font-Ubuntu   bg-cod-gray-400  px-6 py-6">
-                    <p className="font-Ubuntu  text-white font-bold text-xl mb-2">
-                      {stock.nomMusique}
-                    </p>
-                    <p className="font-Ubuntu text-white text-right text-md">
-                      {formatTime(stock.duree)}
-                    </p>
-                  </div>
-                  <div className="flex justify-between py-1 ">
-                    <p className=" justify-end font-Ubuntu text-white text-sm">
-                      {stock.auteur}
-                    </p>
-                  </div>
-
-                  <div className="flex justify-end mt-4 ">
-                    <BouttonJouerMusique
-                      className=" mt-2 left-auto  items-end"
-                      idMusique={index + 1}
-                      musiqueAJouer={props.musicAJouer}
-                    ></BouttonJouerMusique>
-                  </div>
-                </div>
+            <div className="font-Ubuntu bg-cod-gray-400 px-6 py-6">
+              <div className="font-Ubuntu bg-cod-gray-400 px-6 py-6">
+                <p className="font-Ubuntu text-white font-bold text-xl mb-2">
+                  {stock.nomMusique}
+                </p>
+                <p className="font-Ubuntu text-white text-right text-md">
+                  {formatTime(stock.duree)}
+                </p>
               </div>
-            );
-          })}
-        </div>
-      );
-    }
-  }, [props.data]);
-  return <>{tabRow()}</>;
+              <div className="flex justify-between py-1 ">
+                <p className="justify-end font-Ubuntu text-white text-sm">
+                  {stock.auteur}
+                </p>
+              </div>
+
+              <div className="flex justify-end mt-4 ">
+                <BouttonJouerMusique
+                  className="mt-2 left-auto items-end"
+                  idMusique={index + 1}
+                  musiqueAJouer={musics.MusicFile}
+                ></BouttonJouerMusique>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <InfiniteScroll
+      dataLength={props.data.length} // This is important to calculate the end of the list
+      next={props.fetch}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+    >
+      {tabRow()}
+    </InfiniteScroll>
+  );
 }

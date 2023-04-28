@@ -5,8 +5,9 @@ import { MusicContext } from "./musicContext";
 
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
- // const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
- const [currentMusicId, setCurrentMusicId,Musics,setMusics] = useContext(MusicContext);
+
+  const [currentMusicId, setCurrentMusicId, Musics, setMusics] =
+    useContext(MusicContext);
 
   //
 
@@ -31,10 +32,9 @@ function BouttonJouerMusique(props) {
       .then((response) => response.json())
       .then((music) => {
         setCurrentMusicId(music.id);
-        console.log(music)
-        setMusics(Musics => Musics = music.musicFile)
-        console.log(music.id);
-       
+        // console.log(music);
+        //  setMusics((Musics) => (Musics = music.musicFile));
+        //console.log(music.id);
       });
   };
 
@@ -44,7 +44,7 @@ function BouttonJouerMusique(props) {
 
     setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
     const audio = document.getElementById("audio" + idMusique);
-    
+
     //alert(props.idMusique);
     if (CasePlayStop === 1) {
       audio.play();
@@ -53,22 +53,17 @@ function BouttonJouerMusique(props) {
       audio.pause();
     }
   }
- 
-  console.log(Musics)
+
+  console.log(Musics);
   return (
- 
     <button
       onLoad={loadMusiqueChoisi}
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
-       
-       {console.log(Musics) }
+      {console.log(Musics)}
       {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
-      <Music
-        idMusique={props.idMusique}
-        audioFile={Musics}
-      />
+      <Music idMusique={props.idMusique} audioFile={Musics} />
     </button>
   );
 }

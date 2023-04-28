@@ -19,9 +19,12 @@ function Body() {
   const [musics, setMusics] = useState([]);
   const [musicQuiJoue, setMusicQuiJoue] = useState("");
   const [error, setError] = useState(null);
-
-  const loadData = async () => {
-    fetch("https://localhost:7246/Music", {
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
+  const [countMusic, setCountMusic] = useState(0);
+  const loadData = () => {
+    // Call your API to get data with the current page and limit
+    fetch(`https://localhost:7246/Music?page=${page}&limit=${8}`, {
       mode: "cors",
 
       headers: {
@@ -30,24 +33,48 @@ function Body() {
       },
       method: "GET",
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw Error("Failed to fetch data");
-        } else {
-          setError(null);
-          return response.json();
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Update the state with new data
+        setMusics((prevMusics) => [...prevMusics, ...data]);
+        // Check if there's more data to be loaded
+        if (data.length !== countMusic) {
+          setHasMore(false);
         }
+        //setHasMore(data.length > 0);
+        // Increment the page number
+        setPage(page + 1);
       })
-      .then((musics) => setMusics(musics))
-      .catch((error) => {
-        setError(error.message);
-      });
+      .catch((error) => console.log(error));
+  };
+
+  const CountData = () => {
+    // Call your API to get data with the current page and limit
+    fetch(`https://localhost:7246/Music/Count`, {
+      mode: "cors",
+
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        // Update the state with new data
+        setCountMusic(data);
+      })
+      .catch((error) => console.log(error));
   };
   useEffect(() => {
     loadData();
+    CountData();
   }, []);
   const [currentSong, setCurrentSong] = useState(MusicContext);
-  
+
   //console.log(data.map((stock) => stock.id));
   return (
     <MusicProvider>
@@ -59,13 +86,17 @@ function Body() {
           {error}
         </h3>
         <div className=" mb-4">
-          <StockListWithSearch data={musics} musicAJouer={musicQuiJoue} />
+          <StockListWithSearch
+            data={musics}
+            fetch={loadData}
+            count={countMusic}
+          />
         </div>
         <div className=" mb-8">
           <MusicBar />
         </div>
       </div>
-      </MusicProvider>
+    </MusicProvider>
   );
 }
 
