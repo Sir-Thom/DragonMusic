@@ -8,5 +8,6 @@ namespace API_AGT_Web.Music
         public string Image { get; set; } = "";
 
         public string MusicFile { get; set; } = "";
+
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
@@ -16,6 +16,7 @@ function ConvertTime(timestamp) {
   return timestamp;
 }
 function Play(e, idMusique) {
+  debugger;
   e.preventDefault();
   const [CasePlayStop, setSelectedIcon] = useState(1);
   setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
@@ -31,19 +32,37 @@ function Play(e, idMusique) {
 function MusicBar(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-
+  const [currentMusicId, setCurrentMusicId, Musics, setMusics] =
+    useContext(MusicContext);
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
+  console.log("musics " + localStorage.getItem("idMusique"));
+  const loadMusiqueChoisi = async () => {
+    await fetch(
+      "https://localhost:7246/Music/" + localStorage.getItem("idMusique"),
+      {
+        mode: "cors",
+        method: "GET",
+      }
+    )
+      .then((response) => response.json())
+      .then((music) => {
+        setCurrentMusicId(music.id);
+        // put all music file in Musics
 
-  //console.log(MusicContext.currentMusicId);
+        setMusics(music.musicFile);
+        console.log("musics " + Musics);
+      });
+  };
+
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
       <div className=" block h-1 w-full ">
         <input
           type="range"
           min={0}
-          max={duration}
+          max={100}
           value={currentTime}
           onChange={(e) => setCurrentTime(e.target.value)}
           className="range range-xs range-primary h-1/4 mt-1 "
@@ -66,7 +85,7 @@ function MusicBar(props) {
           </button>
           <button
             id={"audio" + localStorage.getItem("idMusique")}
-            onClick={(e) => Play(e, localStorage.getItem("idMusique"))}
+            onClick={console.log(localStorage.getItem("idMusique"))}
             className="snap-center items-center focus:outline-none"
           >
             <BsPlayCircleFill

@@ -1,4 +1,4 @@
-import "./..//index.css";
+//import "./..//index.css";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "../components/header/NavbarComp";
 import { useNavigate } from "react-router-dom";
@@ -213,7 +213,7 @@ export default function AjoutMusique({ o }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="grid grid-cols-2 justify-center min-w-max w-full  h-full pt-36 mb-12 shadow-lg  font-Ubuntu    gradiantPage bg-gradient-to-t  from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 gap-8">
+      <div className="grid grid-cols-2 justify-center min-w-max w-full h-full pt-36 mb-12 shadow-lg font-Ubuntu gradiantPage bg-gradient-to-t from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 sm:grid-auto-rows gap-8">
         <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg">
           <form
             onSubmit={onSubmitForm}
@@ -267,33 +267,34 @@ export default function AjoutMusique({ o }) {
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
         </div>
+        <div className="mobile-view">
+          <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
+            <img
+              src={Cover}
+              width={150}
+              height={150}
+              alt={musicName}
+              className=" aspect-square  w-full h-full object-cover"
+            />
 
-        <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
-          <img
-            src={Cover}
-            width={150}
-            height={150}
-            alt={musicName}
-            className=" aspect-square  w-full h-full object-cover"
-          />
-
-          <div className="font-Ubuntu   bg-cod-gray-400  px-6 py-6">
-            <p className="font-Ubuntu  text-white font-bold text-xl mb-2">
-              {musicName}
-            </p>
-            <div className="flex justify-between py-1 ">
-              <p className=" justify-end font-Ubuntu text-white text-sm">
-                {Artist}
+            <div className="font-Ubuntu   bg-cod-gray-400  px-6 py-6">
+              <p className="font-Ubuntu  text-white font-bold text-xl mb-2">
+                {musicName}
               </p>
-              <p className="font-Ubuntu text-white text-right text-md">
-                {Time}
-              </p>
-            </div>
+              <div className="flex justify-between py-1 ">
+                <p className=" justify-end font-Ubuntu text-white text-sm">
+                  {Artist}
+                </p>
+                <p className="font-Ubuntu text-white text-right text-md">
+                  {Time}
+                </p>
+              </div>
 
-            <div className="flex justify-end mt-4 ">
-              <button className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150">
-                {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
-              </button>
+              <div className="flex justify-end mt-4 ">
+                <button className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150">
+                  {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
+                </button>
+              </div>
             </div>
           </div>
         </div>
