@@ -3,6 +3,7 @@ import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
   BsSkipStartCircleFill,
+  BsPauseCircleFill,
   BsSkipEndCircleFill,
 } from "react-icons/bs";
 
@@ -15,6 +16,7 @@ function ConvertTime(timestamp) {
   timestamp = minutes + ":" + seconds;
   return timestamp;
 }
+
 function Play(e, idMusique) {
   e.preventDefault();
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -31,10 +33,20 @@ function Play(e, idMusique) {
 function MusicBar(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
+  const [changerButtonPlay, setChangerButtonPlay] = useState(true);
 
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
+
+  function changerStateButtonPLay(){
+    if (changerButtonPlay === true){
+      setChangerButtonPlay(false);
+    }
+    else{
+      setChangerButtonPlay(true);
+    }
+  }
 
   //console.log(MusicContext.currentMusicId);
   return (
@@ -59,6 +71,7 @@ function MusicBar(props) {
             }}
             className="focus:outline-none"
           >
+            {}
             <BsSkipStartCircleFill
               className=" relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
               size={30}
@@ -66,13 +79,18 @@ function MusicBar(props) {
           </button>
           <button
             id={"audio" + localStorage.getItem("idMusique")}
-            onClick={(e) => Play(e, localStorage.getItem("idMusique"))}
+            onClick={() => changerStateButtonPLay()}
             className="snap-center items-center focus:outline-none"
           >
-            <BsPlayCircleFill
+            {changerButtonPlay === false ? 
+              <BsPauseCircleFill
+              className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
+              size={35}>
+              </BsPauseCircleFill>
+              :<BsPlayCircleFill
               className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
               size={35}
-            ></BsPlayCircleFill>
+            ></BsPlayCircleFill>} 
           </button>
           <button
             onClick={() => {
