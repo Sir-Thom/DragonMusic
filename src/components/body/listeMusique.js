@@ -2,10 +2,14 @@ import React, { useState, useCallback, useContext } from "react";
 import "./listeMusique.css";
 import BouttonJouerMusique from "../elements/boutonJouerMusique";
 import { MusicContext } from "../elements/musicContext";
+
+
+
 export default function ListeDeMusique(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
   const [Musics, setMusics] = useContext(MusicContext);
+
   function formatTime(totalSeconds) {
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -75,7 +79,7 @@ export default function ListeDeMusique(props) {
                   <div className="flex justify-end mt-4 ">
                     <BouttonJouerMusique
                       className=" mt-2 left-auto  items-end"
-                      idMusique={index + 1}
+                      idMusique={stock.id}
                       musiqueAJouer={props.musicAJouer}
                     ></BouttonJouerMusique>
                   </div>
