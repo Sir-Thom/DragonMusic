@@ -34,11 +34,11 @@ export default function AjoutMusique({ o }) {
   const [musicName, setMusicName] = useState("");
   const [Artist, setArtist] = useState("");
   const [Time, setTime] = useState("");
-  const [Cover, setCover] = useState("");
+  const [Cover, setCover] = useState("asset/placeholder.png");
   const [error, setError] = useState("");
   const [music, setMusic] = useState("");
   const [file, setFile] = useState(null);
-  const [Musicfile, setMusicfile] = useState(null);
+  const [musicfile, setMusicfile] = useState(null);
   const [result, setResult] = useState("");
   const [CasePlayStop, setSelectedIcon] = useState(1);
 
@@ -65,7 +65,7 @@ export default function AjoutMusique({ o }) {
         Auteur: Artist,
         Duree: Time,
         Image: Cover,
-        Musicfile: music,
+        musicFile: music,
       }),
       headers: {
         "Content-Type": "application/json charset=UTF-8",
@@ -73,7 +73,6 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          debugger;
           console.log("Music ajouté");
           addMusicFile();
           addImage();
@@ -93,7 +92,8 @@ export default function AjoutMusique({ o }) {
 
   const addMusicFile = async () => {
     const formData = new FormData();
-    formData.append("musicFile", Musicfile, Musicfile.name);
+    formData.append("music", musicfile, musicfile.name);
+    console.log(musicfile.name);
     await fetch("https://localhost:7246/MusicFile", {
       method: "POST",
       body: formData,
@@ -153,7 +153,7 @@ export default function AjoutMusique({ o }) {
       setTime(duration);
       console.log("Duration:", duration); // The duration of the audio file in second
     });
-    if (Musicfile == null) {
+    if (musicfile == null) {
       setTime("00:00");
     }
   };
@@ -166,12 +166,25 @@ export default function AjoutMusique({ o }) {
   };
 
   const handleMusicFile = (event) => {
+    //duration
+    const audioFile = new Audio(URL.createObjectURL(event.target.files[0]));
+    audioFile.addEventListener("loadedmetadata", () => {
+      const duration = Math.floor(audioFile.duration);
+      const musicTime = formatTime(duration.toString());
+      setTime(duration);
+      console.log("Duration:", duration); // The duration of the audio file in second
+    });
+    if (musicfile == null) {
+      setTime("00:00");
+    }
+    
+    //Music
     setMusicfile(event.target.files[0]);
-    const MusicUrl = URL.createObjectURL(Musicfile);
+    const MusicUrl = URL.createObjectURL(event.target.files[0]);
     console.log(event.target.files[0]);
     setMusic(MusicUrl);
     console.log(MusicUrl);
-    handleTimeChange();
+    //handleTimeChange();
   };
 
   function estConnecter() {
@@ -262,7 +275,7 @@ export default function AjoutMusique({ o }) {
               accept=".mp3, .wav, .ogg"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
-              onChange={(handleMusicFile, handleTimeChange)}
+              onChange={handleMusicFile}
             />
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
