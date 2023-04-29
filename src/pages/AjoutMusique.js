@@ -145,19 +145,6 @@ export default function AjoutMusique({ o }) {
     setArtist(event.target.value);
   };
 
-  const handleTimeChange = (event) => {
-    const audioFile = new Audio(URL.createObjectURL(event.target.files[0]));
-    audioFile.addEventListener("loadedmetadata", () => {
-      const duration = Math.floor(audioFile.duration);
-      const musicTime = formatTime(duration.toString());
-      setTime(duration);
-      console.log("Duration:", duration); // The duration of the audio file in second
-    });
-    if (musicfile == null) {
-      setTime("00:00");
-    }
-  };
-
   const handleCoverChange = (event) => {
     setFile(event.target.files[0]);
     const imageUrl = URL.createObjectURL(event.target.files[0]);
@@ -170,7 +157,7 @@ export default function AjoutMusique({ o }) {
     const audioFile = new Audio(URL.createObjectURL(event.target.files[0]));
     audioFile.addEventListener("loadedmetadata", () => {
       const duration = Math.floor(audioFile.duration);
-      const musicTime = formatTime(duration.toString());
+      //const musicTime = formatTime(duration.toString());
       setTime(duration);
       console.log("Duration:", duration); // The duration of the audio file in second
     });
