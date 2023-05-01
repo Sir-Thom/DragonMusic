@@ -1,0 +1,11 @@
+liens du vm:https://cegepba-my.sharepoint.com/personal/2134063_cegepba_qc_ca/_layouts/15/guestaccess.aspx?docid=18e352e47003f4e349c276ec4a7dffc76&authkey=AWjdDA3-6rSOESR40OmNQ-g&e=VffmbS
+
+server name: agtserver
+username: agt
+password:agt
+
+username: gab
+password:gab
+
+username: alexis
+password:alexis
