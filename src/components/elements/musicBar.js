@@ -16,7 +16,6 @@ function ConvertTime(timestamp) {
   timestamp = minutes + ":" + seconds;
   return timestamp;
 }
-
 function Play(e, idMusique) {
   e.preventDefault();
   const [CasePlayStop, setSelectedIcon] = useState(1);
@@ -39,16 +38,14 @@ function MusicBar(props) {
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
 
-  function changerStateButtonPLay(){
-    if (changerButtonPlay === true){
+  function changerStateButtonPLay() {
+    if (changerButtonPlay === true) {
       setChangerButtonPlay(false);
-    }
-    else{
+    } else {
       setChangerButtonPlay(true);
     }
   }
 
-  //console.log(MusicContext.currentMusicId);
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
       <div className=" block h-1 w-full ">
@@ -82,15 +79,17 @@ function MusicBar(props) {
             onClick={() => changerStateButtonPLay()}
             className="snap-center items-center focus:outline-none"
           >
-            {changerButtonPlay === false ? 
+            {changerButtonPlay === false ? (
               <BsPauseCircleFill
-              className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
-              size={35}>
-              </BsPauseCircleFill>
-              :<BsPlayCircleFill
-              className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
-              size={35}
-            ></BsPlayCircleFill>} 
+                className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
+                size={35}
+              ></BsPauseCircleFill>
+            ) : (
+              <BsPlayCircleFill
+                className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
+                size={35}
+              ></BsPlayCircleFill>
+            )}
           </button>
           <button
             onClick={() => {
