@@ -28,7 +28,7 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var user = userRepository.GetUserByUsername(username);
+                var user = userRepository.GetUserByUsername(username, "");
 
                 if (user.Name == "")
                     return BadRequest("Usager invalide");
@@ -52,7 +52,7 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name);
+                var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name, userModels.Email);
                 if (checkIfUserExist.Name is "")
                 {
                     userRepository.createOneUser(
@@ -81,7 +81,8 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var user = userRepository.GetUserByUsername(userModel.Name);
+                var user = userRepository.GetUserByUsername(userModel.Name, userModel.Email);
+                bool s = BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash);
 
                 if (user.Name == "" || !BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash))
                     return BadRequest("Informations de connexion invalides");

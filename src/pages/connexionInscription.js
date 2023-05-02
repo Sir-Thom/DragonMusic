@@ -70,14 +70,19 @@ export function Connexion() {
       .then((response) => {
         if (response.ok) {
           return response.json();
-        } else {
-          console.log("Mauvaises informations");
+        }
+        else {
           return { token: "" };
         }
       })
       .then((data) => {
+        if (data.token !== "") {
         sessionStorage.setItem("token", data.token);
         navigate("/");
+        }
+        else {
+          console.log("Mauvaises informations");
+        }
       })
       .catch((err) => {
         console.log(err.message);
@@ -149,7 +154,7 @@ export function Connexion() {
               <div className="mb-6 ">
                 <label className="text-white">nom d'utilisateur</label>
                 <input
-                  placeholder="Xxx_Joe_Blow69_xxX"
+                  placeholder="votre nom d'utilisateur"
                   type="name"
                   className={`${
                     checkUsername !== "" ? "border-red-600" : "border-gray-300"
@@ -167,7 +172,7 @@ export function Connexion() {
               <div className="mb-6 ">
                 <label className="text-white">Couriel</label>
                 <input
-                  placeholder="Xxx_Joe_Blow69_xxX"
+                  placeholder="monEmail@gmail.com"
                   type="email"
                   className={`${
                     checkEmail !== "" ? "border-red-600" : "border-gray-300"
@@ -357,7 +362,7 @@ export function Inscription() {
                 <label className="text-white">nom d'utilisateur</label>
                 <input
                   required
-                  placeholder="Vicky"
+                  placeholder="Alexis Thibodeau"
                   type="name"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                   onChange={(input) => setUsername(input.target.value)}
