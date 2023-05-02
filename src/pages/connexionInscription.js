@@ -14,6 +14,7 @@ export function Connexion() {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     estConnecter();
@@ -72,16 +73,17 @@ export function Connexion() {
           return response.json();
         }
         else {
-          return { token: "" };
+          setError("Mauvaises informations");
         }
       })
       .then((data) => {
         if (data.token !== "") {
-        sessionStorage.setItem("token", data.token);
-        navigate("/");
+          sessionStorage.setItem("token", data.token);
+          navigate("/");
         }
         else {
-          console.log("Mauvaises informations");
+          setError(
+            "Mauvaises informations");
         }
       })
       .catch((err) => {
@@ -147,7 +149,16 @@ export function Connexion() {
             linkName="S'inscrire"
             linkUrl="/inscription"
           />
-
+          <div style={{display : error == null ? 'none' : "block"}}
+          onClick={() => setError(null)}>
+            <div className="alert alert-error shadow-lg">
+              <div>
+                <svg className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Mauvaises informations</span>
+              </div>
+            </div>
+            <br></br>
+          </div>
           <div className="  flex  flex-col items-center justify-center ">
             <div></div>
             <form onSubmit={handleLoginSubmit}>
