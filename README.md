@@ -2,6 +2,10 @@
 # Getting Started with Create React App
 test
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Dépendance
+- ffmpeg 
+
+
 
 ## Available Scripts
 
