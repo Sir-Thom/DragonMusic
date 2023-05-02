@@ -14,6 +14,7 @@ import {
   BsFillVolumeMuteFill,
 } from "react-icons/bs";
 
+
 const stocks = require("../data/musique.json");
 
 const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
@@ -29,6 +30,7 @@ function MusicBars({ src }) {
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [FirstCall,setFistCall] = useState(0);
   const [
     currentMusicId,
     setCurrentMusicId,
@@ -41,8 +43,7 @@ function MusicBars({ src }) {
   ] = useContext(MusicContext);
   const [volume, setVolume] = useState(1);
   useEffect(() => {
-    handlePlayPauseClick();
-    handlePlayPauseClick();
+
    const audio = audioRef.current;
     const onTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
@@ -50,19 +51,18 @@ function MusicBars({ src }) {
         (audio.currentTime / duration) * 100
       }%`;
     };
-
     const onLoadedMetadata = () => {
-    //  setAutoplay(true);
+      setAutoplay(true);
       setDuration(audio.duration);
     };
     setCurrentMusicId(null);
 
-
+    
     const onPlay = () => { 
       setAutoplay(true);
       setIsPlaying(true);
-     
     };
+    
     audio.addEventListener("timeupdate", onTimeUpdate);
     audio.addEventListener("loadedmetadata", onLoadedMetadata);
     audio.addEventListener("play", onPlay);
@@ -75,13 +75,19 @@ function MusicBars({ src }) {
     setMusics(NaN);
   }, [duration]);
 
-  const handlePlayPauseClick = () => {
-    if (isPlaying) {
+
+  const handlePlayPauseClick = async() => {
+    if (isPlaying == true) {
       audioRef.current.pause();
+
+      
       setIsPlaying(false);
-    } else {
+      console.log("pause");
+    } 
+    else {
       audioRef.current.play();
       setIsPlaying(true);
+      console.log("play");
     }
   };
   const handleVolumeChange = (event) => {
@@ -128,6 +134,7 @@ function MusicBars({ src }) {
     audioRef.current.currentTime = newCurrentTime;
     setCurrentTime(newCurrentTime);
   };
+
 
   return (
     <nav className="fixed bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700 text-white p-2">
