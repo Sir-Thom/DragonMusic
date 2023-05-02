@@ -70,14 +70,19 @@ export function Connexion() {
       .then((response) => {
         if (response.ok) {
           return response.json();
-        } else {
-          console.log("Mauvaises informations");
+        }
+        else {
           return { token: "" };
         }
       })
       .then((data) => {
+        if (data.token !== "") {
         sessionStorage.setItem("token", data.token);
         navigate("/");
+        }
+        else {
+          console.log("Mauvaises informations");
+        }
       })
       .catch((err) => {
         console.log(err.message);

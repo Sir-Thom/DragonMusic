@@ -11,6 +11,6 @@
         void LoginUser(string username, string password);
 
         void LogoutUser();
-        User GetUserByUsername(string username);
+        User GetUserByUsername(string username, string email);
     }
 }
