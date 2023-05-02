@@ -6,7 +6,6 @@ export const MusicProvider = (props) => {
   const [currentMusicId, setCurrentMusicId] = useState();
   const [Musics, setMusics] = useState({});
   const [musicTime, setMusicTime] = useState();
-  const [autoPlay, setAutoplay] = useState(false);
 
   return (
     <MusicContext.Provider
@@ -17,8 +16,6 @@ export const MusicProvider = (props) => {
         setMusics,
         musicTime,
         setMusicTime,
-        autoPlay,
-        setAutoplay,
       ]}
     >
       {props.children}

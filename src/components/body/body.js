@@ -36,14 +36,11 @@ function MusicBars({ src }) {
     setMusics,
     musicTime,
     setMusicTime,
-    autoPlay, 
-    setAutoplay
   ] = useContext(MusicContext);
   const [volume, setVolume] = useState(1);
   useEffect(() => {
-    handlePlayPauseClick();
-    handlePlayPauseClick();
-   const audio = audioRef.current;
+    const audio = audioRef.current;
+
     const onTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
       progressBarRef.current.style.width = `${
@@ -52,17 +49,14 @@ function MusicBars({ src }) {
     };
 
     const onLoadedMetadata = () => {
-    //  setAutoplay(true);
       setDuration(audio.duration);
     };
     setCurrentMusicId(null);
 
-
-    const onPlay = () => { 
-      setAutoplay(true);
+    const onPlay = () => {
       setIsPlaying(true);
-     
     };
+
     audio.addEventListener("timeupdate", onTimeUpdate);
     audio.addEventListener("loadedmetadata", onLoadedMetadata);
     audio.addEventListener("play", onPlay);
@@ -95,7 +89,6 @@ function MusicBars({ src }) {
 
   const handleNextClick = () => {
     audioRef.current.currentTime = duration;
-
   };
   const handleMuteClick = () => {
     const newVolume = volume === 0 ? 1 : 0;
@@ -128,10 +121,11 @@ function MusicBars({ src }) {
     audioRef.current.currentTime = newCurrentTime;
     setCurrentTime(newCurrentTime);
   };
+  console.log(currentMusicId);
 
   return (
     <nav className="fixed bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700 text-white p-2">
-      <audio autoPlay={autoPlay} ref={audioRef} src={Musics} controls={false} />
+      <audio autoPlay={true} ref={audioRef} src={Musics} controls={false} />
       <div className="flex justify-center items-center space-x-4">
         <motion.div className="flex justify-center items-center space-x-4">
           <motion.button

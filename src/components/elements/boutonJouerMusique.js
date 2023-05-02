@@ -6,22 +6,9 @@ import { MusicContext } from "./musicContext";
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
   // const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
-  const [currentMusicId, setCurrentMusicId, Musics, setMusics,autoPlay,setAutoplay] =
+  const [currentMusicId, setCurrentMusicId, Musics, setMusics] =
     useContext(MusicContext);
   const [musicId, setMusicId] = useState(0);
-
-/*const loadAllmusic = async () => {
-  await fetch("https://localhost:7246/Music/" + props.idMusique, {
-    mode: "cors",
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((music) => {
-      setCurrentMusicId(music.id);
-      localStorage.setItem("idMusique", music.id);
-      setMusics(music.musicFile);
-    });
-};*/
 
   const loadMusiqueChoisi = async () => {
     await fetch("https://localhost:7246/Music/" + props.idMusique, {
@@ -31,7 +18,6 @@ function BouttonJouerMusique(props) {
       .then((response) => response.json())
       .then((music) => {
         setCurrentMusicId(music.id);
-
         localStorage.setItem("idMusique", music.id);
         setMusics(music.musicFile);
       });
@@ -45,21 +31,18 @@ function BouttonJouerMusique(props) {
       })
         .then((response) => response.json())
         .then((music) => {
-          setAutoplay(true);
           setCurrentMusicId(music.id);
           setMusics(music.musicFile);
         });
     };
+
     loadMusiqueChoisi();
   }, []);
 
-  const Play = async (e, idMusique) =>{
+  function Play(e, idMusique) {
     e.preventDefault();
     //const audio = document.getElementById("audio" + idMusique);
-    
-    await loadMusiqueChoisi();
-    setAutoplay(true);
-    console.log(autoPlay);
+    loadMusiqueChoisi();
 
     //setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
 
