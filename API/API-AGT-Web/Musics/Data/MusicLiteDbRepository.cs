@@ -175,6 +175,11 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<MusicEntity>(collectionName);
                 var musicEntity = collection.Find(m => m.Id == idMusic).FirstOrDefault();
 
+                if (musicEntity is null)
+                {
+                    return null;
+                }
+
                 return new Music()
                 {
                     Id = musicEntity.Id,
