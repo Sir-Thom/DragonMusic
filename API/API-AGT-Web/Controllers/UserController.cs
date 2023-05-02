@@ -53,7 +53,7 @@ namespace API_AGT_Web.Controllers
             try
             {
                 var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name, userModels.Email);
-                if (checkIfUserExist.Name is "")
+                if (checkIfUserExist is null)
                 {
                     userRepository.createOneUser(
                        new User()
@@ -65,10 +65,12 @@ namespace API_AGT_Web.Controllers
 
                     return Ok();
                 }
+                if (userModels.Name == checkIfUserExist.Name && userModels.Email != checkIfUserExist.Email)
+                    return BadRequest("Nom déjà pris");
+                if (userModels.Name != checkIfUserExist.Name && userModels.Email == checkIfUserExist.Email)
+                    return BadRequest("Courriel déjà pris");
                 else
-                {
-                    return BadRequest("Usager déjà existant");
-                }
+                    return BadRequest("Nom et Courriel déjà utilisés");
             }
             catch (Exception exception)
             {
