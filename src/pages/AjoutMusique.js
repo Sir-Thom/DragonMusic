@@ -33,7 +33,7 @@ function formatTime(totalSeconds) {
 export default function AjoutMusique({ o }) {
   const [musicName, setMusicName] = useState("");
   const [Artist, setArtist] = useState("");
-  const [Time, setTime] = useState("");
+  const [Time, setTime] = useState("0");
   const [Cover, setCover] = useState("asset/placeholder.png");
   const [error, setError] = useState("");
   const [music, setMusic] = useState("");
@@ -76,11 +76,13 @@ export default function AjoutMusique({ o }) {
           console.log("Music ajouté");
           addMusicFile();
           addImage();
-          setTime("1");
-          setArtist("test");
-          setMusicName("test");
+          setTime("0");
+          setArtist("");
+          setMusicName("");
           setCover("../asset/placeholder.png");
-          setMusic("../asset/music/Enormous Penis.mp3");
+          setMusic("");
+
+          setResult("La musique a été ajoutée sans erreur!")
         } else {
           console.log("Erreur pas facteur donc pas poste");
         }
@@ -104,10 +106,10 @@ export default function AjoutMusique({ o }) {
       .then((response) => {
         if (response.ok) {
           setResult("Téléversement réussi");
-        } else setResult("Téléversement échoué, erreur: " + response.status);
+        } else throw new Error("Téléversement échoué, erreur: " + response.status);
       })
       .catch((err) => {
-        setResult("Erreur: " + err.message);
+        setError("Erreur: " + err.message);
       });
   };
 
@@ -124,11 +126,11 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          setResult("Téléversement réussi");
-        } else setResult("Téléversement échoué, erreur: " + response.status);
+          console.log("Image ajouté");
+        }
       })
       .catch((err) => {
-        setResult("Erreur: " + err.message);
+        setError("Erreur: " + err.message);
       });
   };
 
@@ -138,14 +140,17 @@ export default function AjoutMusique({ o }) {
   };
 
   const handleMusicNameChange = (event) => {
+    setResult("");
     setMusicName(event.target.value);
   };
 
   const handleArtistChange = (event) => {
+    setResult("");
     setArtist(event.target.value);
   };
 
   const handleCoverChange = (event) => {
+    setResult("");
     setFile(event.target.files[0]);
     const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
@@ -153,6 +158,7 @@ export default function AjoutMusique({ o }) {
   };
 
   const handleMusicFile = (event) => {
+    setResult("");
     //duration
     const audioFile = new Audio(URL.createObjectURL(event.target.files[0]));
     audioFile.addEventListener("loadedmetadata", () => {
@@ -167,10 +173,10 @@ export default function AjoutMusique({ o }) {
     
     //Music
     setMusicfile(event.target.files[0]);
-    const MusicUrl = URL.createObjectURL(event.target.files[0]);
+    const musicUrl = URL.createObjectURL(event.target.files[0]);
     console.log(event.target.files[0]);
-    setMusic(MusicUrl);
-    console.log(MusicUrl);
+    setMusic(musicUrl);
+    console.log(musicUrl);
     //handleTimeChange();
   };
 
@@ -213,8 +219,14 @@ export default function AjoutMusique({ o }) {
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="alert alert-success shadow-lg fixed mt-24" style={{display : result === "" ? "none" : "block"}}>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{result}</span>
+        </div>
+      </div>
       <div className="grid grid-cols-2 justify-center min-w-max w-full h-full pt-36 mb-12 shadow-lg font-Ubuntu gradiantPage bg-gradient-to-t from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 sm:grid-auto-rows gap-8">
-        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg">
+        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg" style={{marginTop : result !== "" ? "3rem" : "0rem" }}>
           <form
             onSubmit={onSubmitForm}
             className=" ml-4 pb-6 bg-transparent w-full max-w-xs "
@@ -267,7 +279,7 @@ export default function AjoutMusique({ o }) {
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
         </div>
-        <div className="mobile-view">
+        <div className="mobile-view" style={{marginTop : result !== "" ? "3rem" : "0rem" }}>
           <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
             <img
               src={Cover}
