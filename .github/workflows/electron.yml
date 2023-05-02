@@ -1,36 +1,42 @@
-name: Build Electron App
+name: Build Electron App with Forge
+
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        include:
-          - os: macos-latest
-            packageType: zip
-            target: darwin
-          - os: windows-latest
-            packageType: nsis
-            target: win32
-          - os: ubuntu-latest
-            packageType: deb
-            target: linux
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [14.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2.4.4
-        with:
-          node-version: 16.x
-      - name: Install Dependencies
-        run: npm ci
-      - name: Build Electron App
-        run: npm run build:${{ matrix.target }}
-      - name: Archive Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.target }}
-          path: out/make/${{ matrix.target }}/${{ matrix.packageType }}
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.5.2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install --save-dev @electron-forge/cli
+
+    - name: Build Electron app
+      run: npx electron-forge make --platform ${{ matrix.os }} --arch x64
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.os }}-build
+        path: out/make/*
+
+    - name: Create DEB package
+      run: npx electron-installer-debian --src out/make/* --dest out/installers/ --arch amd64
+
+    - name: Create RPM package
+      run: npx electron-installer-redhat --src out/make/* --dest out/installers/ --arch x86_64
