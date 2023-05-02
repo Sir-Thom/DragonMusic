@@ -45,13 +45,13 @@ namespace API_AGT_Web.Users.Data
             }
         }
 
-        public User GetUserByUsername(string username)
+        public User GetUserByUsername(string username, string email)
         {
             using (var db = new LiteDatabase(connectionString))
             {
                 var collection = db.GetCollection<UserEntity>(collectionName);
 
-                var userEntity = collection.Find(u => u.Name == username).FirstOrDefault();
+                var userEntity = collection.Find(u => u.Name == username || u.Email == email).FirstOrDefault();
 
                 if (userEntity is null)
                     return new User();
