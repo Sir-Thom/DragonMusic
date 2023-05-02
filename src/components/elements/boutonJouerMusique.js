@@ -59,7 +59,6 @@ function BouttonJouerMusique(props) {
     
     await loadMusiqueChoisi();
     setAutoplay(true);
-    console.log(autoPlay);
 
     //setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
 

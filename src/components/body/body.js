@@ -47,9 +47,11 @@ function MusicBars({ src }) {
    const audio = audioRef.current;
     const onTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
+      if (progressBarRef.current) {
       progressBarRef.current.style.width = `${
         (audio.currentTime / duration) * 100
       }%`;
+      }
     };
     const onLoadedMetadata = () => {
       setAutoplay(true);
@@ -79,15 +81,11 @@ function MusicBars({ src }) {
   const handlePlayPauseClick = async() => {
     if (isPlaying == true) {
       audioRef.current.pause();
-
-      
       setIsPlaying(false);
-      console.log("pause");
     } 
     else {
       audioRef.current.play();
       setIsPlaying(true);
-      console.log("play");
     }
   };
   const handleVolumeChange = (event) => {
@@ -101,7 +99,7 @@ function MusicBars({ src }) {
 
   const handleNextClick = () => {
     audioRef.current.currentTime = duration;
-
+ //   setMusics(Musics.id+1);
   };
   const handleMuteClick = () => {
     const newVolume = volume === 0 ? 1 : 0;
@@ -281,9 +279,9 @@ function Body() {
                 viewBox="0 0 24 24"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
