@@ -14,6 +14,7 @@ import {
   BsFillVolumeMuteFill,
 } from "react-icons/bs";
 
+
 const stocks = require("../data/musique.json");
 
 const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
@@ -29,6 +30,7 @@ function MusicBars({ src }) {
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [FirstCall,setFistCall] = useState(0);
   const [
     currentMusicId,
     setCurrentMusicId,
@@ -36,27 +38,31 @@ function MusicBars({ src }) {
     setMusics,
     musicTime,
     setMusicTime,
+    autoPlay, 
+    setAutoplay
   ] = useContext(MusicContext);
   const [volume, setVolume] = useState(1);
   useEffect(() => {
-    const audio = audioRef.current;
 
+   const audio = audioRef.current;
     const onTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
       progressBarRef.current.style.width = `${
         (audio.currentTime / duration) * 100
       }%`;
     };
-
     const onLoadedMetadata = () => {
+      setAutoplay(true);
       setDuration(audio.duration);
     };
     setCurrentMusicId(null);
 
-    const onPlay = () => {
+    
+    const onPlay = () => { 
+      setAutoplay(true);
       setIsPlaying(true);
     };
-
+    
     audio.addEventListener("timeupdate", onTimeUpdate);
     audio.addEventListener("loadedmetadata", onLoadedMetadata);
     audio.addEventListener("play", onPlay);
@@ -69,13 +75,19 @@ function MusicBars({ src }) {
     setMusics(NaN);
   }, [duration]);
 
-  const handlePlayPauseClick = () => {
-    if (isPlaying) {
+
+  const handlePlayPauseClick = async() => {
+    if (isPlaying == true) {
       audioRef.current.pause();
+
+      
       setIsPlaying(false);
-    } else {
+      console.log("pause");
+    } 
+    else {
       audioRef.current.play();
       setIsPlaying(true);
+      console.log("play");
     }
   };
   const handleVolumeChange = (event) => {
@@ -89,6 +101,7 @@ function MusicBars({ src }) {
 
   const handleNextClick = () => {
     audioRef.current.currentTime = duration;
+
   };
   const handleMuteClick = () => {
     const newVolume = volume === 0 ? 1 : 0;
@@ -121,11 +134,11 @@ function MusicBars({ src }) {
     audioRef.current.currentTime = newCurrentTime;
     setCurrentTime(newCurrentTime);
   };
-  console.log(currentMusicId);
+
 
   return (
     <nav className="fixed bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700 text-white p-2">
-      <audio autoPlay={true} ref={audioRef} src={Musics} controls={false} />
+      <audio autoPlay={autoPlay} ref={audioRef} src={Musics} controls={false} />
       <div className="flex justify-center items-center space-x-4">
         <motion.div className="flex justify-center items-center space-x-4">
           <motion.button
