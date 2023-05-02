@@ -88,23 +88,7 @@ function MusicBars({ src }) {
   };
 
   const handleNextClick = () => {
-    //setCurrentMusicId(currentMusicId + 1);
-
-    const loadMusiqueChoisi = async () => {
-      await fetch("https://localhost:7246/Music/" + 10, {
-        mode: "cors",
-        method: "GET",
-      })
-        .then((response) => response.json())
-        .then((music) => {
-          setCurrentMusicId(music.id);
-          Musics = music.musicFile;
-          setMusics(music.musicFile);
-        });
-    };
-
-    loadMusiqueChoisi();
-    //audioRef.current.currentTime = duration;
+    audioRef.current.currentTime = duration;
   };
   const handleMuteClick = () => {
     const newVolume = volume === 0 ? 1 : 0;
