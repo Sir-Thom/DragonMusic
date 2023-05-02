@@ -52,6 +52,7 @@ function MusicBars({ src }) {
       setDuration(audio.duration);
     };
     setCurrentMusicId(null);
+
     const onPlay = () => {
       setIsPlaying(true);
     };
@@ -65,6 +66,7 @@ function MusicBars({ src }) {
       audio.removeEventListener("loadedmetadata", onLoadedMetadata);
       audio.removeEventListener("play", onPlay);
     };
+    setMusics(NaN);
   }, [duration]);
 
   const handlePlayPauseClick = () => {
