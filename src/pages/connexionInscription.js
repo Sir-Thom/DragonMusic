@@ -14,6 +14,7 @@ export function Connexion() {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     estConnecter();
@@ -70,14 +71,20 @@ export function Connexion() {
       .then((response) => {
         if (response.ok) {
           return response.json();
-        } else {
-          console.log("Mauvaises informations");
-          return { token: "" };
+        }
+        else {
+          setError("Mauvaises informations");
         }
       })
       .then((data) => {
-        sessionStorage.setItem("token", data.token);
-        navigate("/");
+        if (data.token !== "") {
+          sessionStorage.setItem("token", data.token);
+          navigate("/");
+        }
+        else {
+          setError(
+            "Mauvaises informations");
+        }
       })
       .catch((err) => {
         console.log(err.message);
@@ -142,14 +149,23 @@ export function Connexion() {
             linkName="S'inscrire"
             linkUrl="/inscription"
           />
-
+          <div style={{display : error == null ? 'none' : "block"}}
+          onClick={() => setError(null)}>
+            <div className="alert alert-error shadow-lg">
+              <div>
+                <svg className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Mauvaises informations</span>
+              </div>
+            </div>
+            <br></br>
+          </div>
           <div className="  flex  flex-col items-center justify-center ">
             <div></div>
             <form onSubmit={handleLoginSubmit}>
               <div className="mb-6 ">
                 <label className="text-white">nom d'utilisateur</label>
                 <input
-                  placeholder="Xxx_Joe_Blow69_xxX"
+                  placeholder="votre nom d'utilisateur"
                   type="name"
                   className={`${
                     checkUsername !== "" ? "border-red-600" : "border-gray-300"
@@ -167,7 +183,7 @@ export function Connexion() {
               <div className="mb-6 ">
                 <label className="text-white">Couriel</label>
                 <input
-                  placeholder="Xxx_Joe_Blow69_xxX"
+                  placeholder="monEmail@gmail.com"
                   type="email"
                   className={`${
                     checkEmail !== "" ? "border-red-600" : "border-gray-300"
@@ -357,7 +373,7 @@ export function Inscription() {
                 <label className="text-white">nom d'utilisateur</label>
                 <input
                   required
-                  placeholder="Vicky"
+                  placeholder="Alexis Thibodeau"
                   type="name"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                   onChange={(input) => setUsername(input.target.value)}
