@@ -42,7 +42,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=1,
                     NomMusique = "RIP",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Nintendo Wii - Mii Channel Theme.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Nintendo Wii - Mii Channel Theme.mp3"),
                     Auteur = "Grim Reaper",
                     Image = "asset/died.gif",
                     MusicFile ="asset/music/Nintendo Wii - Mii Channel Theme.mp3"
@@ -51,7 +51,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=2,
                     NomMusique = "testation",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Jean-Marc",
                     Image = "asset/goofy_dragon.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -59,7 +59,7 @@ namespace API_AGT_Web.Music.Data
                 new Music(){
                     Id=3,
                     NomMusique = "test2",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "BABAJE",
                     Image = "asset/spag.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -68,7 +68,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=4,
                     NomMusique = "Sad song",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Gabriel",
                     Image = "asset/Moai.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -77,7 +77,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=5,
                     NomMusique = "testation2",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Maxime",
                     Image = "asset/MoaiVoiture.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -86,7 +86,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=6,
                     NomMusique = "Fishium",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Maxance Gusse",
                     Image = "asset/fish.gif",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -95,7 +95,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=7,
                     NomMusique = "we like fortnite",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "FortiniteGamer",
                     Image = "asset/fortiniteSong.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -104,7 +104,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=8,
                     NomMusique = "we like fortnite2",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Generated Gusse Feet",
                     Image = "asset/GoussePied.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -113,7 +113,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=9,
                     NomMusique = "I am dancing",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Green Dancing Guy",
                     Image = "asset/dance.webp",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -122,7 +122,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=10,
                     NomMusique = "Moyai",
-                    Duree = setupDurationForMusicInMemory("..\\..\\public\\asset\\music\\bluegrass banjo - country banjo.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../public/asset/music/bluegrass banjo - country banjo.mp3"),
                     Auteur = "Le Bolduc",
                     Image = "asset/moyai-dancing.gif",
                     MusicFile ="asset/music/bluegrass banjo - country banjo.mp3"
