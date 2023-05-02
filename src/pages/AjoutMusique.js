@@ -46,6 +46,7 @@ export default function AjoutMusique({ o }) {
 
   useEffect(() => {
     estConnecter();
+    addImage();
   });
 
   useEffect(() => {
@@ -167,10 +168,10 @@ export default function AjoutMusique({ o }) {
     
     //Music
     setMusicfile(event.target.files[0]);
-    const MusicUrl = URL.createObjectURL(event.target.files[0]);
+    const musicUrl = URL.createObjectURL(event.target.files[0]);
     console.log(event.target.files[0]);
-    setMusic(MusicUrl);
-    console.log(MusicUrl);
+    setMusic(musicUrl);
+    console.log(musicUrl);
     //handleTimeChange();
   };
 
@@ -213,8 +214,14 @@ export default function AjoutMusique({ o }) {
           </motion.div>
         )}
       </AnimatePresence>
+      <div className="alert alert-success shadow-lg fixed mt-24" style={{display : result == "" ? "none" : "block"}}>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{result}</span>
+        </div>
+      </div>
       <div className="grid grid-cols-2 justify-center min-w-max w-full h-full pt-36 mb-12 shadow-lg font-Ubuntu gradiantPage bg-gradient-to-t from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 sm:grid-auto-rows gap-8">
-        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg">
+        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg" style={{marginTop : result != "" ? "3rem" : "0rem" }}>
           <form
             onSubmit={onSubmitForm}
             className=" ml-4 pb-6 bg-transparent w-full max-w-xs "
@@ -267,7 +274,7 @@ export default function AjoutMusique({ o }) {
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
         </div>
-        <div className="mobile-view">
+        <div className="mobile-view" style={{marginTop : result != "" ? "3rem" : "0rem" }}>
           <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
             <img
               src={Cover}

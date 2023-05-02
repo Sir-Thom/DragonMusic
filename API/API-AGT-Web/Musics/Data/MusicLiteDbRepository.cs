@@ -236,7 +236,7 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<Music>(collectionName);
                 int lastId = collection.Max(x => x.Id);
                 Music music = collection.FindById(lastId);
-                music.Image = "..\\asset\\" + fileName;
+                music.Image = "../asset/" + fileName;
                 collection.Update(music);
             }
         }
@@ -248,7 +248,7 @@ namespace API_AGT_Web.Music.Data
                 var collection = db.GetCollection<Music>(collectionName);
                 int lastId = collection.Max(x => x.Id);
                 Music music = collection.FindById(lastId);
-                music.MusicFile = "..\\asset\\music\\" + fileName;
+                music.MusicFile = "../asset/music/" + fileName;
                 collection.Update(music);
             }
         }
