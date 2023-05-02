@@ -1,51 +1,10 @@
 {
   "name": "projet-agt-travail-session",
-  "productName": "projet-agt-travail-session",
-  "version": "1.0.0",
-  "description": "My Electron application description",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint src --color"
-  },
-  "keywords": [],
-  "author": "thomas",
+  "version": "0.1.0",
+  "author": "Thomas Gabriel Alexis",
+  "description": "Projet AGT Travail Session",
   "license": "MIT",
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "yarn"
-      },
-      "electronWinstallerConfig": {
-        "name": "projet_agt_travail_session"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "",
-        "name": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "projetagttravailsession"
-      }
-    }
-  },
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -84,6 +43,76 @@
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
+  "main": "src/start.js",
+  "scripts": {
+    "start-forge": "electron-forge start",
+    "build": "react-scripts build",
+    "build:windows": "electron-forge make --targets=win32",
+    "build:macos": "electron-forge make --targets=darwin",
+    "build:linux": "electron-forge make --targets=linux",
+    "build:rpm": "electron-forge make --targets=rpm",
+    "build:deb": "electron-forge make --targets=deb",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-start": "node src/start-react",
+    "start": "BROWSER=none react-scripts start",
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-flatpak",
+          "config": {}
+        }
+      ]
+    }
+  },
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",
     "@electron-forge/maker-deb": "^6.1.1",
@@ -96,5 +125,14 @@
     "postcss-nesting": "^11.2.0",
     "react-router-dom": "^6.8.1",
     "tailwindcss": "^3.2.6"
+  },
+  "build": {
+    "appId": "com.electron.electron-with-create-react-app",
+    "win": {
+      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+    },
+    "directories": {
+      "buildResources": "public"
+    }
   }
 }
