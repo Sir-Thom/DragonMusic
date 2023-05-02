@@ -32,7 +32,6 @@ function BouttonJouerMusique(props) {
         .then((response) => response.json())
         .then((music) => {
           setCurrentMusicId(music.id);
-          localStorage.setItem("duration", music.duree);
           setMusics(music.musicFile);
         });
     };
@@ -42,21 +41,21 @@ function BouttonJouerMusique(props) {
 
   function Play(e, idMusique) {
     e.preventDefault();
-    const audio = document.getElementById("audio" + idMusique);
+    //const audio = document.getElementById("audio" + idMusique);
     loadMusiqueChoisi();
 
-    setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
+    //setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
 
-    console.log(audio);
+    //console.log(audio);
 
     //alert(props.idMusique);
-    if (audio !== undefined) {
+    /*  if (audio !== undefined) {
       if (CasePlayStop === 1) {
         audio.play();
       } else if (CasePlayStop === 2) {
         audio.pause();
       }
-    }
+    }*/
   }
 
   //console.log(Musics)
@@ -66,8 +65,7 @@ function BouttonJouerMusique(props) {
       onClick={(e) => Play(e, props.idMusique)}
       className="  bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-110 duration-300 transform-gpu transition ease-in-out delay-150"
     >
-      {CasePlayStop === 1 ? <ImPlay2 /> : <ImPause />}
-      <Music idMusique={props.idMusique} audioFile={Musics} />
+      {<ImPlay2 />}
     </button>
   );
 }
