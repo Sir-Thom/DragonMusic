@@ -14,7 +14,6 @@ import {
   BsFillVolumeMuteFill,
 } from "react-icons/bs";
 
-
 const stocks = require("../data/musique.json");
 
 const StockListWithSearch = SearchBar(StockMusique, (item, searchTerm) => {
@@ -30,7 +29,7 @@ function MusicBars({ src }) {
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [FirstCall,setFistCall] = useState(0);
+  const [FirstCall, setFistCall] = useState(0);
   const [
     currentMusicId,
     setCurrentMusicId,
@@ -38,19 +37,18 @@ function MusicBars({ src }) {
     setMusics,
     musicTime,
     setMusicTime,
-    autoPlay, 
-    setAutoplay
+    autoPlay,
+    setAutoplay,
   ] = useContext(MusicContext);
   const [volume, setVolume] = useState(1);
   useEffect(() => {
-
-   const audio = audioRef.current;
+    const audio = audioRef.current;
     const onTimeUpdate = () => {
       setCurrentTime(audio.currentTime);
       if (progressBarRef.current) {
-      progressBarRef.current.style.width = `${
-        (audio.currentTime / duration) * 100
-      }%`;
+        progressBarRef.current.style.width = `${
+          (audio.currentTime / duration) * 100
+        }%`;
       }
     };
     const onLoadedMetadata = () => {
@@ -59,12 +57,11 @@ function MusicBars({ src }) {
     };
     setCurrentMusicId(null);
 
-    
-    const onPlay = () => { 
+    const onPlay = () => {
       setAutoplay(true);
       setIsPlaying(true);
     };
-    
+
     audio.addEventListener("timeupdate", onTimeUpdate);
     audio.addEventListener("loadedmetadata", onLoadedMetadata);
     audio.addEventListener("play", onPlay);
@@ -77,13 +74,11 @@ function MusicBars({ src }) {
     setMusics(NaN);
   }, [duration]);
 
-
-  const handlePlayPauseClick = async() => {
+  const handlePlayPauseClick = async () => {
     if (isPlaying == true) {
       audioRef.current.pause();
       setIsPlaying(false);
-    } 
-    else {
+    } else {
       audioRef.current.play();
       setIsPlaying(true);
     }
@@ -99,7 +94,7 @@ function MusicBars({ src }) {
 
   const handleNextClick = () => {
     audioRef.current.currentTime = duration;
- //   setMusics(Musics.id+1);
+    //   setMusics(Musics.id+1);
   };
   const handleMuteClick = () => {
     const newVolume = volume === 0 ? 1 : 0;
@@ -132,7 +127,6 @@ function MusicBars({ src }) {
     audioRef.current.currentTime = newCurrentTime;
     setCurrentTime(newCurrentTime);
   };
-
 
   return (
     <nav className="fixed bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700 text-white p-2">
@@ -230,7 +224,8 @@ function Body() {
   const [error, setError] = useState(null);
 
   const loadData = async () => {
-    fetch("https://localhost:7246/Music", {
+    //exemple pour les changement de call api
+    fetch(process.env.REACT_APP_API_URL + "/Music", {
       mode: "cors",
 
       headers: {
