@@ -28,7 +28,7 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var user = userRepository.GetUserByUsername(username);
+                var user = userRepository.GetUserByUsername(username, "");
 
                 if (user.Name == "")
                     return BadRequest("Usager invalide");
@@ -52,8 +52,8 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name);
-                if (checkIfUserExist.Name is "")
+                var checkIfUserExist = userRepository.GetUserByUsername(userModels.Name, userModels.Email);
+                if (checkIfUserExist is null)
                 {
                     userRepository.createOneUser(
                        new User()
@@ -65,10 +65,12 @@ namespace API_AGT_Web.Controllers
 
                     return Ok();
                 }
+                if (userModels.Name == checkIfUserExist.Name && userModels.Email != checkIfUserExist.Email)
+                    return BadRequest("Nom déjà pris");
+                if (userModels.Name != checkIfUserExist.Name && userModels.Email == checkIfUserExist.Email)
+                    return BadRequest("Courriel déjà pris");
                 else
-                {
-                    return BadRequest("Usager déjà existant");
-                }
+                    return BadRequest("Nom et Courriel déjà utilisés");
             }
             catch (Exception exception)
             {
@@ -81,7 +83,8 @@ namespace API_AGT_Web.Controllers
         {
             try
             {
-                var user = userRepository.GetUserByUsername(userModel.Name);
+                var user = userRepository.GetUserByUsername(userModel.Name, userModel.Email);
+                bool s = BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash);
 
                 if (user.Name == "" || !BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash))
                     return BadRequest("Informations de connexion invalides");

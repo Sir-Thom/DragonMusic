@@ -12,20 +12,20 @@ namespace API_AGT_Web.Users.Data
             {
                     Name = "John Doe",
                     Email = "johndoe@example.com",
-                    PasswordHash = "password"
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("password")
             },
             new User()
             {
                  Name = "human",
                  Email = "human@example.com",
-                 PasswordHash = "human"
+                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("human")
             }
             ,
             new User()
             {
                  Name = "human1",
                  Email = "human1@example.com",
-                 PasswordHash = "human1"
+                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("human1")
             }
         };
 
@@ -64,7 +64,7 @@ namespace API_AGT_Web.Users.Data
             
         }
 
-        public User GetUserByUsername(string username)
+        public User GetUserByUsername(string username, string email)
         {
             throw new NotImplementedException();
         }

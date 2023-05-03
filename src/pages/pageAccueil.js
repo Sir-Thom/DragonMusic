@@ -9,7 +9,6 @@ export default class Accueil extends React.Component {
     return (
       <Fragment>
         <Body className="mb-8"></Body>
-        <MusicBar></MusicBar>
       </Fragment>
     );
   }

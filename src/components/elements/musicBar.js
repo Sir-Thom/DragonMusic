@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { MusicContext } from "./musicContext";
 import {
   BsPlayCircleFill,
   BsSkipStartCircleFill,
+  BsPauseCircleFill,
   BsSkipEndCircleFill,
 } from "react-icons/bs";
 
@@ -16,7 +17,6 @@ function ConvertTime(timestamp) {
   return timestamp;
 }
 function Play(e, idMusique) {
-  debugger;
   e.preventDefault();
   const [CasePlayStop, setSelectedIcon] = useState(1);
   setSelectedIcon(CasePlayStop === 1 ? 2 : 1);
@@ -32,29 +32,19 @@ function Play(e, idMusique) {
 function MusicBar(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(100);
-  const [currentMusicId, setCurrentMusicId, Musics, setMusics] =
-    useContext(MusicContext);
+  const [changerButtonPlay, setChangerButtonPlay] = useState(true);
+
   const date = new Date(0);
   date.setSeconds(currentTime);
   const timeString = date.toISOString().substr(14, 5);
-  console.log("musics " + localStorage.getItem("idMusique"));
-  const loadMusiqueChoisi = async () => {
-    await fetch(
-      "https://localhost:7246/Music/" + localStorage.getItem("idMusique"),
-      {
-        mode: "cors",
-        method: "GET",
-      }
-    )
-      .then((response) => response.json())
-      .then((music) => {
-        setCurrentMusicId(music.id);
-        // put all music file in Musics
 
-        setMusics(music.musicFile);
-        console.log("musics " + Musics);
-      });
-  };
+  function changerStateButtonPLay() {
+    if (changerButtonPlay === true) {
+      setChangerButtonPlay(false);
+    } else {
+      setChangerButtonPlay(true);
+    }
+  }
 
   return (
     <nav className="isolate h-20 absolute right-0 bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700">
@@ -62,7 +52,7 @@ function MusicBar(props) {
         <input
           type="range"
           min={0}
-          max={100}
+          max={duration}
           value={currentTime}
           onChange={(e) => setCurrentTime(e.target.value)}
           className="range range-xs range-primary h-1/4 mt-1 "
@@ -78,6 +68,7 @@ function MusicBar(props) {
             }}
             className="focus:outline-none"
           >
+            {}
             <BsSkipStartCircleFill
               className=" relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
               size={30}
@@ -85,13 +76,20 @@ function MusicBar(props) {
           </button>
           <button
             id={"audio" + localStorage.getItem("idMusique")}
-            onClick={console.log(localStorage.getItem("idMusique"))}
+            onClick={() => changerStateButtonPLay()}
             className="snap-center items-center focus:outline-none"
           >
-            <BsPlayCircleFill
-              className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
-              size={35}
-            ></BsPlayCircleFill>
+            {changerButtonPlay === false ? (
+              <BsPauseCircleFill
+                className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
+                size={35}
+              ></BsPauseCircleFill>
+            ) : (
+              <BsPlayCircleFill
+                className="relative text-violet-600 hover:scale-110 duration-300 transform-gpu transition ease-in-out "
+                size={35}
+              ></BsPlayCircleFill>
+            )}
           </button>
           <button
             onClick={() => {
