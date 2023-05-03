@@ -48,15 +48,18 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+var corsSettings = builder.Configuration.GetSection("CorsSettings");
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000", "http://localhost:4000")
-            .AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+            policy.WithOrigins(corsSettings["AllowedOrigins"])
+            .AllowAnyHeader()
+            .AllowAnyMethod();
         }
-        );
+    );
 });
 
 var app = builder.Build();
