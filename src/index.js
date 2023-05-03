@@ -12,8 +12,8 @@ import AjoutMusique from "./pages/AjoutMusique";
 note pour futur moi 
 
 les class empêche d'utiliser les routes comme il faut
-*/
 
+*/
 const router = createBrowserRouter([
   {
     path: "connexion",
@@ -35,7 +35,6 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 root.render(
   <Fragment>
     <React.StrictMode>
