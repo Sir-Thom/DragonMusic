@@ -14,7 +14,7 @@ builder.Services.Configure<KestrelServerOptions>(options =>
 {
 
     options.AllowSynchronousIO = true;
-    options.Listen((System.Net.IPAddress.Parse(url.Split(":")[0])), int.Parse(url.Split(":")[1]));
+    options.Listen(System.Net.IPAddress.Parse("20.196.210.245"), 5000);
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
 });
