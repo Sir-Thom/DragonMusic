@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.ListenAnyIP(5000);
+    //options.ListenAnyIP(5000);
 
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
@@ -55,6 +55,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var corsSettings = builder.Configuration.GetSection("CorsSettings");
+var test = corsSettings["AllowedOrigins"];
 
 builder.Services.AddCors(options =>
 {
