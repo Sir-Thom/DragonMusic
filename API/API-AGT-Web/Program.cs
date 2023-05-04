@@ -7,13 +7,14 @@ using Swashbuckle.AspNetCore.Filters;
 var builder = WebApplication.CreateBuilder(args);
 // set default address ip and port
 
-
+var url = builder.Configuration.GetSection("Url").Value;
 
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
+
     options.AllowSynchronousIO = true;
-    options.ListenAnyIP(5000);
+    options.Listen((System.Net.IPAddress.Parse(url.Split(":")[0])), int.Parse(url.Split(":")[1]));
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
 });
