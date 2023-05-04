@@ -12,10 +12,11 @@ namespace API_AGT_Web.Controllers
     public class MusicController : ControllerBase
     {
         //le path a été ajuster pour quand on vas le mettre dans le vm changer si sur windows
-        private const string directoryPath = "../../public/asset/";
-
+        //private const string configDirPathAsset = "../../build/asset/";
+        private  string configDirPathAsset;
+        private  string configDirPathMusic;
         //const string directoryPath = "..\\..\\public\\asset\\";
-        private const string directoryPathMusic = "../../public/asset/music/";
+        //private const string directoryPathMusic = "../../build/asset/music/";
 
         private IMusicLiteDbRepository musicRepository;
         private readonly IConfiguration _config;
@@ -23,6 +24,8 @@ namespace API_AGT_Web.Controllers
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
             _config = configuration;
+            configDirPathAsset = configuration["PathAsset"].ToString();
+            configDirPathMusic = configuration["PathMusic"].ToString();
         }
 
         [HttpPost]
@@ -82,9 +85,9 @@ namespace API_AGT_Web.Controllers
         [HttpPost("/Image")]
         public IActionResult SaveImageInSystem(IFormFile image)
         {
-            if (!Directory.Exists(directoryPath))
+            if (!Directory.Exists(configDirPathAsset))
             {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(configDirPathAsset);
             }
 
             try
@@ -95,7 +98,7 @@ namespace API_AGT_Web.Controllers
                 if (image.Length > 0)
                 {
                     var fileName = image.FileName;
-                    var filePath = Path.Combine(directoryPath, fileName);
+                    var filePath = Path.Combine(configDirPathAsset, fileName);
                     var fileExtension = Path.GetExtension(filePath).ToLower();
 
                     if (fileExtension != ".gif" && fileExtension != ".jpg" && fileExtension != ".jpeg" &&
@@ -124,9 +127,9 @@ namespace API_AGT_Web.Controllers
         [HttpPost("/MusicFile")]
         public IActionResult SaveMusicInSystem(IFormFile music)
         {
-            if (!Directory.Exists(directoryPath))
+            if (!Directory.Exists(configDirPathAsset))
             {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(configDirPathAsset);
             }
 
             try
@@ -137,7 +140,7 @@ namespace API_AGT_Web.Controllers
                 if (music.Length > 0)
                 {
                     var fileName = music.FileName;
-                    var filePath = Path.Combine(directoryPathMusic, fileName);
+                    var filePath = Path.Combine(configDirPathMusic, fileName);
                     var fileExtension = Path.GetExtension(filePath).ToLower();
                     Console.WriteLine(filePath.ToString());
                     if (fileExtension != ".mp3" && fileExtension != ".wav" && fileExtension != ".ogg")
