@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.AllowSynchronousIO = true;
 
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
