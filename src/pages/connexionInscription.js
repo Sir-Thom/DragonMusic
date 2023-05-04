@@ -205,7 +205,7 @@ export function Connexion() {
                   required
                   className={`${
                     checkPassword !== "" ? "border-red-600" : "border-gray-300"
-                  } form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
+                  } form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
                   type="password"
                   placeholder="mot de passe"
                   onChange={(input) => setPassword(input.target.value)}
@@ -438,7 +438,7 @@ export function Inscription() {
                 <label className="text-white">Mot de passe</label>
                 <input
                   required
-                  className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                   type="password"
                   placeholder="mot de passe"
                   onChange={(input) => setPassword(input.target.value)}
