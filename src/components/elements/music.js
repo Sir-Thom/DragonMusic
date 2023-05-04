@@ -3,9 +3,9 @@ import React, { useState } from "react";
 function Music(props) {
   const [musicToPlay, setMusicToPlay] = useState("");
 
-  function getMusic(){
+  function getMusic() {
     const loadMusiqueChoisi = async () => {
-      await fetch("https://localhost:7246/Music/" + props.idMusique, {
+      await fetch(process.env.REACT_APP_API_URL + "/Music/" + props.idMusique, {
         mode: "cors",
         method: "GET",
       })
@@ -18,7 +18,7 @@ function Music(props) {
     loadMusiqueChoisi();
 
     return musicToPlay;
-}
+  }
   //console.log("la musique à jouer: " + props.audioFile);
 
   return (
