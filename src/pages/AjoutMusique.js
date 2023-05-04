@@ -58,7 +58,7 @@ export default function AjoutMusique({ o }) {
   }, [error]);
 
   const addMusic = async () => {
-    fetch("https://localhost:7246/Music", {
+    fetch(process.env.REACT_APP_API_URL + "/Music/", {
       method: "POST",
       body: JSON.stringify({
         NomMusique: musicName,
@@ -82,7 +82,7 @@ export default function AjoutMusique({ o }) {
           setCover("../asset/placeholder.png");
           setMusic("");
 
-          setResult("La musique a été ajoutée sans erreur!")
+          setResult("La musique a été ajoutée sans erreur!");
         } else {
           console.log("Erreur pas facteur donc pas poste");
         }
@@ -96,7 +96,7 @@ export default function AjoutMusique({ o }) {
     const formData = new FormData();
     formData.append("music", musicfile, musicfile.name);
     console.log(musicfile.name);
-    await fetch("https://localhost:7246/MusicFile", {
+    await fetch(process.env.REACT_APP_API_URL + "/MusicFile", {
       method: "POST",
       body: formData,
       headers: {
@@ -106,7 +106,8 @@ export default function AjoutMusique({ o }) {
       .then((response) => {
         if (response.ok) {
           setResult("Téléversement réussi");
-        } else throw new Error("Téléversement échoué, erreur: " + response.status);
+        } else
+          throw new Error("Téléversement échoué, erreur: " + response.status);
       })
       .catch((err) => {
         setError("Erreur: " + err.message);
@@ -117,7 +118,7 @@ export default function AjoutMusique({ o }) {
     const formData = new FormData();
     formData.append("image", file, file.name);
 
-    await fetch("https://localhost:7246/Image", {
+    await fetch(process.env.REACT_APP_API_URL + "/Image", {
       method: "POST",
       body: formData,
       headers: {
@@ -170,7 +171,7 @@ export default function AjoutMusique({ o }) {
     if (musicfile == null) {
       setTime("00:00");
     }
-    
+
     //Music
     setMusicfile(event.target.files[0]);
     const musicUrl = URL.createObjectURL(event.target.files[0]);
@@ -219,14 +220,32 @@ export default function AjoutMusique({ o }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="alert alert-success shadow-lg fixed mt-24" style={{display : result === "" ? "none" : "block"}}>
+      <div
+        className="alert alert-success shadow-lg fixed mt-24"
+        style={{ display: result === "" ? "none" : "block" }}
+      >
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-current flex-shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
           <span>{result}</span>
         </div>
       </div>
       <div className="grid grid-cols-2 justify-center min-w-max w-full h-full pt-36 mb-12 shadow-lg font-Ubuntu gradiantPage bg-gradient-to-t from-cod-gray to-cod-gray-800 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 grid-rows-2 sm:grid-auto-rows gap-8">
-        <div className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg" style={{marginTop : result !== "" ? "3rem" : "0rem" }}>
+        <div
+          className="rounded ml-10  h-fit w-96 bg-cod-gray-600   shadow-lg"
+          style={{ marginTop: result !== "" ? "3rem" : "0rem" }}
+        >
           <form
             onSubmit={onSubmitForm}
             className=" ml-4 pb-6 bg-transparent w-full max-w-xs "
@@ -279,7 +298,10 @@ export default function AjoutMusique({ o }) {
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>
           </form>
         </div>
-        <div className="mobile-view" style={{marginTop : result !== "" ? "3rem" : "0rem" }}>
+        <div
+          className="mobile-view"
+          style={{ marginTop: result !== "" ? "3rem" : "0rem" }}
+        >
           <div className="rounded  ml-10  h-fit w-72 bg-cod-gray-600   overflow-hidden shadow-lg">
             <img
               src={Cover}

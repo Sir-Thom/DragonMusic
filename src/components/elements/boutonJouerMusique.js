@@ -6,11 +6,17 @@ import { MusicContext } from "./musicContext";
 function BouttonJouerMusique(props) {
   const [CasePlayStop, setSelectedIcon] = useState(1);
   // const [currentMusicId, setCurrentMusicId] = useState(MusicContext);
-  const [currentMusicId, setCurrentMusicId, Musics, setMusics,autoPlay,setAutoplay] =
-    useContext(MusicContext);
+  const [
+    currentMusicId,
+    setCurrentMusicId,
+    Musics,
+    setMusics,
+    autoPlay,
+    setAutoplay,
+  ] = useContext(MusicContext);
   const [musicId, setMusicId] = useState(0);
 
-/*const loadAllmusic = async () => {
+  /*const loadAllmusic = async () => {
   await fetch("https://localhost:7246/Music/" + props.idMusique, {
     mode: "cors",
     method: "GET",
@@ -24,7 +30,7 @@ function BouttonJouerMusique(props) {
 };*/
 
   const loadMusiqueChoisi = async () => {
-    await fetch("https://localhost:7246/Music/" + props.idMusique, {
+    await fetch(process.env.REACT_APP_API_URL + "/Music/" + props.idMusique, {
       mode: "cors",
       method: "GET",
     })
@@ -39,7 +45,7 @@ function BouttonJouerMusique(props) {
 
   useEffect(() => {
     const loadMusiqueChoisi = async () => {
-      await fetch("https://localhost:7246/Music/" + props.idMusique, {
+      await fetch(process.env.REACT_APP_API_URL + "/Music/" + props.idMusique, {
         mode: "cors",
         method: "GET",
       })
@@ -53,10 +59,10 @@ function BouttonJouerMusique(props) {
     loadMusiqueChoisi();
   }, []);
 
-  const Play = async (e, idMusique) =>{
+  const Play = async (e, idMusique) => {
     e.preventDefault();
     //const audio = document.getElementById("audio" + idMusique);
-    
+
     await loadMusiqueChoisi();
     setAutoplay(true);
 
@@ -72,7 +78,7 @@ function BouttonJouerMusique(props) {
         audio.pause();
       }
     }*/
-  }
+  };
 
   //console.log(Musics)
   return (
