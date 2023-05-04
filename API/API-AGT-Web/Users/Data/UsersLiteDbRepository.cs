@@ -54,7 +54,7 @@ namespace API_AGT_Web.Users.Data
                 var userEntity = collection.Find(u => u.Name == username || u.Email == email).FirstOrDefault();
 
                 if (userEntity is null)
-                    return new User();
+                    return null;
 
                 return new User()
                 {

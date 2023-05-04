@@ -47,8 +47,12 @@ export function Connexion() {
       mode: "cors",
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((response) => 
+      { if (!response.ok)
+        { throw new Error("Failed to fetch"); }
+        return response.json()})
+      .then((data) => setData(data))
+      .catch((err) => setError(err.message));	
   };
 
   useEffect(() => {
@@ -72,7 +76,7 @@ export function Connexion() {
           return response.json();
         }
         else {
-          setError("Mauvaises informations");
+          throw new Error("Mauvaises informations");
         }
       })
       .then((data) => {
@@ -81,11 +85,11 @@ export function Connexion() {
           navigate("/");
         }
         else {
-          setError("Mauvaises informations");
+          throw new Error("Mauvaises informations");
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
       });
   };
 
@@ -147,12 +151,11 @@ export function Connexion() {
             linkName="S'inscrire"
             linkUrl="/inscription"
           />
-          <div style={{display : error == null ? 'none' : "block"}}
-          onClick={() => setError(null)}>
+          <div style={{display : error == null ? 'none' : "block"}}>
             <div className="alert alert-error shadow-lg">
               <div>
                 <svg className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Mauvaises informations</span>
+                <span>{error}</span>
               </div>
             </div>
             <br></br>
@@ -271,8 +274,14 @@ export function Inscription() {
       mode: "cors",
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((response) => {
+        if(!response.ok) {
+          throw new Error("Failed to fetch");
+        } return response.json();})
+      .then((data) => setData(data))
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   useEffect(() => {
