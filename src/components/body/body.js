@@ -232,7 +232,6 @@ function Body() {
     //exemple pour les changement de call api
     fetch(process.env.REACT_APP_API_URL + "/Music", {
       mode: "cors",
-
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
