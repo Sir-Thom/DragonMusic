@@ -73,7 +73,6 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Music ajouté");
           addMusicFile();
           addImage();
           setTime("0");
@@ -95,7 +94,6 @@ export default function AjoutMusique({ o }) {
   const addMusicFile = async () => {
     const formData = new FormData();
     formData.append("music", musicfile, musicfile.name);
-    console.log(musicfile.name);
     await fetch(process.env.REACT_APP_API_URL + "/MusicFile", {
       method: "POST",
       body: formData,
@@ -127,7 +125,6 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Image ajouté");
         }
       })
       .catch((err) => {
@@ -155,7 +152,6 @@ export default function AjoutMusique({ o }) {
     setFile(event.target.files[0]);
     const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
-    console.log(imageUrl);
   };
 
   const handleMusicFile = (event) => {
@@ -165,8 +161,7 @@ export default function AjoutMusique({ o }) {
     audioFile.addEventListener("loadedmetadata", () => {
       const duration = Math.floor(audioFile.duration);
       //const musicTime = formatTime(duration.toString());
-      setTime(duration);
-      console.log("Duration:", duration); // The duration of the audio file in second
+      setTime(duration); // The duration of the audio file in second
     });
     if (musicfile == null) {
       setTime("00:00");
@@ -175,9 +170,8 @@ export default function AjoutMusique({ o }) {
     //Music
     setMusicfile(event.target.files[0]);
     const musicUrl = URL.createObjectURL(event.target.files[0]);
-    console.log(event.target.files[0]);
     setMusic(musicUrl);
-    console.log(musicUrl);
+
     //handleTimeChange();
   };
 
