@@ -65,7 +65,6 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(corsSettings["AllowedOrigins"])
             .AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowCredentials()
             .WithExposedHeaders("Access-Control-Allow-Origin")
             .AllowAnyMethod();
         }
@@ -76,10 +75,10 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsProduction())
+/*if (app.Environment.i())
 {
     app.UseHttpsRedirection();
-}
+}*/
 
 app.UseHttpsRedirection();
 if (app.Environment.IsDevelopment())
@@ -88,7 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseCors();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowAnyOrigin");
