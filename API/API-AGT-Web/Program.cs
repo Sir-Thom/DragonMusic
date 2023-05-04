@@ -7,14 +7,13 @@ using Swashbuckle.AspNetCore.Filters;
 var builder = WebApplication.CreateBuilder(args);
 // set default address ip and port
 
-var url = builder.Configuration.GetSection("Url").Value;
+
 
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-
     options.AllowSynchronousIO = true;
-    options.Listen(System.Net.IPAddress.Parse("20.196.210.245"), 5000);
+
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
 });
@@ -25,6 +24,10 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartBoundaryLengthLimit = int.MaxValue;
     options.MultipartBodyLengthLimit = int.MaxValue; //Default is 128MB
     options.MultipartHeadersLengthLimit = int.MaxValue;
+});
+builder.Host.ConfigureWebHostDefaults(webBuilder =>
+{
+    webBuilder.UseUrls("http://20.196.210.245:5000");
 });
 
 builder.Services.AddControllers();
@@ -58,11 +61,9 @@ var corsSettings = builder.Configuration.GetSection("CorsSettings");
 
 builder.Services.AddCors(options =>
 {
-
     options.AddDefaultPolicy(
         policy =>
         {
-
             policy.WithOrigins(corsSettings["AllowedOrigins"])
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -87,7 +88,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowAnyOrigin");
 app.MapControllers();
 
 app.Run();
