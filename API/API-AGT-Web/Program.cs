@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
+    options.ListenAnyIP(5000);
 
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
@@ -24,10 +25,7 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartBodyLengthLimit = int.MaxValue; //Default is 128MB
     options.MultipartHeadersLengthLimit = int.MaxValue;
 });
-builder.Host.ConfigureWebHostDefaults(webBuilder =>
-{
-    webBuilder.UseUrls("http://20.196.210.245:5000");
-});
+
 
 builder.Services.AddControllers();
 
@@ -64,6 +62,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(corsSettings["AllowedOrigins"])
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
         }
