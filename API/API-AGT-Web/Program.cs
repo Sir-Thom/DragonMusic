@@ -55,7 +55,6 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var corsSettings = builder.Configuration.GetSection("CorsSettings");
-var test = corsSettings["AllowedOrigins"];
 
 builder.Services.AddCors(options =>
 {
@@ -65,7 +64,6 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(corsSettings["AllowedOrigins"])
             .AllowAnyOrigin()
             .AllowAnyHeader()
-            .WithExposedHeaders("Access-Control-Allow-Origin")
             .AllowAnyMethod();
         }
     );
@@ -75,12 +73,10 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-/*if (app.Environment.i())
+if (app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
-}*/
-
-//app.UseHttpsRedirection();
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
