@@ -293,7 +293,6 @@ export function Inscription() {
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();
-    //console.log(data);
   }
 
   const addUserDb = async () => {
@@ -310,13 +309,12 @@ export function Inscription() {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("User added");
           navigation("/connexion");
         } else {
           response
             .text()
             .then((result) => {
-              console.log(result); // This will log the resolved value of the promise
+               // This will log the resolved value of the promise
               //setError(result);
               throw new Error(result);
             })
@@ -327,7 +325,7 @@ export function Inscription() {
       })
       .catch((error) => {
         setError(error.message);
-        //console.log(this.error);
+        
       });
   };
 
