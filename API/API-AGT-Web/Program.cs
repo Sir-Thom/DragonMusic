@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.ListenAnyIP(5000);
+    //options.ListenAnyIP(5000);
 
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
@@ -56,17 +56,7 @@ builder.Services.AddSwaggerGen(options =>
 
 var corsSettings = builder.Configuration.GetSection("CorsSettings");
 var test = corsSettings["AllowedOrigins"];
-builder.Services.AddCors(options =>
-{
 
-    options.AddPolicy("default", builder =>
-    {
-        builder.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-
-});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -75,6 +65,8 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(corsSettings["AllowedOrigins"])
             .AllowAnyOrigin()
             .AllowAnyHeader()
+            .AllowCredentials()
+            .WithExposedHeaders("Access-Control-Allow-Origin")
             .AllowAnyMethod();
         }
     );
@@ -96,12 +88,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors();
+//app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowAnyOrigin");
-app.UseCors("default");
-app.UseCors("AllowAllOrigins");
 app.MapControllers();
 
 app.Run();
