@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.ListenAnyIP(5000);
+    //options.ListenAnyIP(5000);
 
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
@@ -73,10 +73,12 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
 {
     app.UseHttpsRedirection();
 }
+
+app.UseHttpsRedirection();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

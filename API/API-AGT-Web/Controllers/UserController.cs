@@ -69,8 +69,10 @@ namespace API_AGT_Web.Controllers
                     return BadRequest("Nom déjà pris");
                 if (userModels.Name != checkIfUserExist.Name && userModels.Email == checkIfUserExist.Email)
                     return BadRequest("Courriel déjà pris");
-                else
+                else if (userModels.Name == checkIfUserExist.Name && userModels.Email == checkIfUserExist.Email)
                     return BadRequest("Nom et Courriel déjà utilisés");
+                else
+                    return BadRequest("Informations invalides");
             }
             catch (Exception exception)
             {

@@ -16,7 +16,7 @@ describe("Connexion component", () => {
       </MemoryRouter>
     );
 
-    const inputFields = screen.getAllByPlaceholderText("Xxx_Joe_Blow69_xxX");
+    const inputFields = screen.getAllByPlaceholderText("Alexis Thibodeau");
     const usernameInput = inputFields[0];
     const emailInput = inputFields[1];
     //  const usernameInput = screen.getByPlaceholderText("Xxx_Joe_Blow69_xxX");
@@ -37,7 +37,7 @@ describe("Connexion component", () => {
       </MemoryRouter>
     );
 
-    const usernameInputs = screen.getAllByPlaceholderText("Xxx_Joe_Blow69_xxX");
+    const usernameInputs = screen.getAllByPlaceholderText("Alexis Thibodeau");
     fireEvent.change(usernameInputs[0], { target: { value: "" } });
 
     await waitFor(() =>

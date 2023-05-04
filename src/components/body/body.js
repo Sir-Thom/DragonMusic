@@ -78,7 +78,12 @@ function MusicBars({ src }) {
     if (isPlaying == true) {
       audioRef.current.pause();
       setIsPlaying(false);
-    } else {
+    } 
+    else {
+      if (audioRef.current.src.includes("[object%20Object]")) {
+        //console.log("aucune musique n'est selectionné ou elle n'a pas de source");
+        return;
+      }
       audioRef.current.play();
       setIsPlaying(true);
     }
@@ -181,7 +186,7 @@ function MusicBars({ src }) {
         </span>
 
         <div className="flex relative items-center w-[30%]">
-          <div className="-mx-2" onClick={handleMuteClick}>
+          <div className="-mx-2 mr-1" onClick={handleMuteClick}>
             {isMuted ? (
               <BsFillVolumeMuteFill size={20} />
             ) : (
@@ -227,7 +232,6 @@ function Body() {
     //exemple pour les changement de call api
     fetch(process.env.REACT_APP_API_URL + "/Music", {
       mode: "cors",
-
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
