@@ -5,10 +5,15 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
+// set default address ip and port
+
+
 
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
+    options.ListenAnyIP(5000);
+
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
 });
@@ -20,6 +25,7 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartBodyLengthLimit = int.MaxValue; //Default is 128MB
     options.MultipartHeadersLengthLimit = int.MaxValue;
 });
+
 
 builder.Services.AddControllers();
 
@@ -56,16 +62,17 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(corsSettings["AllowedOrigins"])
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
         }
     );
 });
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-builder.Services.AddHttpContextAccessor();
 if (app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
@@ -79,7 +86,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowAnyOrigin");
 app.MapControllers();
 
 app.Run();
