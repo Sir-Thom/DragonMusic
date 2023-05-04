@@ -30,7 +30,7 @@ function BouttonJouerMusique(props) {
 };*/
 
   const loadMusiqueChoisi = async () => {
-    await fetch(process.env.REACT_APP_API_URL + +props.idMusique, {
+    await fetch(process.env.REACT_APP_API_URL + "/Music/" + props.idMusique, {
       mode: "cors",
       method: "GET",
     })
