@@ -18,10 +18,11 @@ namespace API_AGT_Web.Controllers
         private const string directoryPathMusic = "../../public/asset/music/";
 
         private IMusicLiteDbRepository musicRepository;
-
+        private readonly IConfiguration _config;
         public MusicController(IConfiguration configuration)
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
+            _config = configuration;
         }
 
         [HttpPost]
@@ -49,6 +50,7 @@ namespace API_AGT_Web.Controllers
         [HttpGet]
         public IEnumerable<Music.Music> Get()
         {
+            var apiUrl = _config.GetValue<string>("AppSettings:Url");
             return musicRepository.GetMusics().Select(m =>
             new Music.Music()
             {

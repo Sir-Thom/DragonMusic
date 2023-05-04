@@ -5,10 +5,15 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
+// set default address ip and port
+
+
 
 // Add services to the container.
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
+    options.AllowSynchronousIO = true;
+    options.ListenAnyIP(5000);
     // default is 30 MB
     options.Limits.MaxRequestBodySize = int.MaxValue;
 });
