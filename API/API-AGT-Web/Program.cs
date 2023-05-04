@@ -55,13 +55,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var corsSettings = builder.Configuration.GetSection("CorsSettings");
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAnyOrigin",
-        builder => builder.AllowAnyOrigin()
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
-});
+
 builder.Services.AddCors(options =>
 {
 
