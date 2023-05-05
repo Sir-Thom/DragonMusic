@@ -10,7 +10,7 @@ namespace API_AGT_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowAnyOrigin")]
+    
     public class MusicController : ControllerBase
     {
         private readonly IConfiguration _config;
