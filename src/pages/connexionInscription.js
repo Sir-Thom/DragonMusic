@@ -43,12 +43,16 @@ export function Connexion() {
   const [data, setData] = useState([]);
 
   const loadData = async () => {
-    fetch("https://localhost:7246/User", {
+    fetch(process.env.REACT_APP_API_URL + "/User", {
       mode: "cors",
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((response) => 
+      { if (!response.ok)
+        { throw new Error("Failed to fetch"); }
+        return response.json()})
+      .then((data) => setData(data))
+      .catch((err) => setError(err.message));	
   };
 
   useEffect(() => {
@@ -56,7 +60,7 @@ export function Connexion() {
   }, []);
 
   const tryLogin = async () => {
-    await fetch("https://localhost:7246/User/LogIn", {
+    await fetch(process.env.REACT_APP_API_URL + "/User/LogIn", {
       method: "POST",
       body: JSON.stringify({
         name: username,
@@ -72,7 +76,7 @@ export function Connexion() {
           return response.json();
         }
         else {
-          setError("Mauvaises informations");
+          throw new Error("Mauvaises informations");
         }
       })
       .then((data) => {
@@ -81,11 +85,11 @@ export function Connexion() {
           navigate("/");
         }
         else {
-          setError("Mauvaises informations");
+          throw new Error("Mauvaises informations");
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
       });
   };
 
@@ -147,12 +151,11 @@ export function Connexion() {
             linkName="S'inscrire"
             linkUrl="/inscription"
           />
-          <div style={{display : error == null ? 'none' : "block"}}
-          onClick={() => setError(null)}>
+          <div style={{display : error == null ? 'none' : "block"}}>
             <div className="alert alert-error shadow-lg">
               <div>
                 <svg className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Mauvaises informations</span>
+                <span>{error}</span>
               </div>
             </div>
             <br></br>
@@ -202,7 +205,7 @@ export function Connexion() {
                   required
                   className={`${
                     checkPassword !== "" ? "border-red-600" : "border-gray-300"
-                  } form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
+                  } form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border-2  border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none`}
                   type="password"
                   placeholder="mot de passe"
                   onChange={(input) => setPassword(input.target.value)}
@@ -239,7 +242,7 @@ export function Inscription() {
   const [checkUsername, setCheckUsername] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [error, setError] = useState("");
-  
+
   const navigation = useNavigate();
   const slideToScreen = {
     hidden: {
@@ -267,12 +270,18 @@ export function Inscription() {
   const [data, setData] = useState([]);
 
   const loadData = async () => {
-    fetch("https://localhost:7246/User", {
+    fetch(process.env.REACT_APP_API_URL + "/User", {
       mode: "cors",
       method: "GET",
     })
-      .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((response) => {
+        if(!response.ok) {
+          throw new Error("Failed to fetch");
+        } return response.json();})
+      .then((data) => setData(data))
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   useEffect(() => {
@@ -282,11 +291,10 @@ export function Inscription() {
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();
-    //console.log(data);
   }
 
   const addUserDb = async () => {
-    fetch("https://localhost:7246/User/SignUp", {
+    fetch(process.env.REACT_APP_API_URL + "/User/SignUp", {
       method: "POST",
       body: JSON.stringify({
         Name: username,
@@ -299,22 +307,23 @@ export function Inscription() {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("User added");
           navigation("/connexion");
         } else {
-          response.text().then((result) => {
-            console.log(result); // This will log the resolved value of the promise
-            //setError(result);
-            throw new Error(result);
-          })
-          .catch((error) => {
-            setError(error.message);
-          });
+          response
+            .text()
+            .then((result) => {
+               // This will log the resolved value of the promise
+              //setError(result);
+              throw new Error(result);
+            })
+            .catch((error) => {
+              setError(error.message);
+            });
         }
       })
       .catch((error) => {
         setError(error.message);
-        //console.log(this.error);
+        
       });
   };
 
@@ -363,10 +372,21 @@ export function Inscription() {
             linkName="Se connecter"
             linkUrl="/connexion"
           />
-          <div style={{display : error === "" ? "none" : "block"}}>
+          <div style={{ display: error === "" ? "none" : "block" }}>
             <div className="alert alert-error shadow-lg">
               <div>
-                <svg className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg
+                  className="stroke-current flex-shrink-0 h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
                 <span>{error}</span>
               </div>
             </div>
@@ -416,7 +436,7 @@ export function Inscription() {
                 <label className="text-white">Mot de passe</label>
                 <input
                   required
-                  className="form-control block w-full px-4 py-2 text-xl font-normal  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-xl font-normal text-black bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-violet-600 focus:outline-none"
                   type="password"
                   placeholder="mot de passe"
                   onChange={(input) => setPassword(input.target.value)}
