@@ -44,7 +44,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=1,
                     NomMusique = "RIP",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Nintendo Wii - Mii Channel Theme.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Nintendo Wii - Mii Channel Theme.mp3"),
                     Auteur = "Grim Reaper",
                     Image = "asset/died.gif",
                     MusicFile ="asset/music/Nintendo Wii - Mii Channel Theme.mp3"
@@ -53,7 +53,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=2,
                     NomMusique = "testation",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Lynyrd Skynyrd-Free Bird (GUITAR SOLO).mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Lynyrd Skynyrd-Free Bird (GUITAR SOLO).mp3"),
                     Auteur = "Jean-Marc",
                     Image = "asset/goofy_dragon.png",
                     MusicFile ="asset/music/Lynyrd Skynyrd-Free Bird (GUITAR SOLO).mp3"
@@ -61,7 +61,7 @@ namespace API_AGT_Web.Music.Data
                 new Music(){
                     Id=3,
                     NomMusique = "test2",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Lynyrd Skynyrd - Sweet Home Alabama (Audio).mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Lynyrd Skynyrd - Sweet Home Alabama (Audio).mp3"),
                     Auteur = "BABAJE",
                     Image = "asset/spag.png",
                     MusicFile ="asset/music/Lynyrd Skynyrd - Sweet Home Alabama (Audio).mp3"
@@ -70,7 +70,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=4,
                     NomMusique = "Sad song",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hank steel the real queer cowboy.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Hank steel the real queer cowboy.mp3"),
                     Auteur = "Gabriel",
                     Image = "asset/Moai.png",
                     MusicFile ="asset/music/Hank steel the real queer cowboy.mp3"
@@ -79,7 +79,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=5,
                     NomMusique = "Moyai Kart OST",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Coconut Mall - Mario Kart Wii OST.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Coconut Mall - Mario Kart Wii OST.mp3"),
                     Auteur = "Moyai",
                     Image = "asset/MoaiVoiture.png",
                     MusicFile ="asset/music/Coconut Mall - Mario Kart Wii OST.mp3"
@@ -88,7 +88,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=6,
                     NomMusique = "Fishium",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/fish.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/fish.mp3"),
                     Auteur = "Le Fishe",
                     Image = "asset/fish.gif",
                     MusicFile ="asset/music/fish.mp3"
@@ -97,7 +97,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=7,
                     NomMusique = "we like fortnite",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Rubber Band.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Rubber Band.mp3"),
                     Auteur = "FortiniteGamer",
                     Image = "asset/fortiniteSong.png",
                     MusicFile ="asset/music/Rubber Band.mp3"
@@ -106,7 +106,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=8,
                     NomMusique = "Smelly Feet",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Feet.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Feet.mp3"),
                     Auteur = "Feet",
                     Image = "asset/GoussePied.png",
                     MusicFile ="asset/music/Feet.mp3"
@@ -115,7 +115,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=9,
                     NomMusique = "I am dancing",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Aaron Smith - Dancin - Krono Remix (Official Video) ft. Luvli.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Aaron Smith - Dancin - Krono Remix (Official Video) ft. Luvli.mp3"),
                     Auteur = "Green Dancing Guy",
                     Image = "asset/dance.webp",
                     MusicFile ="asset/music/Aaron Smith - Dancin - Krono Remix (Official Video) ft. Luvli.mp3"
@@ -124,7 +124,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=10,
                     NomMusique = "Moyai",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/bluegrass banjo - country banjo.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/bluegrass banjo - country banjo.mp3"),
                     Auteur = "Le Bolduc",
                     Image = "asset/moyai-dancing.gif",
                     MusicFile ="asset/music/bluegrass banjo - country banjo.mp3"
@@ -133,7 +133,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=11,
                     NomMusique = "Giga Chad",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/gigachad.mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/gigachad.mp3"),
                     Auteur = "Chad",
                     Image = "asset/chad.jpeg",
                     MusicFile ="asset/music/gigachad.mp3"
@@ -142,7 +142,7 @@ namespace API_AGT_Web.Music.Data
                 {
                     Id=12,
                     NomMusique = "Hamburger",
-                    Duree = setupDurationForMusicInMemory("../../public/asset/music/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3"),
+                    Duree = setupDurationForMusicInMemory("../../build/asset/music/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3"),
                     Auteur = "Hamburger",
                     Image = "asset/hamburger.gif",
                     MusicFile ="asset/music/Hamburger Cheeseburger Big Mac Whopper (Full Version).mp3"

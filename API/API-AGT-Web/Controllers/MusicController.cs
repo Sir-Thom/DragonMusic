@@ -4,22 +4,28 @@ using API_AGT_Web.Music;
 
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.AspNetCore.Cors;
 
 namespace API_AGT_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowAnyOrigin")]
     public class MusicController : ControllerBase
     {
+        private readonly IConfiguration _config;
+
         //le path a été ajuster pour quand on vas le mettre dans le vm changer si sur windows
         //private const string configDirPathAsset = "../../build/asset/";
-        private  string configDirPathAsset;
-        private  string configDirPathMusic;
+        private string configDirPathAsset;
+
+        private string configDirPathMusic;
+
         //const string directoryPath = "..\\..\\public\\asset\\";
         //private const string directoryPathMusic = "../../build/asset/music/";
 
         private IMusicLiteDbRepository musicRepository;
-        private readonly IConfiguration _config;
+
         public MusicController(IConfiguration configuration)
         {
             musicRepository = new MusicLiteDbRepository(configuration["LiteDbFilePath"]);
