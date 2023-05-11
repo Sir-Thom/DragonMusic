@@ -1,5 +1,4 @@
-liens: dragonmusic.koreacentral.cloudapp.azure.com
+liens: dragonmusics.koreacentral.cloudapp.azure.com
 server name: agt
 username: agt
 password:4B6bAt6uAK9wD3Z
-
