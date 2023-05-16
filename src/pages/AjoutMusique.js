@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "../components/header/NavbarComp";
 import { useNavigate } from "react-router-dom";
 import { ImPlay2, ImPause } from "react-icons/im";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function formatTime(totalSeconds) {
   const days = Math.floor(totalSeconds / 86400);
@@ -37,10 +37,12 @@ export default function AjoutMusique({ o }) {
   const [Cover, setCover] = useState("asset/placeholder.png");
   const [error, setError] = useState("");
   const [music, setMusic] = useState("");
-  const [file, setFile] = useState(null);
-  const [musicfile, setMusicfile] = useState(null);
+  const [file, setFile] = useState("");
+  const [musicfile, setMusicfile] = useState("");
   const [result, setResult] = useState("");
   const [CasePlayStop, setSelectedIcon] = useState(1);
+  const fileInputRef = useRef(null);
+  const imageInputRef = useRef(null);
 
   const navigation = useNavigate();
 
@@ -73,6 +75,7 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
+          setResult("Musique ajouté");
           addMusicFile();
           addImage();
           setTime("0");
@@ -80,10 +83,14 @@ export default function AjoutMusique({ o }) {
           setMusicName("");
           setCover("../asset/placeholder.png");
           setMusic("");
+          setFile(null);
+          setMusicfile(null);
+          fileInputRef.current.value = '';
+          imageInputRef.current.value = '';
 
           setResult("La musique a été ajoutée sans erreur!");
         } else {
-          console.log("Erreur pas facteur donc pas poste");
+          throw new Error("Une erreur est survenue, la musique n'a pas été ajoutée.");
         }
       })
       .catch((err) => {
@@ -102,10 +109,9 @@ export default function AjoutMusique({ o }) {
       },
     })
       .then((response) => {
-        if (response.ok) {
-          setResult("Téléversement réussi");
-        } else
+        if (!response.ok) {
           throw new Error("Téléversement échoué, erreur: " + response.status);
+        }
       })
       .catch((err) => {
         setError("Erreur: " + err.message);
@@ -149,9 +155,15 @@ export default function AjoutMusique({ o }) {
 
   const handleCoverChange = (event) => {
     setResult("");
+
+    if (event.target.files[0] == null) {
+      return;
+    }
+
     setFile(event.target.files[0]);
     const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
+    //console.log(imageUrl);
   };
 
   const handleMusicFile = (event) => {
@@ -171,7 +183,6 @@ export default function AjoutMusique({ o }) {
     setMusicfile(event.target.files[0]);
     const musicUrl = URL.createObjectURL(event.target.files[0]);
     setMusic(musicUrl);
-
     //handleTimeChange();
   };
 
@@ -252,6 +263,7 @@ export default function AjoutMusique({ o }) {
               placeholder="Nom Musique"
               className="input input-bordered text-gray-200  bg-cod-gray-500 w-full max-w-xs"
               required
+              value={musicName}
               onChange={handleMusicNameChange}
             />
             <label className="label">
@@ -262,6 +274,7 @@ export default function AjoutMusique({ o }) {
               placeholder="Auteur"
               required
               className="input input-bordered text-gray-200 bg-cod-gray-500 w-full max-w-xs"
+              value={Artist}
               onChange={handleArtistChange}
             />
 
@@ -275,6 +288,7 @@ export default function AjoutMusique({ o }) {
               accept=".jpg, .png, .jpeg, .webp, .gif"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
+              ref={imageInputRef}
               onChange={handleCoverChange}
             />
             <label className="label">
@@ -287,6 +301,7 @@ export default function AjoutMusique({ o }) {
               accept=".mp3, .wav, .ogg"
               placeholder="Image de couverture"
               className="file-input file-input-bordered w-full pb-14  text-gray-200 max-w-xs"
+              ref={fileInputRef}
               onChange={handleMusicFile}
             />
             <button className="btn btn-primary left-100 mt-4">Ajouter</button>

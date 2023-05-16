@@ -76,7 +76,15 @@ export function Connexion() {
           return response.json();
         }
         else {
-          throw new Error("Mauvaises informations");
+          response.text()
+            .then((result) => {
+              //console.log(result); // This will log the resolved value of the promise
+              //setError(result);
+              throw new Error(result);
+            })
+            .catch((error) => {
+              setError(error.message);
+            });
         }
       })
       .then((data) => {
@@ -307,12 +315,12 @@ export function Inscription() {
     })
       .then((response) => {
         if (response.ok) {
+          //console.log("User added");
           navigation("/connexion");
         } else {
-          response
-            .text()
+          response.text()
             .then((result) => {
-               // This will log the resolved value of the promise
+              //console.log(result); // This will log the resolved value of the promise
               //setError(result);
               throw new Error(result);
             })

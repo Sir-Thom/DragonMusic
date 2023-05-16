@@ -86,7 +86,11 @@ namespace API_AGT_Web.Controllers
             try
             {
                 var user = userRepository.GetUserByUsername(userModel.Name, userModel.Email);
-                bool s = BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash);
+                if (user is null)
+                {
+                    return BadRequest("Nom d'utilisateur ou courriel invalide");
+                }
+                //bool s = BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash);
 
                 if (user.Name == "" || !BCrypt.Net.BCrypt.Verify(userModel.Password, user.PasswordHash))
                     return BadRequest("Informations de connexion invalides");
