@@ -299,7 +299,6 @@ export function Inscription() {
   function creerCompte(event) {
     event.preventDefault();
     addUserDb();
-    //console.log(data);
   }
 
   const addUserDb = async () => {
@@ -332,7 +331,7 @@ export function Inscription() {
       })
       .catch((error) => {
         setError(error.message);
-        //console.log(this.error);
+        
       });
   };
 

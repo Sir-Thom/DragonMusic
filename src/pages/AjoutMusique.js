@@ -101,7 +101,6 @@ export default function AjoutMusique({ o }) {
   const addMusicFile = async () => {
     const formData = new FormData();
     formData.append("music", musicfile, musicfile.name);
-    console.log(musicfile.name);
     await fetch(process.env.REACT_APP_API_URL + "/MusicFile", {
       method: "POST",
       body: formData,
@@ -132,7 +131,6 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Image ajouté");
         }
       })
       .catch((err) => {
@@ -175,8 +173,7 @@ export default function AjoutMusique({ o }) {
     audioFile.addEventListener("loadedmetadata", () => {
       const duration = Math.floor(audioFile.duration);
       //const musicTime = formatTime(duration.toString());
-      setTime(duration);
-      //console.log("Duration:", duration); // The duration of the audio file in second
+      setTime(duration); // The duration of the audio file in second
     });
     if (musicfile == null) {
       setTime("00:00");
