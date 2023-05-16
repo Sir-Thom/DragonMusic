@@ -75,7 +75,7 @@ export default function AjoutMusique({ o }) {
     })
       .then((response) => {
         if (response.ok) {
-          setResult("Music ajouté");
+          setResult("Musique ajouté");
           addMusicFile();
           addImage();
           setTime("0");
