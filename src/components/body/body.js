@@ -135,7 +135,7 @@ function MusicBars({ src }) {
 
   return (
     <nav className="fixed bottom-0 w-full rounded-tl-lg rounded-trt-lg  bg-cod-gray-700 text-white p-2">
-      <audio autoPlay={autoPlay} ref={audioRef} src={Musics} controls={false} />
+      <audio autoPlay={autoPlay} ref={audioRef} src={Musics} controls={false}/>
       <div className="flex justify-center items-center space-x-4">
         <motion.div className="flex justify-center items-center space-x-4">
           <motion.button
