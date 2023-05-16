@@ -150,8 +150,12 @@ export default function AjoutMusique({ o }) {
   const handleCoverChange = (event) => {
     setResult("");
     setFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if(file && typeof window.URL.createObjectURL === 'function'){
     const imageUrl = URL.createObjectURL(event.target.files[0]);
     setCover(imageUrl);
+    } 
+    
   };
 
   const handleMusicFile = (event) => {
